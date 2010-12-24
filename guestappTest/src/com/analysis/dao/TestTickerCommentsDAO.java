@@ -78,11 +78,12 @@ public class TestTickerCommentsDAO extends LocalDatastoreTest {
 		TickerComments rt2 = getTickerCommentsSample2();
 		TickerComments rt3 = getTickerCommentsSample3();
 		TickerComments rt4 = getTickerCommentsSample4();
+		
 		//first add
-		tickersDAO.createTickerComments(rt.getEmail(), rt.getContent(), rt.getTicker());		
-		tickersDAO.createTickerComments(rt2.getEmail(), rt2.getContent(), rt2.getTicker());		
-		tickersDAO.createTickerComments(rt3.getEmail(), rt3.getContent(), rt3.getTicker());		
-		tickersDAO.createTickerComments(rt4.getEmail(), rt4.getContent(), rt4.getTicker());		
+		tickersDAO.createTickerComments(rt.getEmail(), rt.getContent(), rt.getTicker(), new Date(10000));		
+		tickersDAO.createTickerComments(rt2.getEmail(), rt2.getContent(), rt2.getTicker(), new Date(10001));		
+		tickersDAO.createTickerComments(rt3.getEmail(), rt3.getContent(), rt3.getTicker(), new Date(10002));		
+		tickersDAO.createTickerComments(rt4.getEmail(), rt4.getContent(), rt4.getTicker(), new Date(10003));		
 			
 		Collection<TickerComments>results = tickersDAO.getComments(rt.getEmail());
 		assertEquals(4, results.size());
@@ -91,9 +92,16 @@ public class TestTickerCommentsDAO extends LocalDatastoreTest {
 		assertEquals(3, results2.size());
 		
 		//check the descending order
+		int i = 0;
 		for(TickerComments comment : results2) {
-			assertEquals(rt3.getContent(), comment.getContent());
-			break;
+			if(i == 0) {
+				assertEquals(rt3.getContent(), comment.getContent());
+			} else if(i == 1) {
+				assertEquals(rt2.getContent(), comment.getContent());
+			} else if(i==2) {
+				assertEquals(rt.getContent(), comment.getContent());
+			}
+			i++;
 		}
 		
 		

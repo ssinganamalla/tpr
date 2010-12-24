@@ -13,9 +13,16 @@ import com.analysis.vo.UserTicker;
 
 public class TickerCommentsDAOImpl implements TickerCommentsDAO {
 
+	/**
+	 * @deprecated Use {@link #createTickerComments(String,String,String,Date)} instead
+	 */
 	@Override
 	public void createTickerComments(String email, String comments, String ticker) {
-		Date date = new Date();
+		createTickerComments(email, comments, ticker, new Date());
+	}
+
+	@Override
+	public void createTickerComments(String email, String comments, String ticker, Date date) {
 		TickerComments note = new TickerComments(email, comments, date, false, ticker);
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		try {

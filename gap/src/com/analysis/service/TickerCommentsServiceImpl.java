@@ -1,6 +1,7 @@
 package com.analysis.service;
 
 import java.util.Collection;
+import java.util.Date;
 
 import com.analysis.dao.TickerCommentsDAO;
 import com.analysis.domain.TickerComments;
@@ -18,8 +19,8 @@ public class TickerCommentsServiceImpl implements TickerCommentsService {
 	}
 
 	@Override
-	public void addTickerComments(String email, String comments, String ticker) {
-		this.commentsDAO.createTickerComments(email, comments, ticker);
+	public void addTickerComments(String email, String comments, String ticker, Date date) {
+		this.commentsDAO.createTickerComments(email, comments, ticker, date);
 	}
 
 	@Override

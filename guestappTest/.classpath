@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
+	<classpathentry kind="lib" path="/guestapp/3rdParty/test/lib/junit-4.8.1.jar"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/guestapp"/>
@@ -7,6 +8,5 @@
 	<classpathentry kind="var" path="GAP_SDK_ROOT/lib/impl/appengine-api-labs.jar"/>
 	<classpathentry kind="var" path="GAP_SDK_ROOT/lib/impl/appengine-api-stubs.jar"/>
 	<classpathentry kind="var" path="GAP_SDK_ROOT/lib/testing/appengine-testing.jar"/>
-	<classpathentry kind="lib" path="/guestapp/3rdParty/test/lib/junit-4.8.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

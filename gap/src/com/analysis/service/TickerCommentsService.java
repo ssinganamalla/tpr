@@ -10,7 +10,7 @@ import com.analysis.domain.TickerComments;
 import com.google.appengine.api.users.User;
 
 public interface TickerCommentsService {
-	void addTickerComments(String email, String comments, String ticker);
+	void addTickerComments(String email, String comments, String ticker, Date date);
 	
 	Collection<TickerComments> getComments(String email);
 	
