@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans default-autowire="autodetect">
+	
+	<bean id="portfolioAction" class="com.analysis.action.PortFolioAction" singleton="false">
+		   <property name="folioService" ref="portfolioService"></property>
+		   <property name="tickersService" ref="tickersService"></property>
+	</bean>
+	
+	<bean id="brokerDataAction" class="com.analysis.action.BrokerDataAction">
+		<property name="brokerDataService" ref="brokerDataService"></property>    	
+	</bean>
+	
+    <bean id="ratioThresholds" class="com.analysis.action.ThresholdControlPrefsAction">
+		<property name="ratioControlPrefsService" ref="ratioControlPrefsService"></property>    	
+    </bean>    
+    
+    <bean id="urlFetchCompanyInfo" class="com.analysis.action.urlfetch.UrlFetchCompanyInfoAction">
+    	<property name="tickerInfoService" ref="tickerInfoService"></property>
+    </bean>
+    
+    <bean id="tickerInfoAction" class="com.analysis.action.TickerInfoAction">
+    	<property name="tickerInfoService" ref="tickerInfoService"></property>
+    </bean>
+    	  	
+    
+    <bean id="tickers" class="com.analysis.action.TickersAction">  
+    	<property name="tickersService" ref="tickersService"></property>          
+    </bean>
+    
+</beans>

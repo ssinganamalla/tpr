@@ -1,0 +1,206 @@
+<project basedir="..">
+	  <property name="sdk.dir" location="C:/home/appengine-java-sdk-1.4.0" />
+	  <import file="${sdk.dir}/config/user/ant-macros.xml" />
+	  <property name="3rd.party" location="3rdParty"/>
+	  <property name="war.lib" location="war/WEB-INF/lib"></property>
+	  <property name="war.classes" location="war/WEB-INF/classes"></property>
+	  <property name="server.port" value="8085"></property>
+	  <property name="test.lib" location="test/lib"></property>
+<!--	  comment the below line in the production mode-->
+	  <property name="dev.mode" value="some_random_value"></property>
+	  
+	  <path id="project.classpath">
+	    <pathelement path="${war.classes}" />
+	    <fileset dir="${war.lib}">
+	      <include name="**/*.jar" />
+	    </fileset>
+	    <fileset dir="${sdk.dir}/lib">
+	      <include name="shared/**/*.jar" />
+	    </fileset>
+
+	    <fileset dir="${3rd.party}/lib">
+	    	<include name="*.jar"></include>
+	    </fileset>
+	  </path>
+	  
+	  <path id="test.classpath">
+	  	<path refid="project.classpath"></path>
+	    <fileset dir="${sdk.dir}/lib/impl">
+	      <include name="appengine-api-stubs.jar" />
+	      <include name="appengine-local-runtime.jar" />
+	      <include name="appengine-api-labs.jar" />
+	    </fileset>
+	    <fileset dir="${sdk.dir}/lib/testing/">
+	    	<include name="appengine-testing.jar"/>
+	    </fileset>
+	    
+	     <fileset dir="${3rd.party}/test/lib/">
+	    	<include name="junit-4.8.1.jar"/>
+	    </fileset>
+
+	  </path>
+	
+	
+	<target name="clean"
+		description="Cleans the compiled classes">
+		<delete>
+			<fileset dir="war/js">
+				<include name="**/*.min.js"/>	
+			</fileset>
+		</delete>
+		<delete dir="${war.classes}"/>
+		<delete dir="${war.lib}"/>
+		<delete dir="${test.lib}"/>
+	</target>
+	
+	<target name="copyjars"
+	      description="Copies the App Engine JARs to the WAR.">
+	     <delete dir="war/WEB-INF/lib" includes="**/*.jar"/>
+	    <copy
+	        todir="war/WEB-INF/lib"
+	        flatten="true">
+	      <fileset dir="${sdk.dir}/lib/user">
+	        <include name="**/*.jar" />
+	      </fileset>
+	      <fileset dir="${3rd.party}/lib" excludes="jsmin*.jar, jtidy*.jar">
+	    	<include name="**/*.jar"></include>
+	      </fileset>
+	      
+	    </copy>
+	  </target>
+
+	<target name="compile" depends="copyjars"
+	      description="Compiles Java source and copies other source files to the WAR.">
+	    <mkdir dir="war/WEB-INF/classes" />
+	    <copy todir="war/WEB-INF/classes">
+	      <fileset dir="src">
+	        <exclude name="**/*.java" />
+	      </fileset>
+	    </copy>
+	    <javac
+	        srcdir="src"
+	        destdir="war/WEB-INF/classes"
+	        classpathref="project.classpath"
+	        debug="on" />
+	  </target>
+	  
+	<target name="copytestjars" description="copies the appengine jars for test classes. execute this to get the latest jars needed for test framework">
+	    <copy todir="test/lib" flatten="true" overwrite="true" verbose="true">
+
+	      
+	      <fileset dir="${sdk.dir}/lib/impl">
+	      	<include name="appengine-api-stubs.jar" />
+	      	<include name="appengine-local-runtime.jar" />
+	      	<include name="appengine-api-labs.jar" />
+	    </fileset>
+	      
+	      <fileset dir="${sdk.dir}/lib/testing/">
+	    	<include name="appengine-testing.jar"/>
+	    </fileset>
+	    
+	    <fileset dir="${3rd.party}/test/lib/">
+	    	<include name="junit-4.8.1.jar"/>
+	    </fileset>
+	    </copy>
+	</target> 
+	
+	<target name="test-compile" depends="compile"
+	      description="Compiles test java src files">
+	    <mkdir dir="test/classes" />
+	    <copy todir="test/classes">
+	      <fileset dir="test/src">
+	        <exclude name="**/*.java" />
+	      </fileset>
+	    </copy>
+	    <javac
+	        srcdir="test/src"
+	        destdir="test/classes"
+	        classpathref="test.classpath"
+	        debug="on" />
+	  </target>
+	
+	<target name="datanucleusenhance" depends="compile"
+	      description="Performs JDO enhancement on compiled data classes.">
+	    <enhance_war war="war" />
+	  </target>
+
+	<target name="runserver" depends="datanucleusenhance"
+	      description="Starts the development server.">
+	    <dev_appserver war="war" port="${server.port}"/>
+	  </target>
+
+	<target name="rundebugserver" depends="datanucleusenhance"
+	      description="Starts the development server.">
+	    <dev_appserver war="war" port="${server.port}" >
+	      <options>
+	        <arg value="--jvm_flag=-Xdebug"/>
+	        <arg value="--jvm_flag=-Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=9999"/>
+	      </options>
+	    </dev_appserver>
+	  </target>
+
+	
+	<target name="update" depends="datanucleusenhance"
+	      description="Uploads the application to App Engine.">
+	    <appcfg action="update" war="war" />
+	  </target>
+
+	  <target name="update_indexes" depends="datanucleusenhance"
+	      description="Uploads just the datastore index configuration to App Engine.">
+	    <appcfg action="update_indexes" war="war" />
+	  </target>
+
+	  <target name="rollback" depends="datanucleusenhance"
+	      description="Rolls back an interrupted application update.">
+	    <appcfg action="rollback" war="war" />
+	  </target>
+
+	  <target name="request_logs"
+	      description="Downloads log data from App Engine for the application.">
+	    <appcfg action="request_logs" war="war">
+	      <options>
+	        <arg value="--num_days=5"/>
+	      </options>
+	      <args>
+	        <arg value="logs.txt"/>
+	      </args>
+	    </appcfg>
+	  </target>
+
+	<taskdef name="jsmin" classname="net.matthaynes.jsmin.JSMin_Task" classpath="3rdParty/lib/jsmin.0.2.3.jar"/>
+	
+	
+	<target name="jsminify">
+<!--		only one of these two would be executed-->
+		<antcall target="jsminify-prod"/>
+		<antcall target="jsminify-dev"/>
+	</target>
+	
+	<target name="jsminify-prod" unless="dev.mode" description="copies the dev js dir to war-js dir and minifies it">
+		<echo>Running jsminify in the production mode. If you are in development mode then UNCOMMENT the "dev.mode" property</echo>
+		<delete dir="war/js" includes="**/*.js"/>
+		<copy todir="war/js">
+			<fileset dir="js" includes="**/*.js" excludes="**/*jquery-1.4.2.js, **/*jquery-ui-1.7.2.custom.js"></fileset>
+		</copy>
+		
+		<jsmin  suffix="true">
+	       <fileset dir="war/js" includes="**/*.js" excludes="**/*.min.js" />
+		</jsmin>
+		<delete dir="war/js" excludes="**/*.min.js"/>
+	</target>
+	
+	<target name="jsminify-dev"  if="dev.mode" description="copies the dev js dir to war-js dir and changes the filename from js to min.js">
+		<echo>Running jsminify in the development mode. If you are in production mode then comment the "dev.mode" property</echo>
+		<delete dir="war/js" includes="**/*.js"/>
+		<copy todir="war/js" verbose="true">
+			<fileset dir="js" includes="**/*.js" excludes="**/*jquery-1.4.2.min.js, **/*jquery-ui-1.7.2.custom.min.js"></fileset>
+			<globmapper from="*.js" to="*.min.js"/>
+		</copy>
+	</target>
+	
+	
+	<target name="deploy" depends="jsminify, jsminify, compile">
+		
+	</target>
+	
+</project>

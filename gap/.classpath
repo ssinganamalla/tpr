@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="3rdParty/lib/xercesImpl.jar"/>
+	<classpathentry kind="lib" path="3rdParty/lib/json.jar"/>
+	<classpathentry kind="lib" path="3rdParty/lib/commons-lang-2.4.jar"/>
+	<classpathentry kind="lib" path="3rdParty/lib/commons-fileupload-1.2.1.jar"/>
+	<classpathentry kind="lib" path="3rdParty/lib/commons-io-1.3.2.jar"/>
+	<classpathentry kind="lib" path="3rdParty/lib/commons-logging-1.0.4.jar"/>
+	<classpathentry kind="lib" path="3rdParty/lib/freemarker-2.3.13.jar"/>
+	<classpathentry kind="lib" path="3rdParty/lib/ognl-2.6.11.jar"/>
+	<classpathentry kind="lib" path="3rdParty/lib/struts2-core-2.1.6.jar"/>
+	<classpathentry kind="lib" path="3rdParty/lib/xwork-2.1.2.jar"/>
+	<classpathentry kind="lib" path="3rdParty/lib/xml-apis.jar"/>
+	<classpathentry kind="lib" path="3rdParty/lib/jtidy-r918.jar"/>
+	<classpathentry kind="lib" path="3rdParty/lib/htmlparser.jar"/>
+	<classpathentry kind="lib" path="3rdParty/lib/htmllexer.jar"/>
+	<classpathentry kind="var" path="GAP_SDK_ROOT/lib/impl/appengine-api.jar"/>
+	<classpathentry kind="var" path="GAP_SDK_ROOT/lib/impl/appengine-api-labs.jar"/>
+	<classpathentry kind="var" path="GAP_SDK_ROOT/lib/impl/appengine-api-stubs.jar"/>
+	<classpathentry kind="var" path="GAP_SDK_ROOT/lib/testing/appengine-testing.jar"/>
+	<classpathentry kind="var" path="GAP_SDK_ROOT"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry exported="true" kind="con" path="com.google.appengine.eclipse.core.GAE_CONTAINER"/>
+	<classpathentry kind="output" path="war/WEB-INF/classes"/>
+</classpath>

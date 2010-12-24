@@ -1,0 +1,263 @@
+body {
+	background-color: #464442;	
+	font-size: 12px;
+	font-family: Georgia,"Times New Roman",Times,serif;
+}
+
+a{
+	color:#000000;
+	text-decoration: underline;
+}
+.bg {
+	background-color:#ffffff;
+	padding-left:50px;
+	padding-right:20px;
+	padding-top:20px;
+	padding-bottom: 20px;
+}
+
+#topheader{
+	color: #fff;
+	font-weight: bold;
+}
+
+span > a{
+	color: #fff;
+}
+.bt {
+	border-bottom: 2px solid #000;
+}
+
+
+.full {
+	width:100%;
+	height:100%	
+}
+
+.tp {
+	padding-top: 10px;	
+}
+.ml {
+	margin-left: 50px;	
+}
+.mt {
+	margin-top: 20px;	
+}
+.mb {
+	margin-bottom: 20px;	
+}
+
+.f {
+	font-family: serif;	
+}
+.f1 {
+	font-size: 75%;	
+}
+
+.f2 {
+	font-size: 120%;
+}
+
+.f3 {
+	font-size: 120%;
+	font-weight: bold;
+}
+.f4 {
+	font-size: 140%;
+	font-weight: bold;
+}
+.f5 {
+	font-size: 160%;
+	font-weight: bold;
+}
+
+#page {
+	width: 902px;
+	text-align: left;
+}
+
+#menuSections{
+	margin-top:50px;
+	border-bottom: 2px solid;	
+}
+
+#header {
+	margin-top: 20px;	
+	margin-bottom: 20px;
+}
+
+#main {
+	margin-top:20px;	
+}
+
+#criteriaSelectionsDiv {
+	width:35%;
+	float:left;
+}
+#selectedCriteriaGraphDiv {
+	float:left;
+	margin-top:2%;
+}
+
+#selectedCriteriaChartDiv{
+	border: 1px solid #000;	
+}
+
+#chart_div{
+	min-height: 400px;
+}
+
+#sectorGraphBoughtPrice {
+	width:49%;
+	float:left;
+}
+#sectorGraphCurrentPrice{
+	width:49%;
+	float:left;
+}
+
+#footer {
+	color:#fff;
+}
+#results {
+	display:none;	
+}
+
+#notes {
+	margin-top:20px;	
+}
+
+.rightElement {
+	text-align: right;	
+	float:right;
+	width:40%;
+}
+
+
+.leftElement{
+	float:left;
+	width:40%;
+}
+
+.clearBothElement {
+	clear:both;	
+}
+
+.sectorStockList {
+	width:50%;
+	float:left;
+}
+.sectorStockGraph {
+	width:50%;
+	float:left;
+}
+	
+.r0 {
+	background-color: #c9e1f4;	
+}
+.r1 {
+	background-color: #ffcc66;	
+}
+
+#compcritbox ul{
+	list-style-image: none;
+	list-style-type: none;
+}
+#compcritbox {
+   text-decoration: none;
+	/*background:#EEEEEE url(sidenavbg.png) no-repeat scroll center bottom;
+	border:1px dashed #888888;*/
+	text-align:left;
+	width:80%;	
+}
+
+.thresholds {
+	
+}
+
+#compcritbox li span{
+	width:300px;
+}
+
+.comp_table_hdr {
+	font-size: 80%;
+	font-weight:bold;
+	color:#000;
+	padding:6px;
+	background: #FFFFFF url(../images/title-bg.gif) repeat-x scroll left bottom;
+}
+
+tr.comp_table_row {
+	font-size: 75%;
+	background-color: #fafafa;
+}
+tr.comp_table_row:HOVER {
+	background-color: #e7e9f9;
+}
+
+.crit_sec_hdr {
+	font-size: 100%;
+	color:#000;
+}
+.crit_cell_hdr {
+	font-size: 75%;
+	border:1px solid #EEEEEE;
+}
+
+.crit_cell_hdr_odd {
+	background-color: #fafafa;
+}
+.crit_cell_hdr_even {
+	
+}
+
+td.crit_cell_hdr:HOVER {
+	background-color: #e7e9f9;
+}
+
+.critbox_hdr {
+	font-size: 120%;	
+	font-weight: bold;
+	margin-top:25px;
+}
+
+
+.section_hdr {
+	padding-top: 3px;
+	padding-bottom: 3px;
+	margin-bottom: 5px;
+	margin-top: 20px;
+	
+	border-bottom:1px solid #888888;
+	color:#8B4513;
+	font-size:150%;
+	font-variant:small-caps;
+	font-weight:bold;
+	
+}
+
+.ratioAnalysisTable {
+	background:#CCCCCC none repeat scroll 0 0;
+	border:1px solid #888888;
+	border-collapse:collapse;
+	cursor:default;
+	font-family:arial,helvetica;
+	font-size:10pt;
+	margin:0;
+}
+
+.ui-slider-label {
+	margin-top: 20px;
+	margin-bottom: 5px;	
+}
+.ui-slider-base-label{
+	font-weight: bold;
+	font-size: 100%;
+}
+.ui-slider-var-label{
+	font-size: 100%;
+}
+
+#profitabilityTable{
+	width: 100%;
+}

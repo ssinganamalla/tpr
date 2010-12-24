@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans default-autowire="autodetect">
+    <bean id="brokerDataDAO" class="com.analysis.dao.BrokerDataDAOImpl"></bean>
+    
+    <bean id="tickerInfoDAO" class="com.analysis.dao.TickerInfoDAOImpl"/>
+    
+    <bean id="portfolioDAO" class="com.analysis.dao.PortFolioDAOImpl"></bean>
+    
+    <bean id="tickersDAO" class="com.analysis.dao.TickersDAOImpl"></bean>
+    
+    <bean id="ratioThresholdsDAO" class="com.analysis.dao.RatioThresholdsDAOImpl"></bean>
+    
+</beans>

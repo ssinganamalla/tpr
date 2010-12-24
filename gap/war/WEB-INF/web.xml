@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd">
+
+<web-app xmlns="http://java.sun.com/xml/ns/javaee">
+
+	<filter>
+		<filter-name>struts2</filter-name>
+		<filter-class>org.apache.struts2.dispatcher.FilterDispatcher</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>struts2</filter-name>
+		<url-pattern>/struts/*</url-pattern>
+	</filter-mapping>
+
+	<!--	fix to make google app engine work with struts 2-->
+	<listener>
+		<listener-class>com.external.strutsfix.ONGLFixListener</listener-class>
+	</listener>
+
+	<!--<listener>
+   		<listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+	</listener>
+	-->
+	
+	<!-- Context Configuration locations for Spring XML files. If this is not specified, applicationContext.xml is loaded -->
+	
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+    	<param-value>/WEB-INF/applicationContext-*.xml, /WEB-INF/applicationContext.xml</param-value>
+	</context-param>
+<!--	spring servlet context listener to start the web application context loading.  ContextLoaderListener is also a ServletContextListener-->
+<!--Once the servlet context is loaded, web app context is loaded. you can get a web app context from a servlet context. The web app context contains all the info to get the spring beans-->
+	<listener>
+    	<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+	<!--All the servlets should be moved to actions	-->
+	<servlet>
+		<servlet-name>addNote</servlet-name>
+		<servlet-class>com.analysis.servlets.AddNoteServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>addNote</servlet-name>
+		<url-pattern>/addNote</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>savePreferredTickers</servlet-name>
+		<servlet-class>com.analysis.servlets.SavePreferredTickersServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>savePreferredTickers</servlet-name>
+		<url-pattern>/savePreferredTickers</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>saveSectorTickers</servlet-name>
+		<servlet-class>com.analysis.servlets.SaveSectorTickersServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>saveSectorTickers</servlet-name>
+		<url-pattern>/saveSectorTickers</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>getPreferredTickers</servlet-name>
+		<servlet-class>com.analysis.servlets.GetPreferredTickersServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>getPreferredTickers</servlet-name>
+		<url-pattern>/getPreferredTickers</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>getSectorTickers</servlet-name>
+		<servlet-class>com.analysis.servlets.GetSectorTickersServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>getSectorTickers</servlet-name>
+		<url-pattern>/getSectorTickers</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>getComparisonTickers</servlet-name>
+		<servlet-class>com.analysis.servlets.GetComparisonTickersServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>getComparisonTickers</servlet-name>
+		<url-pattern>/getComparisonTickers</url-pattern>
+	</servlet-mapping>
+
+
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+</web-app>

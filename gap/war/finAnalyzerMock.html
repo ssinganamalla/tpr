@@ -1,0 +1,144 @@
+<html>
+<head>
+
+
+
+
+
+<link type="text/css" rel="stylesheet" href="stylesheets/main.css">
+<script type="text/javascript" src="js/initNamespace.js"></script>
+<script type="text/javascript" src="js/utils.js"></script>
+<script type="text/javascript" src="js/lib/jquery1.3.2.js"></script>
+<script type="text/javascript" src="js/ui/ui.js"></script>
+<script type="text/javascript" src="js/parser.js"></script>
+
+
+</head>
+<div FirebugVersion="1.4.2" style="display: none;" id="_firebugConsole"></div>
+<body id="dbody">
+<center>
+<div id="header">
+
+<p>Hello, srinivas.singanamalla! (You can <a
+	href="/_ah/logout?continue=%2FfinStart.jsp">sign out</a>.)</p>
+
+</div>
+<div class="page">
+<div id="left"></div>
+
+<div id="right"></div>
+
+<div id="content">
+
+<div id="tickerInputRow">
+<table border="0">
+	<tbody>
+		<tr>
+			<td width="1%"><span><img src="../images/fa2.png"
+				width="146" border="0" height="46"></span></td>
+			<td>
+
+			<form action="/loadCompanyInfo"><span style=""> <!--					<label><b>Enter the Stock Ticker:</b></label> -->
+			<input id="stockTickerSymbol" name="stockTickerSymbol" value=""
+				size="40" maxlength="120" type="text"> <input
+				title="load financial statements" value="Load Statements"
+				type="submit"> <br>
+			<span style="font-size: 0.7em; color: rgb(103, 103, 103);">Example:
+			CSCO</span> </span></form>
+			</td>
+		</tr>
+	</tbody>
+</table>
+</div>
+
+
+<div id="topline"></div>
+</div>
+</div>
+</center>
+<div id="inputPreferredTickers">
+<form name="preferredTickersForm"><label>Enter Preferred
+ticker:</label> <br>
+<label>Example: CSCO GE STV</label> <br>
+Sector
+<div><select id="seltickers" size="12">
+	<option value="0" selected="selected">Basic Materials</option>
+	<option value="1">Capital Goods</option>
+	<option value="2">Conglomerates</option>
+	<option value="3">Cons. Cyclical</option>
+	<option value="4">Cons. Non-Cyclical</option>
+	<option value="5">Energy</option>
+	<option value="6">Financial</option>
+	<option value="7">Healthcare</option>
+	<option value="8">Services</option>
+	<option value="9">Technology</option>
+	<option value="10">Transportation</option>
+	<option value="11">Utilities</option>
+</select> <textarea id="currSectorTickers" cols="18" rows="10"
+	style="overflow: visible;"></textarea></div>
+<div id="preferredTickersSection"><label>Enter Preferred
+Tickers: </label> <br>
+<label>Example: CSCO STV GOOG MT X</label> <br>
+<textarea id="preferredTickers" cols="48" rows="2"></textarea> <br>
+<input id="savePreferredTickers" value="Save" type="button"></div>
+</form>
+</div>
+
+<div id="savedTickersDiv">
+<table>
+	<tr class="r0">
+		<td class="title">CSCO</td>
+		<td class="date" nowrap="1">Desc</td>
+		<td class="date" nowrap="1">Cisco Systems, Inc.</td>
+		<td class="analyze" nowrap="1"><a href="#">Analyze</a></td>
+	</tr>
+	<tr class="r1">
+		<td class="title">STV</td>
+		<td class="date" nowrap="1">Desc</td>
+		<td class="date" nowrap="1">China Digital TV Holding Co., Ltd.</td>
+		<td class="analyze" nowrap="1"><a href="#">Analyze</a></td>
+	</tr>
+	<tr class="r0">
+		<td class="title">GOOG</td>
+		<td class="date" nowrap="1">Desc</td>
+		<td class="date" nowrap="1">Google Inc.</td>
+		<td class="analyze" nowrap="1"><a href="#">Analyze</a></td>
+	</tr>
+	<tr class="r1">
+		<td class="title">MT</td>
+		<td class="date" nowrap="1">Desc</td>
+		<td class="date" nowrap="1">ArcelorMittal (ADR)</td>
+		<td class="analyze" nowrap="1"><a href="#">Analyze</a></td>
+	</tr>
+	<tr class="r0">
+		<td class="title">X</td>
+		<td class="date" nowrap="1">Desc</td>
+		<td class="date" nowrap="1">United States Steel Corporation</td>
+		<td class="analyze" nowrap="1"><a href="#">Analyze</a></td>
+	</tr>
+	<tr class="r1">
+		<td class="title">VAW</td>
+		<td class="date" nowrap="1">Desc</td>
+		<td class="date" nowrap="1">Vanguard Materials (ETF)</td>
+		<td class="analyze" nowrap="1"><a href="#">Analyze</a></td>
+	</tr>
+	<tr class="r0">
+		<td class="title">GE</td>
+		<td class="date" nowrap="1">Desc</td>
+		<td class="date" nowrap="1">General Electric Company</td>
+		<td class="analyze" nowrap="1"><a href="#">Analyze</a></td>
+	</tr>
+</table>
+</div>
+
+
+
+<div id="suggestList" class="container"></div>
+<center>
+<div id="footer">Graphs and the statements are provided solely for
+informational purposes, not for trading purposes or advice.<br>
+For suggestions please send an email to <a
+	href="mailto:finsheetanalyzer@gmail.com">finsheetanalyzer</a></div>
+</center>
+</body>
+</html>

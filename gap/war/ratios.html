@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<link type="text/css" rel="stylesheet" href="stylesheets/main.css" />
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<div id="left">
+
+<ul>
+<li>Statements</li>
+<li>Ratios</li>
+<li>Contact us</li>
+</ul>
+
+</div>
+
+<div id="right">
+
+</div>
+
+<div id="content">
+	<h3>Financial Ratios</h3>
+	<div>
+		<form method="" action=""><label>Enter the Stock Ticker:</label> <input cols="100" rows="1" value="STV" name="stockTickerSymbol"/> 
+		<input type="button" onclick="com.fa.submitLoadStmtsBtn(this.form.stockTickerSymbol.value);" value="Calculate Ratios"/>
+		<img style="display: none;" src="images/loading.gif" alt="Loading..." id="loading"/>
+		</form>
+	</div>
+	
+	<div name="ratio">
+	<h4>Income</h4>
+	<div id="msgs" style="width: 400px; height: 300px; border: medium double rgb(0, 0, 255);">
+	</div>
+
+	<div class="graphContainer">
+		<div id="graph" class="graph"></div>
+		<div id="graphnavi" name="graphnavi"><a href="#" disabled="true">prev</a><a
+		href="#" disabled="false">next</a></div>
+		</div>
+	</div>
+	<div style="clear:both">
+	</div>
+	
+	<div name="ratio">
+	<h4>Profitability</h4>
+	<div id="msgs" style="width: 400px; height: 300px; border: medium double rgb(0, 0, 255);">
+	</div>
+
+	<div class="graphContainer">
+		<div id="graph" class="graph"></div>
+		<div id="graphnavi" name="graphnavi"><a href="#" disabled="true">prev</a><a
+		href="#" disabled="false">next</a></div>
+		</div>
+	</div>
+	<div style="clear:both">
+	</div>
+	
+	<div name="ratio">
+	<h4>Liquidity</h4>
+	<div id="msgs" style="width: 400px; height: 300px; border: medium double rgb(0, 0, 255);">
+	</div>
+
+	<div class="graphContainer">
+		<div id="graph" class="graph"></div>
+		<div id="graphnavi" name="graphnavi"><a href="#" disabled="true">prev</a><a
+		href="#" disabled="false">next</a></div>
+		</div>
+	</div>
+	<div style="clear:both">
+	</div>
+</div>
+
+
+</body>
+</html>
