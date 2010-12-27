@@ -1,5 +1,5 @@
 <project basedir="..">
-	  <property name="sdk.dir" location="C:/home/appengine-java-sdk-1.4.0" />
+	  <property name="sdk.dir" location="C:/srini/appengine-java-sdk-1.4.0" />
 	  <import file="${sdk.dir}/config/user/ant-macros.xml" />
 	  <property name="3rd.party" location="3rdParty"/>
 	  <property name="war.lib" location="war/WEB-INF/lib"></property>
@@ -180,7 +180,7 @@
 		<echo>Running jsminify in the production mode. If you are in development mode then UNCOMMENT the "dev.mode" property</echo>
 		<delete dir="war/js" includes="**/*.js"/>
 		<copy todir="war/js">
-			<fileset dir="js" includes="**/*.js" excludes="**/*jquery-1.4.2.js, **/*jquery-ui-1.7.2.custom.js"></fileset>
+			<fileset dir="js" includes="**/*.js" excludes="**/*jquery-1.4.2.js,**/*jquery.tablesorter.js, **/*jquery.dataTables.js, **/*jquery-ui-1.7.2.custom.js"></fileset>
 		</copy>
 		
 		<jsmin  suffix="true">
@@ -193,7 +193,7 @@
 		<echo>Running jsminify in the development mode. If you are in production mode then comment the "dev.mode" property</echo>
 		<delete dir="war/js" includes="**/*.js"/>
 		<copy todir="war/js" verbose="true">
-			<fileset dir="js" includes="**/*.js" excludes="**/*jquery-1.4.2.min.js, **/*jquery-ui-1.7.2.custom.min.js"></fileset>
+			<fileset dir="js" includes="**/*.js" excludes="**/*jquery-1.4.2.min.js, **/*dataTables.min.js, **/*jquery.tablesorter.min.js, **/*jquery-ui-1.7.2.custom.min.js"></fileset>
 			<globmapper from="*.js" to="*.min.js"/>
 		</copy>
 	</target>

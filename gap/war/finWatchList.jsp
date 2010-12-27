@@ -149,6 +149,7 @@
 
 <script type="text/javascript" src="js/lib/uicontrols.min.js"></script>
 <script type="text/javascript" src="js/ui/ui.min.js"></script>
+<script type="text/javascript" src="js/ui/models.min.js"></script>
 <script type="text/javascript" src="js/ui/events.min.js"></script>
 <script type="text/javascript" src="js/browser.min.js"></script>
 <script type="text/javascript" src="js/finSheets.min.js"></script>

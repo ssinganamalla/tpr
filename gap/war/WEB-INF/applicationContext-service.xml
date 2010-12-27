@@ -26,4 +26,8 @@
     	<property name="ratioThresholdsDAO" ref="ratioThresholdsDAO"></property>
     </bean>
     
+     <bean id="tickerCommentsService" class="com.analysis.service.TickerCommentsServiceImpl">
+    	<property name="commentsDAO" ref="tickerCommentsDAO"></property>
+    </bean>
+    
 </beans>

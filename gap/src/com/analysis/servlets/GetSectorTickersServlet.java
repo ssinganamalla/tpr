@@ -15,7 +15,7 @@ import org.apache.commons.lang.StringEscapeUtils;
 
 import com.analysis.PMF;
 import com.analysis.Sector;
-import com.analysis.domain.TickerComments;
+import com.analysis.domain.TickerComment;
 import com.analysis.domain.PreferredTickers;
 import com.analysis.service.PortFolioService;
 import com.analysis.service.PortFolioServiceImpl;

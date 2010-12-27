@@ -1,18 +1,16 @@
 package com.analysis.service;
 
 import java.util.Collection;
-import java.util.Date;
+import java.util.List;
 
-import javax.jdo.PersistenceManager;
-
-import com.analysis.PMF;
-import com.analysis.domain.TickerComments;
-import com.google.appengine.api.users.User;
+import com.analysis.domain.TickerComment;
 
 public interface TickerCommentsService {
-	void addTickerComments(String email, String comments, String ticker, Date date);
+	void addTickerComments(String email, String comments, String ticker);
 	
-	Collection<TickerComments> getComments(String email);
+	List<String> getTickers(String email);
 	
-	Collection<TickerComments> getComments(String email, String ticker);
+	Collection<TickerComment> getComments(String email);
+	
+	Collection<TickerComment> getComments(String email, String ticker);
 }

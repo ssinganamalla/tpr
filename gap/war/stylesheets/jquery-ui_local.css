@@ -1,0 +1,22 @@
+.ui-tabularlist_ul {
+	width: 100px;
+	float: left;
+	margin: 0;
+	padding: 0;
+}
+
+.ui-tabularlist_li {
+	list-style: none;
+	width: 100px;
+	background-color: #F6F6F6;
+	font-weight: bold;
+	text-align: center;
+	padding: 5px 0 5px 0;
+	border: 1px solid #CCCCCC;
+	color: #0000a0;
+	cursor:pointer;
+}
+
+.ui-tabularlist_none {
+	clear:left;
+}

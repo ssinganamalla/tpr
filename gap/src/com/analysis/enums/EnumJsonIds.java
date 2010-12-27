@@ -17,10 +17,12 @@ public interface EnumJsonIds {
 	public static final String INDUSTRY_ID = "ii";
 	public static final String EXCHANGE = "e";
 	public static final String COMPANY_NAME = "cn";
+	public static final String TICKER_ARRAY = "ta";
 
 	public static final String CONTENT = "co";
 	public static final String USER_EMAIL = "au";
 	public static final String MEDIUM_FORMAT_DATE = "da";
 	public static final String COMMENTS_IS_PUBLIC = "ip";
+	public static final String COMMENT_REASON = "r";
 	
 }

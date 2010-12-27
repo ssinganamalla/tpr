@@ -9,6 +9,7 @@
 <script type="text/javascript" src="js/utils.js"></script>
 <script type="text/javascript" src="js/lib/jquery1.3.2.js"></script>
 <script type="text/javascript" src="js/ui/ui.js"></script>
+<script type="text/javascript" src="js/ui/models.js"></script>
 
 
 <script type="text/javascript" >

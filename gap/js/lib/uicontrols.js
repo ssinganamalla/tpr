@@ -851,3 +851,92 @@ $.widget("ui.finsearchbox", {
 $.ui.finsearchbox.getter = "getShortValue getLongValue"; 
 $.ui.finsearchbox.defaults = {
 }; 
+
+(function($) {
+
+	$.widget("ui.tabularlist", {
+		options: {
+		  minColumnHeight: 1,
+		  maxCols: 10,
+		  value: 20,
+		  innerHtml:"<span></span>",
+		  list:['ABCO', 'HPQ', 'GOOG', 'STV', 'YUM', 'YHOO']
+		},
+		
+		_init: function() {
+		     // creation code for mywidget
+		     this.element.append('<div id="growingListContainer"></div>');
+		     this.render();
+		  },
+		   
+		_setOption: function(option, value) {
+			$.Widget.prototype._setOption.apply( this, arguments );
+	
+			var el = this.element,
+				cap = el.next(),
+				capHeight = cap.outerHeight() - parseInt(cap.css("paddingTop")) + parseInt(cap.css("paddingBottom"));
+	
+			switch (option) {
+				case "minColumnHeight":
+				case "maxCols":
+				case "value":
+					
+					break;
+				case "innerHtml":
+					break;
+			}
+		},
+		
+		render: function() {
+			var value = this.options.list.length;
+			var values = this.options.list;
+			var nameAttr = this.options.nameAttr;
+			var minColumnHeight = this.options.minColumnHeight;
+			var maxCols = this.options.maxCols;
+			
+			var cols = parseInt((value / minColumnHeight)) > maxCols ? maxCols : parseInt((value / minColumnHeight));
+		    cols = Math.max(1, cols);
+		    var listItemsCountInEachColumn_Array = new Array(cols);
+	
+		    var listItemsInEachColumn = parseInt(value / cols);
+		    var remainingListItems = value % cols;
+	
+		    for (var i = 0; i < cols; i++) {
+		        listItemsCountInEachColumn_Array[i] = listItemsInEachColumn;
+		    }
+	
+		    for (i = 0; i < cols; i++) {
+		        if (remainingListItems == 0) 
+		            break;
+		        if (listItemsCountInEachColumn_Array[i] > 0) {
+		            listItemsCountInEachColumn_Array[i] += 1;
+		            remainingListItems--;
+		        }
+		    }
+	
+		    var g = 0;
+		    for (var j = 0; j < listItemsCountInEachColumn_Array.length; j++) {
+		        $('#growingListContainer').append("<ul class='ui-tabularlist_ul' name='commentTicker' id='growList" + j + "'><\/ul>");
+		        for (var k = 0; k < listItemsCountInEachColumn_Array[j]; k++) {
+		            $('#growList' + j).append("<li class='ui-tabularlist_li' " + "name=" + "'" + nameAttr + "'>" + values[g] + "<\/li>");
+		            g++;
+		        }
+		    }
+		    $('#growingListContainer').append('<div class="ui-tabularlist_none"></div>');
+			
+		},
+		
+		destroy: function(){
+			this.element.empty();
+			$.Widget.prototype.destroy.apply(this, arguments); // default destroy
+		}
+	});
+	$.ui.tabularlist.defaults = {
+			minColumnHeight: 1,
+			  maxCols: 10,
+			  value: 20,
+			  innerHtml:"<span></span>",
+			  list:['ABCO', 'HPQ', 'GOOG', 'STV', 'YUM', 'YHOO'],
+			  nameAttr:"nameAttr"
+	};
+})(jQuery);

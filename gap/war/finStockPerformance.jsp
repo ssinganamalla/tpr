@@ -255,6 +255,7 @@
 <script type="text/javascript" src="js/lib/jquery-ui-1.7.2.custom.min.js"></script>
 <script type="text/javascript" src="js/page/constants.min.js"></script>
 <script type="text/javascript" src="js/ui/ui.min.js"></script>
+<script type="text/javascript" src="js/ui/models.min.js"></script>
 <script type="text/javascript" src="js/lib/uicontrols.min.js"></script>
 <script type="text/javascript" src="js/browser.min.js"></script>
 <script type="text/javascript" src="js/page/performance.min.js"></script>

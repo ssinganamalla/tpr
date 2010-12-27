@@ -7,6 +7,11 @@
 		   <property name="tickersService" ref="tickersService"></property>
 	</bean>
 	
+	<bean id="tickerCommentsAction" class="com.analysis.action.TickerCommentsAction">
+		   <property name="commentsService" ref="tickerCommentsService"></property>
+	</bean>
+	
+	
 	<bean id="brokerDataAction" class="com.analysis.action.BrokerDataAction">
 		<property name="brokerDataService" ref="brokerDataService"></property>    	
 	</bean>

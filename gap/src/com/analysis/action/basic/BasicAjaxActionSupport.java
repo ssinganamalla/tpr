@@ -5,6 +5,9 @@ import java.io.StringBufferInputStream;
 
 import org.apache.struts2.StrutsException;
 
+import com.google.appengine.api.users.User;
+import com.google.appengine.api.users.UserService;
+import com.google.appengine.api.users.UserServiceFactory;
 import com.tickerperformance.exceptions.StrutsExecuteException;
 
 public abstract class BasicAjaxActionSupport extends BasicActionSupport {
@@ -34,5 +37,5 @@ public abstract class BasicAjaxActionSupport extends BasicActionSupport {
 	 * @throws StrutsException
 	 */
 	public abstract String populateInputString() throws StrutsException;
-
+	
 }

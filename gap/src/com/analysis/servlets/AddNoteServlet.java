@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.lang.StringEscapeUtils;
 
 import com.analysis.PMF;
-import com.analysis.domain.TickerComments;
+import com.analysis.domain.TickerComment;
 import com.google.appengine.api.users.User;
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
@@ -49,11 +49,11 @@ public class AddNoteServlet extends HttpServlet {
 		}
 		
 		PersistenceManager pm = PMF.get().getPersistenceManager();
-	    String query = "select from " + TickerComments.class.getName();
-	    List<TickerComments> notes = (List<TickerComments>) pm.newQuery(query).execute();
+	    String query = "select from " + TickerComment.class.getName();
+	    List<TickerComment> notes = (List<TickerComment>) pm.newQuery(query).execute();
 	    JSONArray ja = new JSONArray();
 	    	try {
-	    		for (TickerComments note : notes) {
+	    		for (TickerComment note : notes) {
 	    			ja.put(note.toJSONObject());
 	    		}
 			} catch (JSONException e) {
@@ -84,7 +84,7 @@ public class AddNoteServlet extends HttpServlet {
 	private void persistNote(User user, String content, String ticker) {
 		Date date = new Date();
 		
-		TickerComments note = new TickerComments(user.getEmail(), content, date, false, ticker);
+		TickerComment note = new TickerComment(user.getEmail(), content, date, false, ticker);
 
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		try {

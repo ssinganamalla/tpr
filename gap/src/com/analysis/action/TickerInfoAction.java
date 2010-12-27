@@ -1,33 +1,23 @@
 package com.analysis.action;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import static com.analysis.enums.EnumJsonIds.EXCHANGE;
+import static com.analysis.enums.EnumJsonIds.INDUSTRY_ID;
+import static com.analysis.enums.EnumJsonIds.NAME;
+import static com.analysis.enums.EnumJsonIds.RELATED_TICKERS;
+import static com.analysis.enums.EnumJsonIds.SECTOR_ID;
+
 import java.io.InputStream;
 import java.io.StringBufferInputStream;
 import java.util.Collection;
-import java.util.Iterator;
-import java.util.StringTokenizer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import org.apache.struts2.interceptor.ServletRequestAware;
-import org.apache.struts2.interceptor.ServletResponseAware;
-
-import com.analysis.Sector;
 import com.analysis.action.basic.BasicActionSupport;
 import com.analysis.domain.NonMutableTickerInfo;
 import com.analysis.service.TickerInfoService;
-import com.analysis.vo.UserTicker;
 import com.utils.json.JSONArray;
 import com.utils.json.JSONException;
 import com.utils.json.JSONObject;
-import static com.analysis.enums.EnumJsonIds.*;
 
 public class TickerInfoAction extends BasicActionSupport {
 	private static final Logger log = Logger.getLogger(TickerInfoAction.class.getName());

@@ -11,4 +11,6 @@
     
     <bean id="ratioThresholdsDAO" class="com.analysis.dao.RatioThresholdsDAOImpl"></bean>
     
+    <bean id="tickerCommentsDAO" class="com.analysis.dao.TickerCommentsDAOImpl"></bean>
+    
 </beans>
