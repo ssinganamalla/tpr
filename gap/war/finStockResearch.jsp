@@ -25,13 +25,21 @@
 	<div>
 		Add a comment for:
 		<input name="tickerSymbolForComments" id="tickerSymbolForComments" type="text" value="" size="40" maxlength="120" />
+		<select>
+			<option value="0">Other</option>
+			<option value="1">Buy</option>
+  			<option value="2">Sell</option>
+  			<option value="3">Long term buy</option>
+  			<option value="4">Short term buy</option>
+		</select>
 	</div>
 	<div id="suggestList" class="container"></div>
 </div>
 
 <textarea cols="100" rows="4" name="comments" id="addCommentsTxtArea"></textarea>
 <br/>
-<input type="button" id="addTickerComment" value="Post Comments"/>
+<input type="button" id="addTickerComment" value="Post Tweet"/>
+<span>Text should be less than 500 characters</span>
 
 <div>
 <h3>Select a ticker to see your research comments:</h3>
