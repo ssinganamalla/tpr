@@ -2,22 +2,29 @@
 
 
 
-function setup() {
+function setupCommentsFeature() {
+	
+	$('#tickerSymbolForComments').finsearchbox();
+	
 	//set up the links for fetching comments
 	$('li[name="getTickerResearchComments"]').live('click',
 				function() {
 					$.getJSON(com.fa.Global.prefixPath + "/comments/getTickerResearchComments", {"ticker":$(this).text()},
-							function(jsonArray) {
-								$('#allCommentsTable').empty();
+							function(json) {
+								$('#allComments').empty();
+								$('#allComments').append('<h3>Researched Comments for: </h3>');
+								$('#allComments').append("<table id=\"allCommentsTable\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\" class=\"tablesorter\">\r\n" + 
+										"</table>\r\n");
 								$('#allCommentsTable').append("<thead>\r\n" + 
 										"		<tr>\r\n" + 
-										"			<th>Date</th>\r\n" + 
+										"			<th style='width:150px'>Date</th>\r\n" + 
 										"			<th>Research Comments</th>\r\n" + 
 										"		</tr>\r\n" + 
 										"	</thead>")
 								
 								var tbody = $("<tbody></tbody>");
 								$('#allCommentsTable').append(tbody);
+								var jsonArray = json.tca;
 								for(var i in jsonArray) {
 									var tr =$("<tr></tr>");
 									var tdDate = $("<td>" + jsonArray[i].da + "</td>");

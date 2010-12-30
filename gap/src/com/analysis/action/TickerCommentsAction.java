@@ -11,18 +11,22 @@ import org.apache.struts2.StrutsException;
 import com.analysis.action.basic.BasicActionSupport;
 import com.analysis.action.basic.BasicAjaxActionSupport;
 import com.analysis.domain.TickerComment;
+import com.analysis.domain.TickerSymbol;
 import com.analysis.enums.EnumJsonIds;
 import com.analysis.enums.EnumStrutsMethodType;
 import com.analysis.service.TickerCommentsService;
+import com.analysis.service.TickersService;
 import com.utils.json.JSONArray;
 import com.utils.json.JSONException;
 import com.utils.json.JSONObject;
 
 public class TickerCommentsAction extends BasicAjaxActionSupport {
 	private TickerCommentsService commentsService;
+	private TickersService tickersService;
 
 	private String ticker;
 	private String comments;
+	private int reason;
 	
 	public String getTicker() {
 		return ticker;
@@ -38,6 +42,14 @@ public class TickerCommentsAction extends BasicAjaxActionSupport {
 
 	public void setComments(String comments) {
 		this.comments = comments;
+	}	
+	
+	public int getReason() {
+		return reason;
+	}
+
+	public void setReason(int reason) {
+		this.reason = reason;
 	}
 
 	public TickerCommentsService getCommentsService() {
@@ -48,20 +60,33 @@ public class TickerCommentsAction extends BasicAjaxActionSupport {
 		this.commentsService = commentsService;
 	}
 
+	public TickersService getTickersService() {
+		return tickersService;
+	}
+
+	public void setTickersService(TickersService tickersService) {
+		this.tickersService = tickersService;
+	}
+
 	@Override
 	public String populateInputString() throws StrutsException {
 		Collection<TickerComment> tickerComments = commentsService.getComments(getEmail(), ticker);
-		JSONArray jo = new JSONArray();
-		for(TickerComment tickerComment : tickerComments) {
-			try {
+		TickerSymbol symbol = tickersService.getTicker(ticker);
+		
+		try {
+			JSONObject sym = symbol.toJSONObject();
+			JSONArray jo = new JSONArray();
+			for(TickerComment tickerComment : tickerComments) {
 				jo.put(tickerComment.toJSONObject());
-			} catch (JSONException e) {
-				e.printStackTrace();
-				throw new StrutsException(e);
-			}			
+			}
+			sym.put(EnumJsonIds.TICKER_COMMENT_ARRAY, jo);
+			return sym.toString();
+		} catch (JSONException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+			throw new StrutsException(e1);
 		}
 		
-		return jo.toString();
 	}
 	
 	public String getTickerResearchComments() throws JSONException {
@@ -74,7 +99,7 @@ public class TickerCommentsAction extends BasicAjaxActionSupport {
 	}
 	
 	public String addTickerComments() {
-		commentsService.addTickerComments(getEmail(), comments, ticker);
+		commentsService.addTickerComments(getEmail(), comments, ticker, reason);
 		this.inputStream = new StringBufferInputStream("OK");
 		return SUCCESS;
 	}

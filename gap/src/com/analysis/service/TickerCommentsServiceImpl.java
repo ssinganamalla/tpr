@@ -23,10 +23,18 @@ public class TickerCommentsServiceImpl implements TickerCommentsService {
 		this.commentsDAO = commentsDAO;
 	}
 
+	/**
+	 * @deprecated Use {@link #addTickerComments(String,String,String,int)} instead
+	 */
 	@Override
 	public void addTickerComments(String email, String comments, String ticker) {
+		addTickerComments(email, comments, ticker, 0);
+	}
+
+	@Override
+	public void addTickerComments(String email, String comments, String ticker, int reason) {
 		
-		this.commentsDAO.createTickerComments(email, comments, ticker, new Date(), 0);
+		this.commentsDAO.createTickerComments(email, comments, ticker, new Date(), reason);
 	}
 
 	@Override

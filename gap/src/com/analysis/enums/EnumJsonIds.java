@@ -24,5 +24,5 @@ public interface EnumJsonIds {
 	public static final String MEDIUM_FORMAT_DATE = "da";
 	public static final String COMMENTS_IS_PUBLIC = "ip";
 	public static final String COMMENT_REASON = "r";
-	
+	public static final String TICKER_COMMENT_ARRAY = "tca";
 }

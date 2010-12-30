@@ -21,7 +21,7 @@ a{
 }
 
 span > a{
-	color: #fff;
+	color: #000;
 }
 .bt {
 	border-bottom: 2px solid #000;
@@ -76,7 +76,6 @@ span > a{
 }
 
 #menuSections{
-	margin-top:50px;
 	border-bottom: 2px solid;	
 }
 

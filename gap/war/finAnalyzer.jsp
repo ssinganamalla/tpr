@@ -1,16 +1,9 @@
 <%@ page contentType="text/html; charset=UTF-8" language="java"%>
-<%@ page import="java.util.List"%>
-<%@ page import="javax.jdo.PersistenceManager"%>
-<%@ page import="com.google.appengine.api.users.User"%>
-<%@ page import="com.google.appengine.api.users.UserService"%>
-<%@ page import="com.google.appengine.api.users.UserServiceFactory"%>
-<%@ page import="com.analysis.PMF"%>
-<%@ page import="com.analysis.Greeting"%>
-
 <html>
 <head>
 <title>Study Financial Statements of a Company</title>
 <link type="text/css" rel="stylesheet" href="stylesheets/main.css"/>
+<link type="text/css" rel="stylesheet" href="stylesheets/start.css"/>
 <link type="text/css" rel="stylesheet" href="stylesheets/jquery-ui-1.7.2.custom.css"/>
 <script type="text/javascript" src="js/initNamespace.min.js"></script>
 <script type="text/javascript" src="js/utils.min.js"></script>
@@ -20,29 +13,12 @@
 </head>
 
 <body id="dbody">
+<jsp:include page="include.jsp"></jsp:include>
+<!-- insert menusections here -->
+<div id="header">
+</div>
 
 <center>
-<div id="header">
-
-</div>
-<div id="header1" style="display:none">
-	<%
-    UserService userService = UserServiceFactory.getUserService();
-    User user = userService.getCurrentUser();
-    if (user != null) {
-%>
-<p>Hello, <%= user.getNickname() %>! (You can
-<a href="<%= userService.createLogoutURL(request.getRequestURI()) %>">sign out</a>.)</p>
-<%
-    } else {
-%>
-<p>Hello!
-<a href="<%= userService.createLoginURL(request.getRequestURI()) %>">Sign in</a>
-</p>
-<%
-    }
-%>
-</div>
 <div class="page">
 <div id="left">
 
@@ -187,7 +163,7 @@
 			</div>
 <!--			<div id="g_collapsible"></div>-->
 		</div>
-<% if (user != null) { %>		
+	<!--  	
 		<div id="commentsSection">
 			<a id="expandCommentsAnchor" href="#">Expand</a>
 			<a id="collpaseCommentsAnchor" href="#">Collapse</a>
@@ -203,7 +179,7 @@
 				</div>
 			</div>
 		</div>
-<% } %>		
+	-->
 		<h3 class="section_hdr">Financial Statements</h3>
 		<div id="typprd" style="display:none;word-spacing: 5px;">
 			<div style="float:left;">
@@ -242,6 +218,7 @@
 <script type="text/javascript" src="js/parser.min.js"></script>
 <script type="text/javascript" src="js/finGraphs.min.js"></script>
 <script type="text/javascript" src="js/ajax.min.js"></script>
+<script type="text/javascript" src="js/components/headers.min.js"></script>
 <script type="text/javascript" src="http://www.google.com/jsapi"></script>
  <script>
  google.load("visualization", "1", {packages:["corechart", "table"]});

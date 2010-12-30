@@ -32,44 +32,22 @@
         chart.draw(data, {width: 450, height: 300, title: 'Sector Allocation'});
       }
     </script>
+	
   </head>
 
 
 <body id="dbody">
-	<center>
+<jsp:include page="include.jsp"></jsp:include>
+<!-- insert menusections here -->
 <div id="header">
-	<%
-    UserService userService = UserServiceFactory.getUserService();
-    User user = userService.getCurrentUser();
-    if (user != null) {
-%>
-<p>Hello, <%= user.getNickname() %>! (You can
-<a href="<%= userService.createLogoutURL(request.getRequestURI()) %>">sign out</a>.)</p>
-<%
-    } else {
-%>
-<p>Hello!
-<a href="<%= userService.createLoginURL(request.getRequestURI()) %>">Sign in</a>
-</p>
-<%
-    }
-%>
-</div>	
+</div>
+
+	<center>
 
 <div id="page">
-
-	<div id="menuSections">
-		<span><a href="finStart.jsp">Am I Diversified?</a> |</span> 
-		<span><b>Stock Performance</b> |</span> 
-		<span><a href="finWatchList.jsp">Watch List</a> |</span> 
-		<span><a href="finOtherSites.jsp">Popular Finance Sites</a> |</span> 
-	</div>
 	
 	<div id="main" class="bg">
-		<div id="header">
-			<h1>Stock Performance</h1>
-			sit amet, consectetur adipiscing elit. In consectetur blandit felis, eget porttitor elit congue vel. Suspendisse tristique mi eu turpis ornare accumsan dignissim dui consectetur. Fusce ut lorem sit amet magna sollicitudin porttitor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; 
-		</div>
+		<div class="section_hdr" id="header"><span class="f3">Stock Performance</span></div>
 		<div id="mainHeader">
 		
 			<div class="leftElement">
@@ -261,5 +239,6 @@
 <script type="text/javascript" src="js/page/performance.min.js"></script>
 <script type="text/javascript" src="js/finGraphs.min.js"></script>
 <script type="text/javascript" src="js/ajax.min.js"></script>
+<script type="text/javascript" src="js/components/headers.min.js"></script>
 </body>
 </html>

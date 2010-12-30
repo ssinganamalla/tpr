@@ -199,6 +199,7 @@ PeriodStmts.prototype.getStmtsFinHealthIndicatorArray = function(key) {
 	case PeriodStmts.CASH_TO_TOTAL_DEBT_RATIO:
 	case PeriodStmts.DEBT_TO_CASH_RATIO:
 	case PeriodStmts.CASH_TO_CURRENT_LIABILITIES:
+	case PeriodStmts.BOOK_VALUE_PER_SHARE:	
 		type = PeriodStmts.BALANCE;
 		break;
 		
@@ -214,6 +215,8 @@ PeriodStmts.prototype.getStmtsFinHealthIndicatorArray = function(key) {
 	}
 	if(type) {
 		return this.getParamXYArray(key, type);
+	} else{
+		com.fa.utils.log('key is undefined', 'PeriodStmts', 'getStmtsFinHealthIndicatorArray');
 	}
 	return null;
 }
@@ -372,6 +375,9 @@ PeriodStmts.prototype.getFinParamValue = function(key, index) {
 			break;
 		case PeriodStmts.OPERATING_CASH_TO_REVENUE:
 			return this.getOperatingCashToSales(index);
+			break;
+		case PeriodStmts.BOOK_VALUE_PER_SHARE:
+			return this.getBalSheet().getBookValuePerShare(index);
 			break;
 			
 		default:

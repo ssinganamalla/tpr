@@ -94,6 +94,9 @@ function StocksCompareGraphsDataCreator(theCompareStocksModel) {
 			case PeriodStmts.DEBT_TO_CASH_RATIO:
 				title = 'Debt to Cash Ratio';
 				break
+			case PeriodStmts.BOOK_VALUE_PER_SHARE:
+				title = 'Book Value Per Share';
+				break;
 			}
 			return title;
 		}

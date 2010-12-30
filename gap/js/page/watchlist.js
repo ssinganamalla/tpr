@@ -212,6 +212,7 @@ com.fa.PreferredTickersSection = (function() {
 			var assetMgtRatios = com.fa.EnumCriteria.getAssetMgmtRatioIdsArray();
 			var proftRatios = com.fa.EnumCriteria.getProfitabilityIdsArray();
 			var levgRatios = com.fa.EnumCriteria.getLeverageRatioIdsArray();
+			var otherRatios = com.fa.EnumCriteria.getOtherCriteriaArray();
 
 			
 			
@@ -225,9 +226,9 @@ com.fa.PreferredTickersSection = (function() {
 			//$div.append($divHdr);
 			
 			
-			var sections = [liqRatios, assetMgtRatios, proftRatios, levgRatios];
+			var sections = [liqRatios, assetMgtRatios, proftRatios, levgRatios, otherRatios];
 			//the labels should match sections
-			var sectionLabels = ['Liquidity Ratios', 'Asset Management Ratios', 'Profitability Ratios', 'Leverage Ratios'];
+			var sectionLabels = ['Liquidity Ratios', 'Asset Management Ratios', 'Profitability Ratios', 'Leverage Ratios', 'Other Criteria Ratios'];
 			
 			var $table = $('<div></div>');
 			$div.append($table);
@@ -284,7 +285,8 @@ com.fa.EnumCriteria = (function(){
 						'Operating Cash to Sales/Rev' : PeriodStmts.OPERATING_CASH_TO_REVENUE,
 						'Cash to Total Debt' : PeriodStmts.CASH_TO_TOTAL_DEBT_RATIO, 
 						'Cash to Current Liabilities' : PeriodStmts.CASH_TO_CURRENT_LIABILITIES,
-						'Debt to Cash Ratio' : PeriodStmts.DEBT_TO_CASH_RATIO
+						'Debt to Cash Ratio' : PeriodStmts.DEBT_TO_CASH_RATIO,
+						'Book Value Per Share' : PeriodStmts.BOOK_VALUE_PER_SHARE
 						};
 		},
 		
@@ -304,7 +306,8 @@ com.fa.EnumCriteria = (function(){
 							"'" + (PeriodStmts.OPERATING_CASH_TO_REVENUE) + "' : " + "'Operating Cash to Sales/Rev'," +
 							"'" + (PeriodStmts.CASH_TO_TOTAL_DEBT_RATIO) + "' : " + "'Cash to Total Debt'," + 
 							"'" + (PeriodStmts.DEBT_TO_CASH_RATIO) + "' : " + "'Debt to Cash Ratio'," + 
-							"'" + (PeriodStmts.CASH_TO_CURRENT_LIABILITIES) + "' : " + "'Cash to Current Liabilities'" +
+							"'" + (PeriodStmts.CASH_TO_CURRENT_LIABILITIES) + "' : " + "'Cash to Current Liabilities'," +
+							"'" + (PeriodStmts.BOOK_VALUE_PER_SHARE) + "' : " + "'Book Value Per Share'" +
 							" }";
 							
 			//eval is discouraged
@@ -392,6 +395,13 @@ com.fa.EnumCriteria = (function(){
 				PeriodStmts.DEBT_RATIO, 
 				PeriodStmts.DEBT_TO_CASH_RATIO 
 				];
+		},
+		
+		getOtherCriteriaArray : function() {
+			return [
+			        PeriodStmts.BOOK_VALUE_PER_SHARE
+			        ];
+			
 		}
 		
 	}
@@ -404,12 +414,14 @@ com.fa.RatioAnalysisSection = (function(){
 	var elemIdToCriteriMap = {'liquidityTable' : com.fa.EnumCriteria.getLiquidityCriteriaIdsArray(),
 			'assetMgmtTable' : com.fa.EnumCriteria.getAssetMgmtRatioIdsArray(),
 			'profitabilityTable' : com.fa.EnumCriteria.getProfitabilityIdsArray(),
-			'leverageTable' : com.fa.EnumCriteria.getLeverageRatioIdsArray()
+			'leverageTable' : com.fa.EnumCriteria.getLeverageRatioIdsArray(),
+			'otherCriteriaTable' : com.fa.EnumCriteria.getOtherCriteriaArray() 
 	};
 	var elemIdToTitleMap = {'liquidityTable' : 'Liquidity Ratios',
 			'assetMgmtTable' : 'Asset Management Ratios',
 			'profitabilityTable' : 'Profitability Ratios',
-			'leverageTable' : 'Leverage Ratios'
+			'leverageTable' : 'Leverage Ratios',
+			'otherCriteriaTable' : 'Other Criteria Ratios'
 	};
 	
 	var reg_id = com.fa.getNextId();
@@ -713,12 +725,14 @@ com.fa.PreferredTickersTable = (function(){
 			"	<td name='ticker'>@a@</td>\r\n" + 
 			"	<td name='desc'>@n@</td>\r\n" + 
 			"	<td name='price'>@p@</td>\r\n" + 
+			"	<td name='bvps'>@bvps@</td>\r\n" + 
 			"</tr>";
 	
 	var headerTemplate = "<tr class='comp_table_hdr' name=\"hdrs\">\r\n" + 
 			"	<th name=\"ticker\">Ticker Id</th>\r\n" + 
 			"	<th name=\"desc\">Company Name</th>\r\n" + 
 			"	<th name=\"price\">Last Stock Price</th>\r\n" +
+			"	<th name=\"bvps\">Book Value Price</th>\r\n" +
 			"</tr>";
 	var tableTemplate = "<table></table>";
 	

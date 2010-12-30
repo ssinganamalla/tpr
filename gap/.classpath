@@ -22,5 +22,6 @@
 	<classpathentry kind="var" path="GAP_SDK_ROOT"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry exported="true" kind="con" path="com.google.appengine.eclipse.core.GAE_CONTAINER"/>
+	<classpathentry kind="lib" path="3rdParty/lib/spring.jar"/>
 	<classpathentry kind="output" path="war/WEB-INF/classes"/>
 </classpath>

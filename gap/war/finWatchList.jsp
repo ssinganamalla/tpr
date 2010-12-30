@@ -1,7 +1,4 @@
 <%@ page contentType="text/html; charset=UTF-8" language="java"%>
-<%@ page import="com.google.appengine.api.users.User"%>
-<%@ page import="com.google.appengine.api.users.UserService"%>
-<%@ page import="com.google.appengine.api.users.UserServiceFactory"%>
 <html>
 <head>
 <title>Compare Financial Metrics of Companies</title>
@@ -11,35 +8,17 @@
 </head>
 
 <body id="dbody">
+<jsp:include page="include.jsp"></jsp:include>
+<!-- insert menusections here -->
+<div id="header">
+</div>
+
 	<center>
 
 <div id="page">
 
 	<div id="topheader" class="topheader">
 	</div>
-	<div id="topheader1" class="topheader" style="display:none">
-	
-		<div class="leftElement"></div>
-		<div class="rightElement">
-		<%
-	    UserService userService = UserServiceFactory.getUserService();
-	    User user = userService.getCurrentUser();
-	    if (user != null) {
-	%>
-	<span>Hello, <%= user.getNickname() %>! (You can
-	<a href="<%= userService.createLogoutURL(request.getRequestURI()) %>">sign out</a>.)</span>
-	<%
-	    } else {
-	%>
-	<span>Hello!
-	<a href="<%= userService.createLoginURL(request.getRequestURI()) %>">Sign in</a>
-	</span>
-	<%
-	    }
-	%>
-		</div>
-		<div class="clearBothElement"></div>
-	</div>	
 	<div id="main">
 		
 		
@@ -157,6 +136,7 @@
 <script type="text/javascript" src="js/finGraphs.min.js"></script>
 <script type="text/javascript" src="js/ajax.min.js"></script>
 <script type="text/javascript" src="js/page/watchlist.min.js"></script>
+<script type="text/javascript" src="js/components/headers.min.js"></script>
 <script type="text/javascript" src="http://www.google.com/jsapi"></script>
  <script>
  google.load("visualization", "1", {packages:["corechart", "table"]});
