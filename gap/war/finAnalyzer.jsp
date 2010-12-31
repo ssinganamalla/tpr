@@ -4,7 +4,7 @@
 <title>Study Financial Statements of a Company</title>
 <link type="text/css" rel="stylesheet" href="stylesheets/main.css"/>
 <link type="text/css" rel="stylesheet" href="stylesheets/start.css"/>
-<link type="text/css" rel="stylesheet" href="stylesheets/jquery-ui-1.7.2.custom.css"/>
+<link type="text/css" rel="stylesheet" href="stylesheets/jquery-ui-1.8.7.custom.css"/>
 <script type="text/javascript" src="js/initNamespace.min.js"></script>
 <script type="text/javascript" src="js/utils.min.js"></script>
 <script src="http://www.google.com/jsapi?key=ABQIAAAAPP7e_w24FQGVrPwul01DTBSKOn6wlytR1vxIW8znD1NsRj_1UxQFDFx7IzlJMzaIRg6Zqq8hC98B8g" type="text/javascript"></script>
@@ -208,8 +208,8 @@
 	 Graphs and the statements are provided solely for informational purposes, not for trading purposes or advice.<br/>
 	 For suggestions please send an email to <a href="mailto:finsheetanalyzer@gmail.com">finsheetanalyzer</a>
 </div>
-<script type="text/javascript" src="js/lib/jquery-1.4.2.min.js"></script>
-<script type="text/javascript" src="js/lib/jquery-ui-1.7.2.custom.min.js"></script>
+<script type="text/javascript" src="js/lib/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="js/lib/jquery-ui-1.8.7.custom.min.js"></script>
 <script type="text/javascript" src="js/ui/ui.min.js"></script>
 <script type="text/javascript" src="js/ui/models.min.js"></script>
 <script type="text/javascript" src="js/lib/uicontrols.min.js"></script>

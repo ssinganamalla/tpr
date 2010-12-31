@@ -4,7 +4,7 @@
 <title>Compare Financial Metrics of Companies</title>
 <link type="text/css" rel="stylesheet" href="stylesheets/main.css"/>
 <link type="text/css" rel="stylesheet" href="stylesheets/start.css"/>
-<link type="text/css" rel="stylesheet" href="stylesheets/jquery-ui-1.7.2.custom.css"/>
+<link type="text/css" rel="stylesheet" href="stylesheets/jquery-ui-1.8.7.custom.css"/>
 </head>
 
 <body id="dbody">
@@ -121,8 +121,8 @@
 	 For suggestions please send an email to <a href="mailto:finsheetanalyzer@gmail.com">finsheetanalyzer</a>
 </div>
 </center>
-<script type="text/javascript" src="js/lib/jquery-1.4.2.min.js"></script>
-<script type="text/javascript" src="js/lib/jquery-ui-1.7.2.custom.min.js"></script>
+<script type="text/javascript" src="js/lib/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="js/lib/jquery-ui-1.8.7.custom.min.js"></script>
 <script type="text/javascript" src="js/initNamespace.min.js"></script>
 <script type="text/javascript" src="js/utils.min.js"></script>
 

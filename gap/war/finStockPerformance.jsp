@@ -6,6 +6,7 @@
 <head>
 	<link type="text/css" rel="stylesheet" href="stylesheets/start.css"/>
 	<link type="text/css" rel="stylesheet" href="stylesheets/main.css"/>
+	<link type="text/css" rel="stylesheet" href="stylesheets/jquery-ui-1.8.7.custom.css"/>
 	<script type="text/javascript" src="js/initNamespace.min.js"></script>
 	<script type="text/javascript" src="js/utils.min.js"></script>
     <script type="text/javascript" src="http://www.google.com/jsapi"></script>
@@ -229,8 +230,8 @@
 </div>
 </center>
 
-<script type="text/javascript" src="js/lib/jquery-1.4.2.min.js"></script>
-<script type="text/javascript" src="js/lib/jquery-ui-1.7.2.custom.min.js"></script>
+<script type="text/javascript" src="js/lib/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="js/lib/jquery-ui-1.8.7.custom.min.js"></script>
 <script type="text/javascript" src="js/page/constants.min.js"></script>
 <script type="text/javascript" src="js/ui/ui.min.js"></script>
 <script type="text/javascript" src="js/ui/models.min.js"></script>
@@ -240,5 +241,11 @@
 <script type="text/javascript" src="js/finGraphs.min.js"></script>
 <script type="text/javascript" src="js/ajax.min.js"></script>
 <script type="text/javascript" src="js/components/headers.min.js"></script>
+
+<script>
+$(document).ready(function() {
+		$( "#add_date" ).datepicker();
+});
+</script>
 </body>
 </html>

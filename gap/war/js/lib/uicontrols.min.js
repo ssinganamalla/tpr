@@ -74,6 +74,14 @@ $.widget("ui.labeltextfield", {
 		this._buildUI();
 	},
 	
+	options : {
+		dataArray : [],
+		separator : ' ',
+		hasSeparator : true,
+		readOnly: true,
+		label:""
+	},
+	
 	edit : function(evt) {
 		var cssObj = {
 				'background-color' : '#fff',
@@ -180,7 +188,7 @@ $.widget("ui.labeltextfield", {
 	
 	_setData: function(key, value) {
 		//call super class implementation
-		$.widget.prototype._setData.apply(this, arguments);
+		this.option(key, value);
 		switch (key) {
 			case 'label':
 				var value = $.trim(this._getData('label'));
@@ -194,6 +202,10 @@ $.widget("ui.labeltextfield", {
 				this._replaceText();
 				break;
 		}
+	},
+	
+	_getData: function(key){		
+		return this.option(key);
 	},
 	
 	getVal : function() {},
@@ -230,13 +242,6 @@ $.widget("ui.labeltextfield", {
 	}
 });
 $.ui.labeltextfield.getter = "getVal getList"; 
-$.ui.labeltextfield.defaults = {
-	dataArray : [],
-	separator : ' ',
-	hasSeparator : true,
-	readOnly: true,
-	label:""
-};
 
 /*$.widget("ui.labeltextfield", {
 	
@@ -477,7 +482,7 @@ $.widget("ui.controlsdialog", {
 	},
 	
 	destroy: function() {
-		$.widget.prototype.destroy.apply(this, arguments);
+		$.Widget.prototype.destroy.apply(this, arguments);
 
 		this.$dialog.dialog('destroy');
 		var controls = this.options['controls'];
@@ -547,7 +552,7 @@ $.widget("ui.labelslider", {
 
 	
 	_setData: function(key, value) {
-		$.widget.prototype._setData.apply(this, arguments);
+		this.option(key, value);
 		switch (key) {
 			case 'base':
 				this.$baseLabel.html(value);
@@ -567,7 +572,7 @@ $.widget("ui.labelslider", {
 	
 	destroy: function() {
 		//investigate what is needed for destroyong????
-		$.widget.prototype.destroy.apply(this, arguments);
+		$.Widget.prototype.destroy.apply(this, arguments);
 		this.$slider.empty();
 		this.element.empty();
 	}
@@ -832,6 +837,14 @@ $.widget("ui.finsearchbox", {
 			return this._getData('longVal');
 		},
 		
+		_setData: function(key, value) {
+			this.option(key, value);
+		},
+		
+		_getData: function(key) {
+			return this.option(key);
+		},
+		
 	    _init: function() { 
 //			this._setData('shortVal', 'dsds');
 			var me = this;
@@ -860,7 +873,7 @@ $.ui.finsearchbox.defaults = {
 		  maxCols: 10,
 		  value: 20,
 		  innerHtml:"<span></span>",
-		  list:['ABCO', 'HPQ', 'GOOG', 'STV', 'YUM', 'YHOO']
+		  list:[]
 		},
 		
 		_init: function() {
