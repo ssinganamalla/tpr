@@ -146,13 +146,13 @@ public class TestPortFolioDAO extends LocalDatastoreTest {
 		List<PortfolioTicker> userTickerInfoList = new ArrayList<PortfolioTicker>();
 		PortfolioTicker a = new PortfolioTicker(email, "ABCD", "TRADEKING");
 		a.setCostBasis(23.6);
-		a.setQuantity(25);
+		a.setQuantity(5);
 		PortfolioTicker b = new PortfolioTicker(email, "MLFD", "TRADEKING");
-		b.setCostBasis(23.6);
-		b.setQuantity(25);
+		b.setCostBasis(300.6);
+		b.setQuantity(10);
 		PortfolioTicker c = new PortfolioTicker(email, "AUIBCD", "ZECCO");
-		c.setCostBasis(23.6);
-		c.setQuantity(25);
+		c.setCostBasis(70.6);
+		c.setQuantity(250);
 		
 		userTickerInfoList.add(a);
 		userTickerInfoList.add(b);
@@ -162,7 +162,7 @@ public class TestPortFolioDAO extends LocalDatastoreTest {
 	}
 	
 	@Test
-	public void testCreatePortFolioTicker(PortfolioTicker info) {
+	public void testCreatePortFolioTicker() {
 		List<PortfolioTicker> list = getPortfolioTickerList();
 		for(PortfolioTicker ticker : list) {
 			dao.createPortFolioTicker(ticker);
@@ -172,7 +172,8 @@ public class TestPortFolioDAO extends LocalDatastoreTest {
         assertEquals(list.size(), results.size());
 	}
 	
-	public void testReadPortFolioTickers(String email, String tickerSymbol, String brokerId) {
+	@Test
+	public void testReadPortFolioTickers() {
 		List<PortfolioTicker> list = getPortfolioTickerList();
 		for(PortfolioTicker ticker : list) {
 			dao.createPortFolioTicker(ticker);
@@ -186,6 +187,9 @@ public class TestPortFolioDAO extends LocalDatastoreTest {
         
         results = dao.readPortFolioTickers(email, null, "TRADEKING");
         assertEquals(2, results.size());
+        
+        results = dao.readPortFolioTickers(email, null, "ZECCO");
+        assertEquals(1, results.size());
 	}
 	
 	public void testUpdatePortfolioTicker() {

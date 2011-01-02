@@ -130,35 +130,39 @@ public class PortFolioDAOImpl implements PortFolioDAO {
 			Query query = pm.newQuery(PortfolioTicker.class);
 			StringBuilder builder = new StringBuilder();
 			HashMap<String, String> map = new HashMap<String, String>();
+			ArrayList<String> args = new ArrayList<String>();
 			if(StringUtils.isNotEmpty(email)) {
 				query.setFilter("email == emailParam");
 				String emailParam = "emailParam";
 				builder.append("String ").append(emailParam);
-				map.put(emailParam, email);
+				args.add(email);
+//				map.put(emailParam, email);
 			}
 			if(StringUtils.isNotEmpty(tickerSymbol)) {
 				query.setFilter("symbol == tickerSymbolParam");
 				if(builder.length()>0) {
-					builder.append(",");
+					builder.append(", ");
 				}
-				String symbolParam = "symbolParam";
+				String symbolParam = "tickerSymbolParam";
 				builder.append("String ").append(symbolParam);
-				map.put(symbolParam, tickerSymbol);
+				args.add(tickerSymbol);
+//				map.put(symbolParam, tickerSymbol);
 			}
 			if(StringUtils.isNotEmpty(brokerId)) {
 				query.setFilter("brokerId == brokerIdParam");
 				if(builder.length()>0) {
-					builder.append(",");
+					builder.append(", ");
 				}
 				String brokerIdParam = "brokerIdParam";
 				builder.append("String brokerIdParam");
-				map.put(brokerIdParam, brokerId);
+				args.add(brokerId);
+//				map.put(brokerIdParam, brokerId);
 			}
 			if(builder.length()>0) {
-				query.declareParameters("String emailParam, int sectorIdParam");
+				query.declareParameters(builder.toString());
 			}
 			
-			Collection<PortfolioTicker> results = (Collection<PortfolioTicker>) query.executeWithMap(map);
+			Collection<PortfolioTicker> results = (Collection<PortfolioTicker>) query.executeWithArray((String[])args.toArray(new String[0]));
 			Collection<PortfolioTicker> list = pm.detachCopyAll(results);
 			return list;
 		} finally {

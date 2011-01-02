@@ -18,6 +18,7 @@ public interface EnumJsonIds {
 	public static final String EXCHANGE = "e";
 	public static final String COMPANY_NAME = "cn";
 	public static final String TICKER_ARRAY = "ta";
+	public static final String SHORT_DATE = "sd";
 
 	public static final String CONTENT = "co";
 	public static final String USER_EMAIL = "au";

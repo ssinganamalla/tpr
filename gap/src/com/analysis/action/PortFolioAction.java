@@ -3,6 +3,11 @@ package com.analysis.action;
 
 import java.io.InputStream;
 import java.io.StringBufferInputStream;
+import java.text.DateFormat;
+import java.text.NumberFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.logging.Level;
 
 import javax.jdo.annotations.Persistent;
@@ -18,6 +23,7 @@ import com.analysis.service.PortFolioService;
 import com.analysis.service.TickersService;
 import com.analysis.service.TickersServiceImpl;
 import com.analysis.utils.JSONObjectUtils;
+import com.analysis.utils.MiscUtils;
 import com.tickerperformance.exceptions.StrutsExecuteException;
 import com.utils.json.JSONException;
 import com.utils.json.JSONObject;
@@ -42,6 +48,11 @@ public class PortFolioAction extends BasicAjaxActionSupport {
 	private int quantity;
 	
 	private String brokerId;
+	
+	private String dateString;
+	
+	private String datepickerFormat;
+	
 	
 	
 	
@@ -92,6 +103,29 @@ public class PortFolioAction extends BasicAjaxActionSupport {
 	}
 
 
+	public String getDateString() {
+		return dateString;
+	}
+
+
+
+	public void setDateString(String dateString) {
+		this.dateString = dateString;
+	}
+
+
+
+	public String getDatepickerFormat() {
+		return datepickerFormat;
+	}
+
+
+
+	public void setDatepickerFormat(String dateFormat) {
+		this.datepickerFormat = dateFormat;
+	}
+
+
 
 	public void setFolioService(PortFolioService folioService) {
 		this.folioService = folioService;
@@ -124,6 +158,16 @@ public class PortFolioAction extends BasicAjaxActionSupport {
 
 		//create a portfolio ticker and get the corresponding ticker
 		PortfolioTicker po = new PortfolioTicker();
+		SimpleDateFormat format = new SimpleDateFormat(MiscUtils.convertJsDatePickerFormatToJavaFormat(datepickerFormat));
+		
+		try {
+			Date date = format.parse(dateString);
+			po.setDate(date);
+		} catch (ParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
 		po.setSymbol(symbol);
 		po.setBrokerId(this.getBrokerId());
 		po.setCostBasis(costBasis);

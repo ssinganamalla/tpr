@@ -1,5 +1,8 @@
 package com.analysis.domain;
 
+import java.text.DateFormat;
+import java.util.Date;
+
 import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.IdentityType;
 import javax.jdo.annotations.NotPersistent;
@@ -37,6 +40,9 @@ public class PortfolioTicker {
 	
 	@Persistent
 	private String description;
+	
+	@Persistent
+	private Date date;
 	
 	@NotPersistent
 	private double gainLoss;	
@@ -179,12 +185,21 @@ public class PortfolioTicker {
 		this.industryId = industryId;
 	}
 
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
 	public void copyRelevantFrom(PortfolioTicker dest) {
 		 this.setBrokerId(dest.brokerId);
 		 this.setCostBasis(dest.costBasis);
 		 this.setDescription(dest.description);
 		 this.setQuantity(dest.quantity);
 		 this.setSectorId(dest.sectorId);
+		 this.setDate(dest.date);
 	}
 	
 	public JSONObject toJSONObject() throws JSONException {
@@ -198,7 +213,7 @@ public class PortfolioTicker {
 		jo.put(QUANTITY, ticker.getQuantity());
 		jo.put(DESCRIPTION, ticker.getDescription());
 		jo.put(SYMBOL, ticker.getSymbol());
-		
+		jo.put(SHORT_DATE, DateFormat.getInstance().format(ticker.getDate()));
 		return jo;
 	}
 	

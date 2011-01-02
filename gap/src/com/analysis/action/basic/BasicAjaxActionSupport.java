@@ -25,6 +25,7 @@ public abstract class BasicAjaxActionSupport extends BasicActionSupport {
 	public String execute() throws Exception {
 		try{
 			this.inputStream = new StringBufferInputStream(populateInputString());
+			System.out.println("testing");
 		} catch(StrutsException e) {
 			return ERROR;
 		}

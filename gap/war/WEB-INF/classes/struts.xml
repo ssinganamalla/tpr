@@ -93,7 +93,7 @@
 		        <param name="inputName">inputStream</param>
 		    </result>
 		</action>
-     	<action name="addPortfolioTicker" class="portfolioAction">
+     	<action name="addPortfolioTicker" method="addPortfolioTicker" class="portfolioAction">
 		    <result type="stream">
 		        <param name="contentType">text/html</param>
 		        <param name="inputName">inputStream</param>

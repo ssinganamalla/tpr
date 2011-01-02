@@ -126,6 +126,7 @@ com.fa.ui.performance = (function(){
 			if(!tickersArray) return;			
 			if(tickersArray.length < 1) return;
 			
+			$('#pf-view-table').empty();
 			var $table = $('<table id="pf-table"></table>');			
 			$table.append(buildThead());
 			for(var i=0; i<tickersArray.length; i++) {
@@ -238,9 +239,12 @@ com.fa.controller.performance = (function(){
 			var addprice = $("#add_price").val();
 			var addCommission = $("#add_commission").val();
 			var addNotes = $("add_notes");
-			var ticker = $("#stockTickerSymbol").val();
+			var ticker = $("#stockTickerSymbol").finsearchbox("option", "shortVal");
+			var dateString = $("#add_date").val();
+			var dateFormat = $("#add_date").datepicker("option", "dateFormat");
+
 			
-			$.post("/struts/performance/addPortfolioTicker", {symbol: ticker, costBasis:addprice, brokerId:0, quantity:numShares },
+			$.post("/struts/performance/addPortfolioTicker", {symbol: ticker, costBasis:addprice, brokerId:0, quantity:numShares, datepickerFormat:dateFormat, dateString:dateString },
 					function(responseJson) {
 						var ticker = eval( '(' + responseJson + ')' );
 						com.fa.ui.performance.addToHoldingsTable(ticker);
