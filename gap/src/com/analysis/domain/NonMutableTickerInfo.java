@@ -1,5 +1,7 @@
 package com.analysis.domain;
 
+import static com.analysis.enums.EnumJsonIds.*;
+
 import java.util.List;
 
 import javax.jdo.annotations.PersistenceCapable;
@@ -8,8 +10,11 @@ import javax.jdo.annotations.PrimaryKey;
 
 import org.apache.commons.lang.StringUtils;
 
+import com.analysis.utils.MiscUtils;
 import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.KeyFactory;
+import com.utils.json.JSONException;
+import com.utils.json.JSONObject;
 
 @PersistenceCapable
 public class NonMutableTickerInfo {
@@ -79,6 +84,9 @@ public class NonMutableTickerInfo {
 		return sector;
 	}
 
+	public int getSectorIndex() {
+		return MiscUtils.getSectorIndex(sector);
+	}
 	public String getIndustry() {
 		return industry;
 	}
@@ -105,6 +113,23 @@ public class NonMutableTickerInfo {
 				   ticker.equals(compareTo.ticker);
 			
 		}
+		return false;
+	}
+	
+	public JSONObject toJSONObject() throws JSONException {
+		JSONObject jo = new JSONObject();
+		NonMutableTickerInfo ticker = this;
+		jo.put(SECTOR_NAME, ticker.getSector());
+		jo.put(SECTOR_ID, ticker.getSectorIndex());
+		jo.put(SYMBOL, ticker.getTicker());
+		jo.put(INDUSTRY_ID, ticker.getIndustry());
+		jo.put(EXCHANGE, ticker.getExchange());
+		jo.put(COMPANY_NAME, ticker.getName());	
+		
+		return jo;
+	}
+	
+	public boolean isNull() {
 		return false;
 	}
 	

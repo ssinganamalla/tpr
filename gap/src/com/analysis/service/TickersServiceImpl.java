@@ -3,13 +3,13 @@ import java.util.List;
 
 import com.analysis.dao.TickersDAO;
 import com.analysis.domain.RelatedTickers;
-import com.analysis.domain.TickerSymbol;
+import com.analysis.domain.TickerInfo;
 import com.analysis.service.TickersService;
 import com.google.appengine.api.datastore.Key;
 
 public class TickersServiceImpl implements TickersService {
 	private TickersDAO tickersDAO;
-	private static List<TickerSymbol> cachedTickers;
+	private static List<TickerInfo> cachedTickers;
 
 	public TickersDAO getTickersDAO() {
 		return tickersDAO;
@@ -33,7 +33,7 @@ public class TickersServiceImpl implements TickersService {
 	}
 	
 	@Override
-	public TickerSymbol getTicker(String ticker) {
+	public TickerInfo getTicker(String ticker) {
 		return tickersDAO.getTickers(ticker);
 	}
 }

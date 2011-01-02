@@ -68,7 +68,6 @@ public class TradeKingBrokerData extends BrokerData {
 		//5, 6 price, change
 		ticker.setGainLoss(Double.valueOf(values[7]));
 		ticker.setMarketValue(Double.valueOf(values[8]));
-		ticker.setSectorId(Integer.valueOf(values[9]));
 		
 		return ticker;
 	}

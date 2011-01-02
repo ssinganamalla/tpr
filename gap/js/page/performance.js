@@ -59,8 +59,8 @@ com.fa.ui.performance = (function(){
 				"			<th class=\"\">Sector</th>\r\n" + 
 				"			<th class=\"\">Shares</th>\r\n" + 
 				"			<th class=\"\">Cost basis</th>\r\n" + 
-				"			<th class=\"\">Mkt value</th>\r\n" + 
-				"			<th class=\"\">Gain</th>\r\n" + 
+				//"			<th class=\"\">Mkt value</th>\r\n" + 
+				//"			<th class=\"\">Gain</th>\r\n" + 
 				"		</tr>\r\n" + 
 				"	</thead>"; 
 		return $thead;
@@ -74,22 +74,23 @@ com.fa.ui.performance = (function(){
 		 var $tdTitle = $('<td></td>');
 		 	$tdTitle.append(ticker.sb);
 		 var $tdTicker = $('<td></td>');
-		 	$tdTicker.append(ticker.ds);
+		 	$tdTicker.append(ticker.tinfo ? ticker.tinfo.cn : "-");
 		 var $tdSector = $('<td></td>');
-		 
+		 /**
 		 	var $sectorOption = $("<select class='" + SELECT_SECTOR_CLASS + "' id='sector" + ticker.sb + "'></select>");
 		 	var enumSectorMap = com.fa.controller.performance.getEnumSectorsMap();
 		 	for(var i in enumSectorMap) {
 		 		var $option = $('<option value="' + i  + '"></option>');
 		 		$option.append(enumSectorMap[i]);
 		 		$sectorOption.append($option);
-		 	}
-		 	
-		 	$tdSector.append($sectorOption);
+		 	}**/
+		 	$tdSector.append(ticker.tinfo ? ticker.tinfo.sn : "-");
 		 var $tdQty = $('<td></td>');
 		 	$tdQty.append(ticker.q);
 		 var $tdCostBasis = $('<td></td>');
 		 	$tdCostBasis.append(ticker.cb);
+		 	
+		 	
 		 var $tdMktValue = $('<td></td>');
 		 	$tdMktValue.append(ticker.mv);
 		 var $tdGain = $('<td></td>');
@@ -101,8 +102,8 @@ com.fa.ui.performance = (function(){
 	    $tr.append($tdSector);
 	    $tr.append($tdQty);
 	    $tr.append($tdCostBasis);
-	    $tr.append($tdMktValue);
-	    $tr.append($tdGain);
+	   // $tr.append($tdMktValue);
+	    //$tr.append($tdGain);
 	
 	    return $tbody;	 
 		 
@@ -248,7 +249,7 @@ com.fa.controller.performance = (function(){
 					function(responseJson) {
 						var ticker = eval( '(' + responseJson + ')' );
 						com.fa.ui.performance.addToHoldingsTable(ticker);
-						//com.fa.controller.performance.drawSectorPie();						
+						com.fa.controller.performance.drawSectorPie();						
 					}
 			);
 		
@@ -284,7 +285,7 @@ com.fa.controller.performance = (function(){
 			for(var m=0; m<tickersArray.length; m++) {
 				
 				var ticker = tickersArray[m];
-				var i = ticker.si;
+				var i = ticker.tinfo ? ticker.tinfo.si : -1;
 				if(!sectors[i]) {
 					sectors[i] = getRelevantTickerInput(ticker); 
 				} else {
@@ -354,7 +355,7 @@ com.fa.controller.performance = (function(){
 				for(var m=0; m<tickersArray.length; m++) {
 					
 					var ticker = tickersArray[m];
-					if(sectorId == ticker.si) {
+					if(sectorId == (ticker.tinfo ? ticker.tinfo.si : -1)) {
 						sectors.push(ticker);
 					}
 				}

@@ -1,7 +1,7 @@
 package com.analysis.service;
 
 import com.analysis.domain.RelatedTickers;
-import com.analysis.domain.TickerSymbol;
+import com.analysis.domain.TickerInfo;
 
 public interface TickersService {
 	
@@ -21,7 +21,7 @@ public interface TickersService {
 	@Deprecated
 	public void addOrUpdateRelatedTickers(RelatedTickers tickers);
 	
-	public TickerSymbol getTicker(String ticker);
+	public TickerInfo getTicker(String ticker);
 	
 	
 }

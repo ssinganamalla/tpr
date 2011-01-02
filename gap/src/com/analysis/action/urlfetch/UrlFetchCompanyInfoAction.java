@@ -28,6 +28,7 @@ import org.apache.struts2.interceptor.ServletRequestAware;
 
 import com.analysis.domain.NonMutableTickerInfo;
 import com.analysis.service.TickerInfoService;
+import com.analysis.service.TickersService;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class UrlFetchCompanyInfoAction extends ActionSupport {
@@ -118,7 +119,7 @@ public class UrlFetchCompanyInfoAction extends ActionSupport {
 			String mesg = "";
 			for (Iterator iterator = tickerInfos.iterator(); iterator.hasNext();) {
 				NonMutableTickerInfo nonMutableTickerInfo = (NonMutableTickerInfo) iterator.next();
-				tickerExistsMap.put(nonMutableTickerInfo.getTicker(), Boolean.TRUE);				
+				tickerExistsMap.put(nonMutableTickerInfo.getTicker(), Boolean.TRUE);
 			}
 			
 			String exchange = "";

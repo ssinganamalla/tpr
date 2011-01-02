@@ -16,10 +16,12 @@ import org.apache.struts2.StrutsException;
 
 import com.analysis.action.basic.BasicActionSupport;
 import com.analysis.action.basic.BasicAjaxActionSupport;
+import com.analysis.domain.NonMutableTickerInfo;
 import com.analysis.domain.PortfolioTicker;
-import com.analysis.domain.TickerSymbol;
+import com.analysis.domain.TickerInfo;
 import com.analysis.enums.EnumStrutsMethodType;
 import com.analysis.service.PortFolioService;
+import com.analysis.service.TickerInfoService;
 import com.analysis.service.TickersService;
 import com.analysis.service.TickersServiceImpl;
 import com.analysis.utils.JSONObjectUtils;
@@ -31,11 +33,29 @@ import com.utils.json.JSONObject;
 public class PortFolioAction extends BasicAjaxActionSupport {
 
 	private PortFolioService folioService;
+	
+	@Deprecated
 	private TickersService tickersService;
 	
 	//FOR THIS TO WORK, USE SINGLETON=FALSE in spring injection
 	private int methodType = 0;
 	
+	
+	private TickerInfoService tickerInfoService;
+	
+	
+	public TickerInfoService getTickerInfoService() {
+		return tickerInfoService;
+	}
+
+
+
+	public void setTickerInfoService(TickerInfoService tickerInfoService) {
+		this.tickerInfoService = tickerInfoService;
+	}
+
+
+
 	public PortFolioService getFolioService() {
 		return folioService;
 	}
@@ -177,7 +197,8 @@ public class PortFolioAction extends BasicAjaxActionSupport {
 		
 		
 		try {
-			TickerSymbol ticker = tickersService.getTicker(getSymbol());
+			NonMutableTickerInfo tinfo = tickerInfoService.getTickerInfo(symbol);
+			po.setInfo(tinfo);
 			x = po.toJSONObject().toString();
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block

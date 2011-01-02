@@ -11,7 +11,7 @@ import org.apache.struts2.StrutsException;
 import com.analysis.action.basic.BasicActionSupport;
 import com.analysis.action.basic.BasicAjaxActionSupport;
 import com.analysis.domain.TickerComment;
-import com.analysis.domain.TickerSymbol;
+import com.analysis.domain.TickerInfo;
 import com.analysis.enums.EnumJsonIds;
 import com.analysis.enums.EnumStrutsMethodType;
 import com.analysis.service.TickerCommentsService;
@@ -71,7 +71,7 @@ public class TickerCommentsAction extends BasicAjaxActionSupport {
 	@Override
 	public String populateInputString() throws StrutsException {
 		Collection<TickerComment> tickerComments = commentsService.getComments(getEmail(), ticker);
-		TickerSymbol symbol = tickersService.getTicker(ticker);
+		TickerInfo symbol = tickersService.getTicker(ticker);
 		
 		try {
 			JSONObject sym = symbol.toJSONObject();

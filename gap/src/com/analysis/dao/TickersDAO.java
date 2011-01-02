@@ -3,7 +3,7 @@ package com.analysis.dao;
 import java.util.List;
 
 import com.analysis.domain.RelatedTickers;
-import com.analysis.domain.TickerSymbol;
+import com.analysis.domain.TickerInfo;
 import com.google.appengine.api.datastore.Key;
 
 public interface TickersDAO {
@@ -30,11 +30,11 @@ public interface TickersDAO {
 	public void addRelatedTickers(RelatedTickers rt);
 	
 
-	TickerSymbol getTickers(String ticker);
+	TickerInfo getTickers(String ticker);
 
 	void updateSectorId(String tickerId, int sectorId, String industry);
 	
-	List<TickerSymbol> getAllTickers();
+	List<TickerInfo> getAllTickers();
 	
 	
 }

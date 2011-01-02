@@ -10,9 +10,9 @@ import javax.jdo.Query;
 import org.apache.commons.lang.StringUtils;
 
 import com.analysis.PMF;
-import com.analysis.domain.NullTickerSymbol;
+import com.analysis.domain.NullTickerInfo;
 import com.analysis.domain.RelatedTickers;
-import com.analysis.domain.TickerSymbol;
+import com.analysis.domain.TickerInfo;
 import com.analysis.domain.UserComparisonTickers;
 import com.analysis.vo.UserTicker;
 import com.google.appengine.api.datastore.Key;
@@ -65,7 +65,7 @@ public class TickersDAOImpl implements TickersDAO {
 	public void updateSectorId(String tickerId, int sectorId, String industry) {
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 	    try {
-	    	TickerSymbol e = pm.getObjectById(TickerSymbol.class, tickerId);
+	    	TickerInfo e = pm.getObjectById(TickerInfo.class, tickerId);
 	        e.setSectorId(sectorId);
 	        if(StringUtils.isNotEmpty(industry)) {
 	        	e.setIndustry(industry);
@@ -76,23 +76,23 @@ public class TickersDAOImpl implements TickersDAO {
 	}
 	
 	@Override
-	public TickerSymbol getTickers(String ticker) {
+	public TickerInfo getTickers(String ticker) {
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		try {
-			TickerSymbol e = pm.getObjectById(TickerSymbol.class, ticker);
-			TickerSymbol detachedResults = (TickerSymbol)pm.detachCopy(e);
+			TickerInfo e = pm.getObjectById(TickerInfo.class, ticker);
+			TickerInfo detachedResults = (TickerInfo)pm.detachCopy(e);
 			return detachedResults;
 		} catch(javax.jdo.JDOObjectNotFoundException e){
-			log.severe("Could not get " + TickerSymbol.class.getName() + " for ticker: " + ticker);
+			log.severe("Could not get " + TickerInfo.class.getName() + " for ticker: " + ticker);
 			//TODO log the exception
-			return NullTickerSymbol.nullObject();
+			return NullTickerInfo.nullObject();
 		} finally {
 			pm.close();
 		}
 	}
 	
 	@Override
-	public List<TickerSymbol> getAllTickers() {
+	public List<TickerInfo> getAllTickers() {
 		// TODO Auto-generated method stub
 		return null;
 	}

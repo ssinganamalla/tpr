@@ -3,13 +3,13 @@ package com.analysis.service;
 import java.util.HashMap;
 
 import com.analysis.domain.RelatedTickers;
-import com.analysis.domain.TickerSymbol;
+import com.analysis.domain.TickerInfo;
 
 public class TickersServiceProxy implements TickersService {
 
 	TickersService realService;	
 	
-	private HashMap<String, TickerSymbol> tickersMap = new HashMap<String, TickerSymbol>();
+	private HashMap<String, TickerInfo> tickersMap = new HashMap<String, TickerInfo>();
 	public TickersService getRealService() {
 		return realService;
 	}
@@ -28,14 +28,14 @@ public class TickersServiceProxy implements TickersService {
 
 	@Override
 	public String getRelatedTickers(String ticker) {
-		TickerSymbol tickerInfo = tickersMap.get(ticker);	
+		TickerInfo tickerInfo = tickersMap.get(ticker);	
 		return tickerInfo != null ? tickerInfo.getRelatedTickers() : "";
 	}
 
 	@Override
-	public TickerSymbol getTicker(String ticker) {
+	public TickerInfo getTicker(String ticker) {
 		if(tickersMap != null) {
-			TickerSymbol tickerInfo = tickersMap.get(ticker);
+			TickerInfo tickerInfo = tickersMap.get(ticker);
 			if(tickerInfo == null) {
 				tickerInfo = realService.getTicker(ticker);
 				tickersMap.put(ticker, tickerInfo);

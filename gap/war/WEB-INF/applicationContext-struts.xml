@@ -5,6 +5,7 @@
 	<bean id="portfolioAction" class="com.analysis.action.PortFolioAction" singleton="false">
 		   <property name="folioService" ref="portfolioService"></property>
 		   <property name="tickersService" ref="tickersService"></property>
+		   <property name="tickerInfoService" ref="tickerInfoService"></property>
 	</bean>
 	
 	<bean id="tickerCommentsAction" class="com.analysis.action.TickerCommentsAction">

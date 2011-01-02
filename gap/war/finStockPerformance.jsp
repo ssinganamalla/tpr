@@ -155,8 +155,8 @@
 			<div id="sectorList" class="sectorStockList">
 				<select id='sectorOption'>
 					<option value='0'>Cost Basis</option>
-					<option value='1'>Market Value</option>
-					<option value='2'>Gain Loss</option>
+				<!--  	<option value='1'>Market Value</option>
+					<option value='2'>Gain Loss</option>-->
 				</select>
 				<div id="sectorChart"></div>
 			</div>

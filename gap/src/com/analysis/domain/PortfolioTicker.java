@@ -44,6 +44,12 @@ public class PortfolioTicker {
 	@Persistent
 	private Date date;
 	
+	@Persistent
+	private int transactionType;
+	
+	private double commission;
+	
+	
 	@NotPersistent
 	private double gainLoss;	
 	
@@ -51,16 +57,7 @@ public class PortfolioTicker {
 	private double marketValue;
 	
 	@NotPersistent
-	private String companyName;
-	
-	@NotPersistent
-	private String exchange;
-	
-	@NotPersistent
-	private String industryId;
-	
-	@NotPersistent
-	private int sectorId;
+	private NonMutableTickerInfo info;
 	
 	public PortfolioTicker() {
 		// TODO Auto-generated constructor stub
@@ -144,47 +141,6 @@ public class PortfolioTicker {
 		this.brokerId = brokerId;
 	}
 
-	/**
-	 * returns a sectorId {@link Enums.Sector}
-	 * @return
-	 */
-	public int getSectorId() {
-		return sectorId;
-	}
-
-	/**
-	 * @param sectorId integer corresponding to {@link Enums.Sector}
-	 */
-	public void setSectorId(int sectorId) {
-		this.sectorId = sectorId;
-	}
-	
-	
-	
-	public String getCompanyName() {
-		return companyName;
-	}
-
-	public void setCompanyName(String companyName) {
-		this.companyName = companyName;
-	}
-
-	public String getExchange() {
-		return exchange;
-	}
-
-	public void setExchange(String exchange) {
-		this.exchange = exchange;
-	}
-
-	public String getIndustryId() {
-		return industryId;
-	}
-
-	public void setIndustryId(String industryId) {
-		this.industryId = industryId;
-	}
-
 	public Date getDate() {
 		return date;
 	}
@@ -192,13 +148,37 @@ public class PortfolioTicker {
 	public void setDate(Date date) {
 		this.date = date;
 	}
+	
+	public int getTransactionType() {
+		return transactionType;
+	}
+
+	public void setTransactionType(int type) {
+		this.transactionType = type;
+	}
+
+	public double getCommission() {
+		return commission;
+	}
+
+	public void setCommission(double commission) {
+		this.commission = commission;
+	}
+
+	public NonMutableTickerInfo getInfo() {
+		return info;
+	}
+
+	public void setInfo(NonMutableTickerInfo info) {
+		this.info = info;
+	}
 
 	public void copyRelevantFrom(PortfolioTicker dest) {
 		 this.setBrokerId(dest.brokerId);
 		 this.setCostBasis(dest.costBasis);
 		 this.setDescription(dest.description);
 		 this.setQuantity(dest.quantity);
-		 this.setSectorId(dest.sectorId);
+		 this.setInfo(dest.info);
 		 this.setDate(dest.date);
 	}
 	
@@ -206,14 +186,18 @@ public class PortfolioTicker {
 		JSONObject jo = new JSONObject();
 		PortfolioTicker ticker = this;
 		jo.put(BROKER_ID, ticker.getBrokerId());
-		jo.put(SECTOR_ID, ticker.getSectorId());
 		jo.put(COST_BASIS, ticker.getCostBasis());
 		jo.put(GAIN_LOSS, ticker.getGainLoss());
 		jo.put(MARKET_VALUE, ticker.getMarketValue());
 		jo.put(QUANTITY, ticker.getQuantity());
 		jo.put(DESCRIPTION, ticker.getDescription());
+		jo.put(COMMISSION, ticker.getCommission());
+		jo.put(TRANSACTION_TYPE, ticker.getTransactionType());
 		jo.put(SYMBOL, ticker.getSymbol());
 		jo.put(SHORT_DATE, DateFormat.getInstance().format(ticker.getDate()));
+		if(info != null) {
+			jo.put(TICKER_INFO, info.toJSONObject());
+		}
 		return jo;
 	}
 	
