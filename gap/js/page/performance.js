@@ -47,7 +47,6 @@ $(function() {
    });
  });
 
-	
 
 com.fa.ui.performance = (function(){
 	
@@ -255,6 +254,17 @@ com.fa.controller.performance = (function(){
 		
 		},
 		
+		getPortfolioTickers : function() {
+			$.post("/struts/performance/getPortfolioTickers", { },
+					function(responseJson) {
+						var tickersArray = eval( '(' + responseJson + ')' );
+						$('#tickersData').data('tickers', tickersArray);
+						com.fa.ui.performance.buildHoldingsTable();
+						com.fa.controller.performance.drawSectorPie();						
+					}
+			);
+		},
+		
 		updateTickerSectorsClicked : function(event) {
 			var noteVal = $("#brokerStockDataTxtArea").val();
 			
@@ -402,9 +412,6 @@ com.fa.controller.performance = (function(){
 		    		 }		    		 
 		    	 }		    	 
 		     }
-		     
-		     
-		
 	};
 	
 	

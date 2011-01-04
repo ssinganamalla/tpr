@@ -17,5 +17,8 @@ public interface Enums {
 	enum Industry {
 		
 	}
-		
+
+	enum TransactionType {
+		BUY, SELL
+	}
 }

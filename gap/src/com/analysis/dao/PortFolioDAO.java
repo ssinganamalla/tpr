@@ -25,7 +25,7 @@ public interface PortFolioDAO {
 	
 	void update(PortfolioTicker ticker);
 	
-	void delete(long theTransId);
+	void delete(Long theTransId);
 	
 	
 	

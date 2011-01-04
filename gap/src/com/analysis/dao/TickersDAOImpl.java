@@ -85,7 +85,7 @@ public class TickersDAOImpl implements TickersDAO {
 		} catch(javax.jdo.JDOObjectNotFoundException e){
 			log.severe("Could not get " + TickerInfo.class.getName() + " for ticker: " + ticker);
 			//TODO log the exception
-			return NullTickerInfo.nullObject();
+			return null;
 		} finally {
 			pm.close();
 		}

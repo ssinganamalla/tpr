@@ -7,6 +7,7 @@ import java.text.DateFormat;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Collection;
 import java.util.Date;
 import java.util.logging.Level;
 
@@ -27,6 +28,7 @@ import com.analysis.service.TickersServiceImpl;
 import com.analysis.utils.JSONObjectUtils;
 import com.analysis.utils.MiscUtils;
 import com.tickerperformance.exceptions.StrutsExecuteException;
+import com.utils.json.JSONArray;
 import com.utils.json.JSONException;
 import com.utils.json.JSONObject;
 
@@ -73,6 +75,7 @@ public class PortFolioAction extends BasicAjaxActionSupport {
 	
 	private String datepickerFormat;
 	
+	private double commission;
 	
 	
 	
@@ -104,54 +107,45 @@ public class PortFolioAction extends BasicAjaxActionSupport {
 		return quantity;
 	}
 
-
-
 	public void setQuantity(int quantiy) {
 		this.quantity = quantiy;
 	}
-
-
 
 	public String getBrokerId() {
 		return brokerId;
 	}
 
-
-
 	public void setBrokerId(String brokerId) {
 		this.brokerId = brokerId;
 	}
-
 
 	public String getDateString() {
 		return dateString;
 	}
 
-
-
 	public void setDateString(String dateString) {
 		this.dateString = dateString;
 	}
-
-
 
 	public String getDatepickerFormat() {
 		return datepickerFormat;
 	}
 
+	public double getCommission() {
+		return commission;
+	}
 
+	public void setCommission(double commission) {
+		this.commission = commission;
+	}
 
 	public void setDatepickerFormat(String dateFormat) {
 		this.datepickerFormat = dateFormat;
 	}
 
-
-
 	public void setFolioService(PortFolioService folioService) {
 		this.folioService = folioService;
 	}
-
-	
 	
 	public TickersService getTickersService() {
 		return tickersService;
@@ -167,11 +161,32 @@ public class PortFolioAction extends BasicAjaxActionSupport {
 
 		if(methodType == EnumStrutsMethodType.ADD) {
 			return populateAddPortfolioTicker();
+		} else if(methodType == EnumStrutsMethodType.GET_ALL) {
+			return populateGetAllPortfolioTickers();
 		}
 		
 		return x;
 	}
 	
+	
+	private String populateGetAllPortfolioTickers() {
+		Collection<PortfolioTicker> folioTickers = getFolioService().getPortFolioTickers(getEmail());
+		JSONArray ja = new JSONArray();
+		for(PortfolioTicker folioTicker : folioTickers) {
+			//NonMutableTickerInfo tinfo = tickerInfoService.getTickerInfo(folioTicker.getSymbol());
+			getFolioService().delete(folioTicker.getTransactionId());
+			/**
+			if(tinfo != null) {
+				folioTicker.setInfo(tinfo);
+			}
+			try {
+				ja.put(folioTicker.toJSONObject());
+			} catch (JSONException e) {
+				throw new StrutsException(e);
+			}**/
+		}
+		return ja.toString();
+	}
 	
 	private String populateAddPortfolioTicker() {
 		String x = "{}";
@@ -192,6 +207,7 @@ public class PortFolioAction extends BasicAjaxActionSupport {
 		po.setBrokerId(this.getBrokerId());
 		po.setCostBasis(costBasis);
 		po.setQuantity(quantity);
+		po.setCommission(commission);
 		po.setEmail(this.getEmail());
 		folioService.create(po);
 		
@@ -206,6 +222,15 @@ public class PortFolioAction extends BasicAjaxActionSupport {
 		}
 		
 		return x;
+	}
+	
+	public String getPortfolioTickers() throws StrutsExecuteException {
+		methodType = EnumStrutsMethodType.GET_ALL;
+		try {
+			return execute();
+		} catch (Exception e) {
+			throw new StrutsExecuteException(e);
+		}
 	}
 	
 	public String addPortfolioTicker() throws StrutsExecuteException{

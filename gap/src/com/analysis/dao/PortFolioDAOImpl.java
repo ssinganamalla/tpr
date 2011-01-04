@@ -110,12 +110,12 @@ public class PortFolioDAOImpl implements PortFolioDAO {
 	}
 
 	@Override
-	public void delete(long theTransId) {
+	public void delete(Long theTransId) {
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		try {
 			Query query = pm.newQuery(PortfolioTicker.class);
 			query.setFilter("transactionId == transactionIdParam");
-		    query.declareParameters("long transactionIdParam");
+		    query.declareParameters("Long transactionIdParam");
 			pm.deletePersistentAll(theTransId);
 		} finally {
 			pm.close();

@@ -9,6 +9,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.StringBufferInputStream;
 import java.io.StringReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
@@ -112,6 +113,47 @@ public class UrlFetchCompanyInfoAction extends ActionSupport {
 	}
 	
 	
+	private String loadNonloadedNYSETickers(String filename) throws IOException {
+		InputStream instream = this.getServletContext().getResourceAsStream("/WEB-INF/" + filename);
+		
+		StringBuilder builder = new StringBuilder();
+		BufferedReader bis = new BufferedReader(new InputStreamReader(instream));
+	    String line = null;
+	    // dis.available() returns 0 if the file does not have more lines.
+	      while ((line = bis.readLine()) != null) {
+	    	  		    	  
+	    	String l_ticker = line.substring(0, line.indexOf(','));
+	    	if(tickerInfoService.getTickerInfo(l_ticker).isNull()) {
+	    		builder.append(l_ticker);
+	    		builder.append(" ");
+	    	}
+	      }
+	      return builder.toString();
+	}
+	
+	public String loadNonloadedTickers() {		
+		try {
+			String nasdaqStr = loadNonloadedNYSETickers("NASDAQ_20100827.txt");
+			String nyseStr = loadNonloadedNYSETickers("NYSE_20100827.txt");
+		      
+			StringBuilder builder = new StringBuilder();
+			builder.append(nasdaqStr).append(nyseStr);
+		      inputStream = new StringBufferInputStream(builder.toString());
+	
+		      return SUCCESS;
+	    } catch (FileNotFoundException e) {	    	
+	      e.printStackTrace();
+	      return ERROR;
+	    } catch (IOException e) {
+	      e.printStackTrace();
+	      return ERROR;
+	    } catch (Exception e) {
+	    	 e.printStackTrace();
+	    	 return ERROR;
+		}
+		
+	}
+	
 	public String loadNYSETickers() {		
 		try {
 			HashMap<String, Boolean> tickerExistsMap = new HashMap<String, Boolean>();
@@ -123,7 +165,7 @@ public class UrlFetchCompanyInfoAction extends ActionSupport {
 			}
 			
 			String exchange = "";
-			String filename = "NYSE_20100827.txt";
+			String filename = "NASDAQ_20100827.txt";
 			exchange = filename.split("_")[0];
 			InputStream instream = this.getServletContext().getResourceAsStream("/WEB-INF/" + filename);
 			

@@ -26,6 +26,6 @@ public interface PortFolioService {
 	
 	void update(Collection<PortfolioTicker> ptc);
 	
-	void delete(long transactionId);
+	void delete(Long transactionId);
 	
 }

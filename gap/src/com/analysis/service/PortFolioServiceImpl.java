@@ -65,7 +65,7 @@ public class PortFolioServiceImpl implements PortFolioService{
 	}
 
 	@Override
-	public void delete(long theTransId) {
+	public void delete(Long theTransId) {
 		portfolioDAO.delete(theTransId);
 	}
 

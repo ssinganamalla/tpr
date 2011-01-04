@@ -62,7 +62,6 @@ public class TradeKingBrokerData extends BrokerData {
 			return ticker;
 		}		
 		ticker.setSymbol(values[0]);
-		ticker.setDescription(values[1]);		
 		ticker.setQuantity(Integer.valueOf(values[2]));
 		ticker.setCostBasis(Double.valueOf(values[3]));
 		//5, 6 price, change

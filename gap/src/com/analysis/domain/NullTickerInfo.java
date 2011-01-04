@@ -5,7 +5,21 @@ import com.utils.json.JSONException;
 import com.utils.json.JSONObject;
 
 
-public class NullTickerInfo extends TickerInfo {
+public class NullTickerInfo extends NonMutableTickerInfo {
+	
+	
+	public NullTickerInfo(String ticker, String name, String sector,
+			String industry, String relatedTickers, String exchange) {
+		super(ticker, name, sector, industry, relatedTickers, exchange);
+		// TODO Auto-generated constructor stub
+	}
+
+	public NullTickerInfo(String ticker, String name, String sector,
+			String industry, String relatedTickers) {
+		super(ticker, name, sector, industry, relatedTickers);
+		// TODO Auto-generated constructor stub
+	}
+
 	public boolean isNull() {
 		return true;
 	}
@@ -15,13 +29,7 @@ public class NullTickerInfo extends TickerInfo {
 		return super.toJSONObject();
 	}
 	
-	public static NullTickerInfo nullObject() {
-		NullTickerInfo nullSymbol = new NullTickerInfo();
-		nullSymbol.setCompanyName("empty");
-		nullSymbol.setExchange("nyse");
-		//nullSymbol.setIndustry();
-		nullSymbol.setSectorId(Enums.Sector.BASIC_MATERIALS.ordinal());
-		nullSymbol.setSymbol("empty");
-		return new NullTickerInfo();
+	public static NullTickerInfo nullObject(String ticker) {
+		return new NullTickerInfo(ticker, ticker, "Undefined", "Undefined", ticker, "Undefined");
 	}
 }

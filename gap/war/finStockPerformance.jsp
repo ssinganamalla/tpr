@@ -245,6 +245,7 @@
 <script>
 $(document).ready(function() {
 		$( "#add_date" ).datepicker();
+		com.fa.controller.performance.getPortfolioTickers();
 });
 </script>
 </body>

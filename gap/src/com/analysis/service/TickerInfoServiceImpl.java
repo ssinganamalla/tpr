@@ -13,6 +13,7 @@ import java.util.List;
 
 import com.analysis.dao.TickerInfoDAO;
 import com.analysis.domain.NonMutableTickerInfo;
+import com.analysis.domain.NullTickerInfo;
 
 public class TickerInfoServiceImpl implements TickerInfoService {
 	TickerInfoDAO tickerInfoDAO = null;			
@@ -33,7 +34,13 @@ public class TickerInfoServiceImpl implements TickerInfoService {
 	@Override
 	public NonMutableTickerInfo getTickerInfo(String tickerId) {
 		// TODO Auto-generated method stub
-		return tickerInfoDAO.getTickerInfo(tickerId);
+		NonMutableTickerInfo info = null;
+		try {
+			info = tickerInfoDAO.getTickerInfo(tickerId);
+		} catch(javax.jdo.JDOObjectNotFoundException e) {
+			info = NullTickerInfo.nullObject(tickerId);
+		}
+		return info;
 	}
 	
 	@Override

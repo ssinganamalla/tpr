@@ -40,6 +40,9 @@ public class NonMutableTickerInfo {
 	
 	private String exchange;
 	
+	public NonMutableTickerInfo() {
+		super();
+	}
 	public NonMutableTickerInfo(String ticker, String name, String sector,
 			String industry, String relatedTickers) {
 		super();

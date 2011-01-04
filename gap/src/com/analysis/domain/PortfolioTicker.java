@@ -11,6 +11,7 @@ import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
 import com.analysis.enums.Enums;
+import com.sun.istack.internal.Nullable;
 import com.utils.json.JSONException;
 import com.utils.json.JSONObject;
 
@@ -30,31 +31,28 @@ public class PortfolioTicker {
 	private String symbol;
 	
 	@Persistent
-	private double costBasis;
+	private Double costBasis;
 	
 	@Persistent
-	private int quantity;
+	private Integer quantity;
 	
 	@Persistent
 	private String brokerId;
 	
 	@Persistent
-	private String description;
-	
-	@Persistent
 	private Date date;
 	
 	@Persistent
-	private int transactionType;
+	private Integer transactionType;
 	
-	private double commission;
-	
-	
-	@NotPersistent
-	private double gainLoss;	
+	@Persistent
+	private Double commission;
 	
 	@NotPersistent
-	private double marketValue;
+	private Double gainLoss;	
+	
+	@NotPersistent
+	private Double marketValue;
 	
 	@NotPersistent
 	private NonMutableTickerInfo info;
@@ -67,6 +65,9 @@ public class PortfolioTicker {
 		this.email = email;
 		this.symbol = symbol;
 		this.brokerId = brokerId;
+		transactionType = Enums.TransactionType.BUY.ordinal();
+		commission = 0.0;
+		date = new Date();
 	}
 	
 	public Long getTransactionId() {
@@ -92,44 +93,36 @@ public class PortfolioTicker {
 		this.symbol = symbol;
 	}
 
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public double getCostBasis() {
+	public Double getCostBasis() {
 		return costBasis;
 	}
 
-	public void setCostBasis(double costBasis) {
+	public void setCostBasis(Double costBasis) {
 		this.costBasis = costBasis;
 	}
 
-	public int getQuantity() {
+	public Integer getQuantity() {
 		return quantity;
 	}
 
-	public void setQuantity(int quantiy) {
+	public void setQuantity(Integer quantiy) {
 		this.quantity = quantiy;
 	}
 
 
-	public double getGainLoss() {
+	public Double getGainLoss() {
 		return gainLoss;
 	}
 
-	public void setGainLoss(double gainLoss) {
+	public void setGainLoss(Double gainLoss) {
 		this.gainLoss = gainLoss;
 	}
 
-	public double getMarketValue() {
+	public Double getMarketValue() {
 		return marketValue;
 	}
 
-	public void setMarketValue(double marketValue) {
+	public void setMarketValue(Double marketValue) {
 		this.marketValue = marketValue;
 	}
 
@@ -149,19 +142,19 @@ public class PortfolioTicker {
 		this.date = date;
 	}
 	
-	public int getTransactionType() {
+	public Integer getTransactionType() {
 		return transactionType;
 	}
 
-	public void setTransactionType(int type) {
+	public void setTransactionType(Integer type) {
 		this.transactionType = type;
 	}
 
-	public double getCommission() {
+	public Double getCommission() {
 		return commission;
 	}
 
-	public void setCommission(double commission) {
+	public void setCommission(Double commission) {
 		this.commission = commission;
 	}
 
@@ -176,10 +169,14 @@ public class PortfolioTicker {
 	public void copyRelevantFrom(PortfolioTicker dest) {
 		 this.setBrokerId(dest.brokerId);
 		 this.setCostBasis(dest.costBasis);
-		 this.setDescription(dest.description);
 		 this.setQuantity(dest.quantity);
 		 this.setInfo(dest.info);
 		 this.setDate(dest.date);
+		 this.setCommission(dest.commission);
+		 this.setEmail(dest.email);
+		 this.setGainLoss(dest.gainLoss);
+		 this.setSymbol(dest.symbol);
+		 this.setTransactionType(dest.transactionType);
 	}
 	
 	public JSONObject toJSONObject() throws JSONException {
@@ -190,11 +187,12 @@ public class PortfolioTicker {
 		jo.put(GAIN_LOSS, ticker.getGainLoss());
 		jo.put(MARKET_VALUE, ticker.getMarketValue());
 		jo.put(QUANTITY, ticker.getQuantity());
-		jo.put(DESCRIPTION, ticker.getDescription());
 		jo.put(COMMISSION, ticker.getCommission());
 		jo.put(TRANSACTION_TYPE, ticker.getTransactionType());
 		jo.put(SYMBOL, ticker.getSymbol());
-		jo.put(SHORT_DATE, DateFormat.getInstance().format(ticker.getDate()));
+		if(ticker.getDate() != null) {
+			jo.put(SHORT_DATE, DateFormat.getInstance().format(ticker.getDate()));
+		}
 		if(info != null) {
 			jo.put(TICKER_INFO, info.toJSONObject());
 		}
