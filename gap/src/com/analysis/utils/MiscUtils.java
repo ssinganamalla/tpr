@@ -15,7 +15,7 @@ public class MiscUtils {
 			return 2;
 		} else if("Consumer Cyclical".equalsIgnoreCase(name)) {
 			return 3;
-		} else if("Consumer Non cyclical".equalsIgnoreCase(name)) {
+		} else if("Consumer/Non-Cyclical".equalsIgnoreCase(name)) {
 			return 4;
 		} else if("Energy".equalsIgnoreCase(name)) {
 			return 5;

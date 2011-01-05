@@ -212,7 +212,7 @@ com.fa.controller.performance = (function(){
 	return {
 		
 		getEnumSectorsMap : function() {
-			return {0:' Basic Materials', 1:'Capital Goods', 2: 'Conglomerates', 3:'Consumer Cyclical', 4:'Consumer Non cyclical', 5:'Energy', 
+			return {0:' Basic Materials', 1:'Capital Goods', 2: 'Conglomerates', 3:'Consumer Cyclical', 4:'Consumer/Non-Cyclical', 5:'Energy', 
 				   6:'Financial', 7:'Healthcare', 8:'Services', 9:'Technology', 10:'Transportation', 11:'Utilities'};
 		},
 		
@@ -283,7 +283,7 @@ com.fa.controller.performance = (function(){
 		
 		drawSectorPie : function() {
 
-			var enumSectors = {0:' Basic Materials', 1:'Capital Goods', 2: 'Conglomerates', 3:'Consumer Cyclical', 4:'Consumer Non cyclical', 5:'Energy', 
+			var enumSectors = {0:' Basic Materials', 1:'Capital Goods', 2: 'Conglomerates', 3:'Consumer Cyclical', 4:'Consumer/Non-Cyclical', 5:'Energy', 
 							   6:'Financial', 7:'Healthcare', 8:'Services', 9:'Technology', 10:'Transportation', 11:'Utilities'};
 			
 			var tickersArray = $('#tickersData').data('tickers');
