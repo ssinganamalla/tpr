@@ -10,7 +10,7 @@
 	
 	<bean id="tickerCommentsAction" class="com.analysis.action.TickerCommentsAction">
 		   <property name="commentsService" ref="tickerCommentsService"></property>
-		   <property name="tickersService" ref="tickersService"></property>
+		   <property name="tickerInfoService" ref="tickerInfoService"></property>
 	</bean>
 	
 	

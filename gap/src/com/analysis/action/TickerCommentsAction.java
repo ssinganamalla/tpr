@@ -10,11 +10,13 @@ import org.apache.struts2.StrutsException;
 
 import com.analysis.action.basic.BasicActionSupport;
 import com.analysis.action.basic.BasicAjaxActionSupport;
+import com.analysis.domain.NonMutableTickerInfo;
 import com.analysis.domain.TickerComment;
 import com.analysis.domain.TickerInfo;
 import com.analysis.enums.EnumJsonIds;
 import com.analysis.enums.EnumStrutsMethodType;
 import com.analysis.service.TickerCommentsService;
+import com.analysis.service.TickerInfoService;
 import com.analysis.service.TickersService;
 import com.utils.json.JSONArray;
 import com.utils.json.JSONException;
@@ -22,7 +24,7 @@ import com.utils.json.JSONObject;
 
 public class TickerCommentsAction extends BasicAjaxActionSupport {
 	private TickerCommentsService commentsService;
-	private TickersService tickersService;
+	private TickerInfoService tickerInfoService;
 
 	private String ticker;
 	private String comments;
@@ -60,18 +62,20 @@ public class TickerCommentsAction extends BasicAjaxActionSupport {
 		this.commentsService = commentsService;
 	}
 
-	public TickersService getTickersService() {
-		return tickersService;
+	
+	
+	public TickerInfoService getTickerInfoService() {
+		return tickerInfoService;
 	}
 
-	public void setTickersService(TickersService tickersService) {
-		this.tickersService = tickersService;
+	public void setTickerInfoService(TickerInfoService tickerInfoService) {
+		this.tickerInfoService = tickerInfoService;
 	}
 
 	@Override
 	public String populateInputString() throws StrutsException {
 		Collection<TickerComment> tickerComments = commentsService.getComments(getEmail(), ticker);
-		TickerInfo symbol = tickersService.getTicker(ticker);
+		NonMutableTickerInfo symbol = tickerInfoService.getTickerInfo(ticker);
 		
 		try {
 			JSONObject sym = symbol.toJSONObject();

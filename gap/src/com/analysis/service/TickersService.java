@@ -3,6 +3,12 @@ package com.analysis.service;
 import com.analysis.domain.RelatedTickers;
 import com.analysis.domain.TickerInfo;
 
+/**
+ * 
+ * @author ssinganamalla
+ * @Deprecated, use {@link TickerInfoService}
+ *
+ */
 public interface TickersService {
 	
 	/**
