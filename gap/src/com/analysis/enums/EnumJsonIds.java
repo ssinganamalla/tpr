@@ -22,6 +22,7 @@ public interface EnumJsonIds {
 	public static final String SHORT_DATE = "sd";
 	public static final String COMMISSION = "com";
 	public static final String TRANSACTION_TYPE = "tt";
+	public static final String TRANSACTION_ID = "tid";
 	
 	
 

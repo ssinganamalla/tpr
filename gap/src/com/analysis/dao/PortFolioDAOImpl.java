@@ -99,10 +99,12 @@ public class PortFolioDAOImpl implements PortFolioDAO {
 	}
 
 	@Override
-	public void createPortFolioTicker(PortfolioTicker info) {
+	public PortfolioTicker createPortFolioTicker(PortfolioTicker info) {
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		try {
-			pm.makePersistent(info);
+			PortfolioTicker ticker = pm.makePersistent(info);
+			PortfolioTicker detached = pm.detachCopy(ticker);
+			return detached;
 		} finally {
 			pm.close();
 		}

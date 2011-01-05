@@ -189,6 +189,7 @@ public class PortfolioTicker {
 		jo.put(QUANTITY, ticker.getQuantity());
 		jo.put(COMMISSION, ticker.getCommission());
 		jo.put(TRANSACTION_TYPE, ticker.getTransactionType());
+		jo.put(TRANSACTION_ID, ticker.getTransactionId());
 		jo.put(SYMBOL, ticker.getSymbol());
 		if(ticker.getDate() != null) {
 			jo.put(SHORT_DATE, DateFormat.getInstance().format(ticker.getDate()));

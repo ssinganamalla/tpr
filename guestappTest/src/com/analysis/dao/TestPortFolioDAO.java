@@ -1,6 +1,7 @@
 package com.analysis.dao;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -165,7 +166,9 @@ public class TestPortFolioDAO extends LocalDatastoreTest {
 	public void testCreatePortFolioTicker() {
 		List<PortfolioTicker> list = getPortfolioTickerList();
 		for(PortfolioTicker ticker : list) {
-			dao.createPortFolioTicker(ticker);
+			PortfolioTicker detached = dao.createPortFolioTicker(ticker);
+			assertNotNull(detached.getTransactionId());
+			assert(detached.getTransactionId() > 0);
 		}
 		
 		Collection<PortfolioTicker> results = dao.readPortFolioTickers(email, null, null);
@@ -204,15 +207,17 @@ public class TestPortFolioDAO extends LocalDatastoreTest {
 	
 	public void testDeletePortfolioTicker() {
 		List<PortfolioTicker> list = getPortfolioTickerList();
+		List<Long> ids = new ArrayList<Long>();
 		for(PortfolioTicker ticker : list) {
-			dao.createPortFolioTicker(ticker);
+			PortfolioTicker detached = dao.createPortFolioTicker(ticker);
+			ids.add(detached.getTransactionId());
 		}
-		Collection<PortfolioTicker> results = dao.readPortFolioTickers(email, "ABCD", "TRADEKING");
-		for(PortfolioTicker ticker : results) {
-			dao.delete(ticker.getTransactionId());
-		}
-		assertEquals(2, results.size() - 1);
 		
+		for(Long id : ids) {
+			dao.delete(id);
+		}
+		Collection<PortfolioTicker> results = dao.readPortFolioTickers(email, null, null);
+		assertEquals(0, results.size());
 	}
 	
 }

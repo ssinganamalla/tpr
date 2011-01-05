@@ -12,26 +12,6 @@
     <script type="text/javascript" src="http://www.google.com/jsapi"></script>
     <script type="text/javascript">
       google.load("visualization", "1", {packages:["corechart"]});
-      google.setOnLoadCallback(drawChart);
-      function drawChart() {
-        var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Task');
-        data.addColumn('number', 'Hours per Day');
-        data.addRows(5);
-        data.setValue(0, 0, 'Technology');
-        data.setValue(0, 1, 11);
-        data.setValue(1, 0, 'Healthcare');
-        data.setValue(1, 1, 2);
-        data.setValue(2, 0, 'Conglomerates');
-        data.setValue(2, 1, 2);
-        data.setValue(3, 0, 'Financial');
-        data.setValue(3, 1, 2);
-        data.setValue(4, 0, 'Energy');
-        data.setValue(4, 1, 7);
-
-        var chart = new google.visualization.PieChart(document.getElementById('sectorChart'));
-        chart.draw(data, {width: 450, height: 300, title: 'Sector Allocation'});
-      }
     </script>
 	
   </head>
@@ -55,8 +35,6 @@
 			
 			</div>
 			<div class="rightElement">
-				<input type="button" title="Show data in absolute terms" value="Absolute Units" id="absUnits"/>
-				<input type="button" title="Sync information with the latest market data" value="Refresh" id="refresh"/>
 			</div>
 			<div class="clearBothElement"></div>
 		</div>
@@ -108,14 +86,10 @@
 			</thead>
 			<tbody>
 				<tr>
-					<td><input type="hidden" value="transaction" name="menu_type"
-						id="transaction_menu" /> <select class="no_multi"
-						onchange="_pfAddTransactionMenuOnchange();" name="add_ttype_1"
+					<td><select class="no_multi"	
 						id="add_ttype">
-						<option selected="" value="BUY">Buy</option>
-						<option value="SELL">Sell</option>
-						<option value="BUY_COVER">Buy to Cover</option>
-						<option value="SELL_SHORT">Sell Short</option>
+						<option selected="" value="0">Buy</option>
+						<option value="1">Sell</option>
 					</select></td>
 					<td><input class="no_multi" autocomplete="off" name="add_date_1"
 						size="15" id="add_date" /></td>
@@ -125,8 +99,12 @@
 						id="add_price" /></td>
 					<td><input class="no_multi" size="10" name="add_commission_1"
 						id="add_commission" /></td>
-					<td width="100%"><input maxlength="100" class="no_multi"
-						size="45" name="add_notes_1" id="add_notes" /></td>
+					<td class="">
+						<select id='brokerId'>
+							<option value='0'>TradeKing</option>
+							<option value='1'>Zecco</option>
+						</select>	
+					</td>
 				</tr>
 			</tbody>
 		</table>
@@ -148,10 +126,6 @@
 		</div>
 		
 		<div id="diverseContent">
-			<p>	
-				Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consectetur blandit felis, eget porttitor elit congue vel. Suspendisse tristique mi eu turpis ornare accumsan dignissim dui consectetur. Fusce ut lorem sit amet magna sollicitudin porttitor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec molestie, metus posuere ornare venenatis, purus magna facilisis enim, euismod facilisis purus enim a tortor. Duis gravida, sem mollis consequat fringilla, libero mauris blandit est, nec sodales nisl dui sit amet nunc. Morbi nisi lectus, imperdiet pulvinar laoreet et, fermentum eu quam. In vitae odio ut enim molestie vestibulum. Suspendisse iaculis, arcu et porta tincidunt, lectus eros pretium augue, eu rhoncus nunc lacus a tellus. Proin tincidunt pretium consequat. Proin id libero et elit fringilla venenatis. Nulla sagittis commodo magna, in ultrices libero blandit vel. Suspendisse at sem et risus imperdiet blandit vitae eget libero. Pellentesque mi leo, convallis vel aliquam quis, imperdiet eget justo.
-			</p>
-			
 			<div id="sectorList" class="sectorStockList">
 				<select id='sectorOption'>
 					<option value='0'>Cost Basis</option>
@@ -164,57 +138,6 @@
 				<div id="dissectSectorChart"></div>
 			</div>
 			<div class="clearBothElement"></div>
-			
-			<p id="notes">
-				<h4>Notes:</h4>
-				Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consectetur blandit felis, eget porttitor elit congue vel. Suspendisse tristique mi eu turpis ornare accumsan dignissim dui consectetur. Fusce ut lorem sit amet magna sollicitudin porttitor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec molestie, metus posuere ornare venenatis, purus magna facilisis enim, euismod facilisis purus enim a tortor. Duis gravida, sem mollis consequat fringilla, libero mauris blandit est, nec sodales nisl dui sit amet nunc. Morbi nisi lectus, imperdiet pulvinar laoreet et, fermentum eu quam. In vitae odio ut enim molestie vestibulum. Suspendisse iaculis, arcu et porta tincidunt, lectus eros pretium augue, eu rhoncus nunc lacus a tellus. Proin tincidunt pretium consequat. Proin id libero et elit fringilla venenatis. Nulla sagittis commodo magna, in ultrices libero blandit vel. Suspendisse at sem et risus imperdiet blandit vitae eget libero. Pellentesque mi leo, convallis vel aliquam quis, imperdiet eget justo.
-			</p>
-
-<div id="pf-view-table121">
-<table class="gf-table">
-	<thead>
-		<tr class="portfolio-header-row">
-			<th class="">Name</th>
-			<th class="">Symbol</th>
-			<th class="">Sector</th>
-			<th class="">Change</th>
-			<th class="">Shares</th>
-			<th class="">Cost basis</th>
-			<th class="">Mkt value</th>
-			<th class="">Gain</th>
-			<th class="">Gain %</th>
-			<th class="">Day's gain</th>
-			<th class="">Overall return</th>
-		</tr>
-	</thead>
-	
-	<tbody>
-		<tr>
-			<td class=""><a
-				title="Microsoft Corporation" href="/finance?q=NASDAQ:MSFT">Microsoft
-			Corporation</a></td>
-			<td class=""><a
-				title="Microsoft Corporation" href="/finance?q=NASDAQ:MSFT">MSFT</a></td>
-			<td class="">
-				<select id='sector'>
-					<option value='0'>Cost Basis</option>
-					<option value='1'>Market Value</option>
-					<option value='2'>Gain Loss</option>
-				</select>	
-			</td>
-			<td class=""><span class="chr" id="ref_358464_c">-0.20</span> <span class="chr" id="ref_358464_cp">(-0.77%)</span></td>
-			<td class="">38.00</td>
-			<td class="">807.12</td>
-			<td class="">980.40</td>
-			<td class=""><span class="chg">+173.28</span></td>
-			<td class=""><span class="chg">+21.47%</span></td>
-			<td class=""><span class="chr">-7.60</span></td>
-			<td class="">0.00%</td>
-		</tr>
-	</tbody>
-	
-</table>
-</div>
 </div>
 </div>
 	

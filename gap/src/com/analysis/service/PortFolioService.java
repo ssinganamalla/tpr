@@ -20,7 +20,7 @@ public interface PortFolioService {
 	@Deprecated
 	Collection<UserTicker> getUserTickerInfos(String email);
 	
-	void create(PortfolioTicker pt);
+	PortfolioTicker create(PortfolioTicker pt);
 	
 	Collection<PortfolioTicker> getPortFolioTickers(String email);
 	

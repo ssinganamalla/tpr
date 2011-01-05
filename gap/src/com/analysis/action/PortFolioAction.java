@@ -173,9 +173,8 @@ public class PortFolioAction extends BasicAjaxActionSupport {
 		Collection<PortfolioTicker> folioTickers = getFolioService().getPortFolioTickers(getEmail());
 		JSONArray ja = new JSONArray();
 		for(PortfolioTicker folioTicker : folioTickers) {
-			//NonMutableTickerInfo tinfo = tickerInfoService.getTickerInfo(folioTicker.getSymbol());
-			getFolioService().delete(folioTicker.getTransactionId());
-			/**
+			NonMutableTickerInfo tinfo = tickerInfoService.getTickerInfo(folioTicker.getSymbol());
+			
 			if(tinfo != null) {
 				folioTicker.setInfo(tinfo);
 			}
@@ -183,7 +182,7 @@ public class PortFolioAction extends BasicAjaxActionSupport {
 				ja.put(folioTicker.toJSONObject());
 			} catch (JSONException e) {
 				throw new StrutsException(e);
-			}**/
+			}
 		}
 		return ja.toString();
 	}
@@ -209,8 +208,7 @@ public class PortFolioAction extends BasicAjaxActionSupport {
 		po.setQuantity(quantity);
 		po.setCommission(commission);
 		po.setEmail(this.getEmail());
-		folioService.create(po);
-		
+		po = folioService.create(po);
 		
 		try {
 			NonMutableTickerInfo tinfo = tickerInfoService.getTickerInfo(symbol);

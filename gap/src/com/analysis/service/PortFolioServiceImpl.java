@@ -60,8 +60,8 @@ public class PortFolioServiceImpl implements PortFolioService{
 	}
 
 	@Override
-	public void create(PortfolioTicker pt) {
-		portfolioDAO.createPortFolioTicker(pt);
+	public PortfolioTicker create(PortfolioTicker pt) {
+		return portfolioDAO.createPortFolioTicker(pt);
 	}
 
 	@Override

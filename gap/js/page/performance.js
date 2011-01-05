@@ -242,9 +242,11 @@ com.fa.controller.performance = (function(){
 			var ticker = $("#stockTickerSymbol").finsearchbox("option", "shortVal");
 			var dateString = $("#add_date").val();
 			var dateFormat = $("#add_date").datepicker("option", "dateFormat");
-
+			var brokerId = $("#brokerId").val();
+			var transactionType = $("#add_ttype").val();
 			
-			$.post("/struts/performance/addPortfolioTicker", {symbol: ticker, costBasis:addprice, brokerId:0, quantity:numShares, datepickerFormat:dateFormat, dateString:dateString },
+			
+			$.post("/struts/performance/addPortfolioTicker", {symbol: ticker, costBasis:addprice,'commission':addCommission, 'transactionType': transactionType, 'brokerId':brokerId, quantity:numShares, datepickerFormat:dateFormat, dateString:dateString },
 					function(responseJson) {
 						var ticker = eval( '(' + responseJson + ')' );
 						com.fa.ui.performance.addToHoldingsTable(ticker);

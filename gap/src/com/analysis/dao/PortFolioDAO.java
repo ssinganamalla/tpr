@@ -19,7 +19,7 @@ public interface PortFolioDAO {
 	//deprecated method ends
 	
 	
-	void createPortFolioTicker(PortfolioTicker info);
+	PortfolioTicker createPortFolioTicker(PortfolioTicker info);
 	
 	Collection<PortfolioTicker> readPortFolioTickers(String email, String tickerSymbol, String brokerId);
 	
