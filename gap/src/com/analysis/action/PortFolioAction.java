@@ -77,7 +77,7 @@ public class PortFolioAction extends BasicAjaxActionSupport {
 	
 	private double commission;
 	
-	
+	private int transactionType;
 	
 	public String getSymbol() {
 		return symbol;
@@ -138,6 +138,16 @@ public class PortFolioAction extends BasicAjaxActionSupport {
 	public void setCommission(double commission) {
 		this.commission = commission;
 	}
+
+	public int getTransactionType() {
+		return transactionType;
+	}
+
+	public void setTransactionType(int transactionType) {
+		this.transactionType = transactionType;
+	}
+
+
 
 	public void setDatepickerFormat(String dateFormat) {
 		this.datepickerFormat = dateFormat;
@@ -206,6 +216,7 @@ public class PortFolioAction extends BasicAjaxActionSupport {
 		po.setBrokerId(this.getBrokerId());
 		po.setCostBasis(costBasis);
 		po.setQuantity(quantity);
+		po.setTransactionType(transactionType);
 		po.setCommission(commission);
 		po.setEmail(this.getEmail());
 		po = folioService.create(po);

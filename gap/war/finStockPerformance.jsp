@@ -35,83 +35,86 @@
 			
 			</div>
 			<div class="rightElement">
+			<h4>Select Broker</h4>
+			<select id='selectbrokerId'>
+				<option value='0'>TradeKing</option>
+				<option value='1'>Zecco</option>
+				<option value='-1'>All</option>
+			</select>
+			
 			</div>
 			<div class="clearBothElement"></div>
 		</div>
 			
-		<div id="commentsSection">
-			<div id="expandBrokerStockData">
-				<div id="addComment">Update the Broker Stock Data<a href="#">here</a></div>
-				<div id="commentDiv">
-					<textarea id="brokerStockDataTxtArea" name="comments" rows="4" cols="100"></textarea><br/>
-					<input type="button" id="updateBrokerStockDataBtn" value="Update" />
-					<input type="button" id="cancelNote" value="Cancel" />
-				</div>
-			</div>
-		</div>	
-		
 		<div id="tickersData" style="">
 		
 		</div>
 		
-		<div id="renderChartsHeader">
-			<div class="leftElement">	
-			</div>
-			<div class="rightElement">
-				<input type="button" class="updateSectorIds" title="Update Sector values" value="Update Sectors"/>
-				<input type="button" class="renderSectorDistribution" title="Click to see the sectors visualization" value="Render Charts"/>
-			</div>
-			<div class="clearBothElement"></div>
-		</div>
 		<div id="pf-view-table">
 			
 		</div>
 
 <div class="basics purchase" id="add-trans-t">
-	<div>
-		<input name="stockTickerSymbol" id="stockTickerSymbol" type="text" value="" size="40" maxlength="120" />
-	</div>
-	<div id="suggestList" class="container"></div>
-	<div class="pf-add-trans-row pf-add-trans-detailed">
-		<table id="pf-add-trans-table">
-			<thead>
-				<tr>
-					<th>Type</th>
-					<th class="bottom-header">Date</th>
-					<th>Shares</th>
-					<th>Price</th>
-					<th>Commission</th>
-					<th>Notes</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td><select class="no_multi"	
-						id="add_ttype">
-						<option selected="" value="0">Buy</option>
-						<option value="1">Sell</option>
-					</select></td>
-					<td><input class="no_multi" autocomplete="off" name="add_date_1"
-						size="15" id="add_date" /></td>
-					<td><input class="no_multi" size="9" name="add_shares_1"
-						id="add_shares" /></td>
-					<td><input class="no_multi" size="9" name="add_price_1"
-						id="add_price" /></td>
-					<td><input class="no_multi" size="10" name="add_commission_1"
-						id="add_commission" /></td>
-					<td class="">
-						<select id='brokerId'>
-							<option value='0'>TradeKing</option>
-							<option value='1'>Zecco</option>
-						</select>	
-					</td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
-	<div class="pf-add-trans-row pf-add-trans-detailed">
-		<div class="g-unit"><input type="submit" value="Add to portfolio"
-					id="addStockTrans" /></div>
+	
+	
+	<div id="commentsSection">
+		<div id="expandBrokerStockData">
+			<div id="addComment">Add a Stock to the portfolio<a href="#">here</a></div>
+			<div id="commentDiv">
+			
+				<div>
+					<input name="stockTickerSymbol" id="stockTickerSymbol" type="text" value="" size="40" maxlength="120" />
+				</div>
+				<div id="suggestList" class="container"></div>
+			<!--  
+				<textarea id="brokerStockDataTxtArea" name="comments" rows="4" cols="100"></textarea><br/>
+				<input type="button" id="updateBrokerStockDataBtn" value="Update" />
+				<input type="button" id="cancelNote" value="Cancel" />
+			-->
+				<div class="pf-add-trans-row pf-add-trans-detailed">
+					<table id="pf-add-trans-table">
+						<thead>
+							<tr>
+								<th>Type</th>
+								<th class="bottom-header">Date</th>
+								<th>Shares</th>
+								<th>Price</th>
+								<th>Commission</th>
+								<th>Notes</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><select class="no_multi"	
+									id="add_ttype">
+									<option selected="" value="0">Buy</option>
+									<option value="1">Sell</option>
+								</select></td>
+								<td><input class="no_multi" autocomplete="off" name="add_date_1"
+									size="15" id="add_date" /></td>
+								<td><input class="no_multi" size="9" name="add_shares_1"
+									id="add_shares" /></td>
+								<td><input class="no_multi" size="9" name="add_price_1"
+									id="add_price" /></td>
+								<td><input class="no_multi" size="10" name="add_commission_1"
+									id="add_commission" /></td>
+								<td class="">
+									<select id='brokerId'>
+										<option value='0'>TradeKing</option>
+										<option value='1'>Zecco</option>
+									</select>	
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				
+				<div class="pf-add-trans-row pf-add-trans-detailed">
+					<div class="g-unit"><input type="submit" value="Add to portfolio"
+								id="addStockTrans" /></div>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>
 
@@ -119,7 +122,6 @@
 			<div class="leftElement">	
 			</div>
 			<div class="rightElement">
-				<input type="button" class="updateSectorIds" title="Update Sector values" value="Update Sectors" id="updateSectors"/>
 				<input type="button" class="renderSectorDistribution" title="Click to see the sectors visualization" value="Render Charts"/>
 			</div>
 			<div class="clearBothElement"></div>

@@ -12,6 +12,7 @@ public interface EnumJsonIds {
 	public static final String MARKET_VALUE = "mv";
 	public static final String GAIN_LOSS = "gl";
 	public static final String COST_BASIS = "cb";
+	public static final String TOTAL_COST_BASIS = "tcb";
 	public static final String SECTOR_ID = "si";
 	public static final String SECTOR_NAME = "sn";
 	public static final String BROKER_ID = "bi";

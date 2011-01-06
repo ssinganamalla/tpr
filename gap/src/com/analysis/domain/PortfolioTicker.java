@@ -1,6 +1,7 @@
 package com.analysis.domain;
 
 import java.text.DateFormat;
+import java.text.DecimalFormat;
 import java.util.Date;
 
 import javax.jdo.annotations.IdGeneratorStrategy;
@@ -181,9 +182,17 @@ public class PortfolioTicker {
 	
 	public JSONObject toJSONObject() throws JSONException {
 		JSONObject jo = new JSONObject();
+		DecimalFormat Currency = new DecimalFormat("#0.00");
 		PortfolioTicker ticker = this;
 		jo.put(BROKER_ID, ticker.getBrokerId());
-		jo.put(COST_BASIS, ticker.getCostBasis());
+		jo.put(COST_BASIS, Currency.format(ticker.getCostBasis()));
+		if(ticker.getCostBasis()!= null && ticker.getQuantity() != null) {
+			double tcb=ticker.getCostBasis()*ticker.getQuantity();
+	        
+			jo.put(TOTAL_COST_BASIS, Currency.format(tcb));
+		} else {
+			jo.put(TOTAL_COST_BASIS,0);
+		}
 		jo.put(GAIN_LOSS, ticker.getGainLoss());
 		jo.put(MARKET_VALUE, ticker.getMarketValue());
 		jo.put(QUANTITY, ticker.getQuantity());

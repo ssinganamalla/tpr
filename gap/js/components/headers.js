@@ -7,7 +7,7 @@ function setupHeadersFeature() {
 				"		<span><a href=\"finStockPerformance.jsp\">Diversified?</a> |</span> \r\n" + 
 				"		<span><a href=\"finWatchList.jsp\">Compare</a> |</span> \r\n" +
 				"		<span><a href=\"finAnalyzer.jsp?stockTickerSymbol=GOOG\">Statement Analysis</a> |</span> \r\n" +
-				"		<span>Popular Finance Sites|</span> \r\n" + 
+				"		<span><a href=\"finOtherSites.jsp\">Popular Finance Sites|</span> \r\n" + 
 				"	</div>"; 
 		
 		$("#header").append(menuSectionsStr);

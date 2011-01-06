@@ -6,8 +6,8 @@
 	  <property name="war.classes" location="war/WEB-INF/classes"></property>
 	  <property name="server.port" value="8085"></property>
 	  <property name="test.lib" location="test/lib"></property>
-<!--	  comment the below line in the production mode-->
-	<property name="dev.mode" value="some_random_value"></property>
+<!--	  comment the below line in the production mode
+	<property name="dev.mode" value="some_random_value"></property>-->
 	  
 	  <path id="project.classpath">
 	    <pathelement path="${war.classes}" />

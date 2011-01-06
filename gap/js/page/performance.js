@@ -26,21 +26,27 @@ $(function() {
 	   com.fa.controller.performance.drawSectorPie();
    });
    
-   $("div.rightElement .updateSectorIds").click(function(){
-	   var tickerSymbolSectorIdMap = [];
-	   var selector = "div#pf-view-table select." + SELECT_SECTOR_CLASS;
-	   $(selector).each(function(index){
-		   console.log($(this).attr('id') + $(this).val());
-		   var tickerId = $(this).attr('id').substring(6); //remove 'sector'
-		   tickerSymbolSectorIdMap[tickerId] = Number($(this).val());
-	   });
-	   $('#tickersData').data('tickerSymbolSectorIdMap', tickerSymbolSectorIdMap);
-	   com.fa.controller.performance.updateSectorValues(tickerSymbolSectorIdMap);
+   $("#selectbrokerId").change(function() {
+	   var allTickersArray = $('#tickersData').data('alltickers');
 	   
-	   $("div.rightElement .renderSectorDistribution").removeAttr('disabled');
-   	});
+	   var tickersArray = new Array();
+	   if($('#selectbrokerId').val() == '-1') {
+		   tickersArray = allTickersArray;
+	   } else {
+		   for(var i=0; i<allTickersArray.length; i++) {
+			   var ticker = allTickersArray[i];
+			   if(ticker.bi == $('#selectbrokerId').val()) {
+				   tickersArray.push(ticker);
+			   }
+		   }
+	   }
+	   
+	   $('#tickersData').data('tickers', tickersArray);
+	   com.fa.ui.performance.buildHoldingsTable();
+	   com.fa.controller.performance.drawSectorPie();
+   });
    
-   $("div.rightElement .renderSectorDistribution").attr('disabled', 'true');
+  // $("div.rightElement .renderSectorDistribution").attr('disabled', 'false');
    
    $("div.rightElement .renderSectorDistribution").click(function(){
 	   com.fa.controller.performance.drawSectorPie();
@@ -58,6 +64,7 @@ com.fa.ui.performance = (function(){
 				"			<th class=\"\">Sector</th>\r\n" + 
 				"			<th class=\"\">Shares</th>\r\n" + 
 				"			<th class=\"\">Cost basis</th>\r\n" + 
+				"			<th class=\"\">Total Cost</th>\r\n" + 
 				//"			<th class=\"\">Mkt value</th>\r\n" + 
 				//"			<th class=\"\">Gain</th>\r\n" + 
 				"		</tr>\r\n" + 
@@ -88,7 +95,8 @@ com.fa.ui.performance = (function(){
 		 	$tdQty.append(ticker.q);
 		 var $tdCostBasis = $('<td></td>');
 		 	$tdCostBasis.append(ticker.cb);
-		 	
+		 var $tdTotalCostBasis = $('<td></td>');
+		 $tdTotalCostBasis.append(ticker.tcb);	
 		 	
 		 var $tdMktValue = $('<td></td>');
 		 	$tdMktValue.append(ticker.mv);
@@ -101,6 +109,7 @@ com.fa.ui.performance = (function(){
 	    $tr.append($tdSector);
 	    $tr.append($tdQty);
 	    $tr.append($tdCostBasis);
+	    $tr.append($tdTotalCostBasis);
 	   // $tr.append($tdMktValue);
 	    //$tr.append($tdGain);
 	
@@ -143,8 +152,8 @@ com.fa.ui.performance = (function(){
 				$('#tickersData').data('tickers', [ticker]);
 			} else {
 				tickersArray.push(ticker);
-				com.fa.ui.performance.buildHoldingsTable();
 			}
+			com.fa.ui.performance.buildHoldingsTable();
 		},
 		
 		deleteFromHoldingsTable:function(ticker) {
@@ -182,7 +191,7 @@ com.fa.controller.performance = (function(){
 		var val = $('#sectorOption').val();
 		switch (Number(val)) {
 		case com.fa.Constants.COST_BASIS:
-			return ticker.cb;
+			return Number(ticker.tcb);
 			break;
 		case com.fa.Constants.GAIN_LOSS:
 			return ticker.gl;
@@ -190,7 +199,7 @@ com.fa.controller.performance = (function(){
 		case com.fa.Constants.MARKET_VALUE:
 			return ticker.mv;
 		}
-		return ticker.cb;
+		return ticker.tcb;
 	};
 	
 	var getCriteriaLabel = function() {
@@ -259,8 +268,10 @@ com.fa.controller.performance = (function(){
 		getPortfolioTickers : function() {
 			$.post("/struts/performance/getPortfolioTickers", { },
 					function(responseJson) {
-						var tickersArray = eval( '(' + responseJson + ')' );
-						$('#tickersData').data('tickers', tickersArray);
+						var allTickersArray = eval( '(' + responseJson + ')' );
+						$('#tickersData').data('alltickers', allTickersArray);
+						$('#tickersData').data('tickers', allTickersArray);
+						
 						com.fa.ui.performance.buildHoldingsTable();
 						com.fa.controller.performance.drawSectorPie();						
 					}
@@ -289,7 +300,7 @@ com.fa.controller.performance = (function(){
 			var tickersArray = $('#tickersData').data('tickers');
 			
 			if(tickersArray.length < 1) {
-				alert('No data to draw the sector pie');
+				console.log('No data to draw the sector pie');
 				return;
 			}
 			
@@ -353,7 +364,7 @@ com.fa.controller.performance = (function(){
 	     
 	     drawSectorChart : function(sectorId) {
 
-				var enumSectors = {0:' Basic Materials', 1:'Capital Goods', 2: 'Conglomerates', 3:'Consumer Cyclical', 4:'Consumer Non cyclical', 5:'Energy', 
+				var enumSectors = {0:' Basic Materials', 1:'Capital Goods', 2: 'Conglomerates', 3:'Consumer Cyclical', 4:'Consumer/Non-cyclical', 5:'Energy', 
 								   6:'Financial', 7:'Healthcare', 8:'Services', 9:'Technology', 10:'Transportation', 11:'Utilities'};
 				
 				var tickersArray = $('#tickersData').data('tickers');
