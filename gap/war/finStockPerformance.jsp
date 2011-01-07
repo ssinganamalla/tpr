@@ -6,8 +6,10 @@
 <head>
 	<link type="text/css" rel="stylesheet" href="stylesheets/start.css"/>
 	<link type="text/css" rel="stylesheet" href="stylesheets/main.css"/>
+	<link type="text/css" rel="stylesheet" href="stylesheets/tablesorter.css"/>
 	<link type="text/css" rel="stylesheet" href="stylesheets/jquery-ui-1.8.7.custom.css"/>
 	<script type="text/javascript" src="js/initNamespace.min.js"></script>
+	<script type="text/javascript" src="js/page/constants.min.js"></script>
 	<script type="text/javascript" src="js/utils.min.js"></script>
     <script type="text/javascript" src="http://www.google.com/jsapi"></script>
     <script type="text/javascript">
@@ -59,7 +61,7 @@
 	
 	<div id="commentsSection">
 		<div id="expandBrokerStockData">
-			<div id="addComment">Add a Stock to the portfolio<a href="#">here</a></div>
+			<div id="addComment" class="f4">Add a Transaction <a href="#">here</a></div>
 			<div id="commentDiv">
 			
 				<div>
@@ -165,6 +167,7 @@
 <script type="text/javascript" src="js/page/performance.min.js"></script>
 <script type="text/javascript" src="js/finGraphs.min.js"></script>
 <script type="text/javascript" src="js/ajax.min.js"></script>
+<script type="text/javascript" src="js/lib/jquery.tablesorter.min.js"></script>
 <script type="text/javascript" src="js/components/headers.min.js"></script>
 
 <script>

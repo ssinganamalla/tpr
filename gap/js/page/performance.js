@@ -61,6 +61,7 @@ com.fa.ui.performance = (function(){
 				"		<tr class=\"portfolio-header-row\">\r\n" + 
 				"			<th class=\"\">Name</th>\r\n" + 
 				"			<th class=\"\">Symbol</th>\r\n" + 
+				"			<th class=\"\">Broker</th>\r\n" + 
 				"			<th class=\"\">Sector</th>\r\n" + 
 				"			<th class=\"\">Shares</th>\r\n" + 
 				"			<th class=\"\">Cost basis</th>\r\n" + 
@@ -75,10 +76,11 @@ com.fa.ui.performance = (function(){
  
 	var buildTBody = function(ticker) {
 	 
-		 var $tbody = $('<tbody></tbody>');
 		 var $tr = $('<tr></tr>');
 		 var $tdTitle = $('<td></td>');
 		 	$tdTitle.append(ticker.sb);
+		 	 var $tdBroker = $('<td></td>');
+		 	$tdBroker.append(com.fa.Constants.toBrokerName(ticker.bi));
 		 var $tdTicker = $('<td></td>');
 		 	$tdTicker.append(ticker.tinfo ? ticker.tinfo.cn : "-");
 		 var $tdSector = $('<td></td>');
@@ -102,10 +104,10 @@ com.fa.ui.performance = (function(){
 		 	$tdMktValue.append(ticker.mv);
 		 var $tdGain = $('<td></td>');
 		 	$tdGain.append(ticker.gl);
-	    	 
-	    $tbody.append($tr);
-	    $tr.append($tdTitle);
-	    $tr.append($tdTicker);
+	    
+		$tr.append($tdTicker); 	
+	    $tr.append($tdTitle);	    
+	    $tr.append($tdBroker);
 	    $tr.append($tdSector);
 	    $tr.append($tdQty);
 	    $tr.append($tdCostBasis);
@@ -113,7 +115,7 @@ com.fa.ui.performance = (function(){
 	   // $tr.append($tdMktValue);
 	    //$tr.append($tdGain);
 	
-	    return $tbody;	 
+	    return $tr;	 
 		 
 	 };
 	 
@@ -136,14 +138,17 @@ com.fa.ui.performance = (function(){
 			if(tickersArray.length < 1) return;
 			
 			$('#pf-view-table').empty();
-			var $table = $('<table id="pf-table"></table>');			
+			var $table = $('<table id="pf-table" class="tablesorter"></table>');			
 			$table.append(buildThead());
+			var $tbody = $('<tbody></tbody>');
+			$table.append($tbody);
 			for(var i=0; i<tickersArray.length; i++) {
-				var $tbody = buildTBody(tickersArray[i]);
-				$table.append($tbody);
+				var $tr = buildTBody(tickersArray[i]);
+				$tbody.append($tr);
 			}
 			
 			$('#pf-view-table').append($table);
+			$table.tablesorter();
 		},
 	
 		addToHoldingsTable: function(ticker) {
@@ -220,6 +225,8 @@ com.fa.controller.performance = (function(){
 	
 	return {
 		
+		
+		//move outside to a 
 		getEnumSectorsMap : function() {
 			return {0:' Basic Materials', 1:'Capital Goods', 2: 'Conglomerates', 3:'Consumer Cyclical', 4:'Consumer/Non-Cyclical', 5:'Energy', 
 				   6:'Financial', 7:'Healthcare', 8:'Services', 9:'Technology', 10:'Transportation', 11:'Utilities'};
