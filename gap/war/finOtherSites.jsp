@@ -27,6 +27,7 @@
 			<h3>Stock Screener</h3>
 			<div>http://caps.fool.com/Screener.aspx</div>
 			<div>http://www.google.com/finance/stockscreener</div>
+			<div>http://www.dailyfinance.com/earnings/china-digital-tv-holding-co-ltd-american-depositary-shares/stv/nys/earnings-release</div>
 		</div>
 	</div>
 	
