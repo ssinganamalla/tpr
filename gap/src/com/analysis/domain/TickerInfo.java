@@ -7,6 +7,8 @@ import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
+import org.datanucleus.util.StringUtils;
+
 import com.utils.json.JSONException;
 import com.utils.json.JSONObject;
 
@@ -49,7 +51,7 @@ public class TickerInfo {
 	}
 
 	public String getExchange() {
-		return exchange;
+		return StringUtils.isEmpty(exchange) ? "NYSE" : exchange;
 	}
 
 	public void setExchange(String exchange) {
