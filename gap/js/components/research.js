@@ -24,7 +24,6 @@ function setupCommentsFeature() {
 								var tbody = $("<tbody></tbody>");
 								$('#allCommentsTable').append(tbody);
 								var jsonArray = json.tca;
-								var name = json.cn && json.sb;
 								var tickerText = json.e + ':' + json.sb;
 								$("#tickerSymbolForComments").val(tickerText);
 								for(var i in jsonArray) {
@@ -35,7 +34,7 @@ function setupCommentsFeature() {
 									tr.append(tdComment);
 									tbody.append(tr);
 								}
-								$('#allComments').prepend('<h3>Researched Comments for: ' + tickerText + '</h3>');
+								$('#allComments').prepend('<h3>Researched Comments for: ' + (json.cn ? json.cn : json.sb) + '</h3>');
 								$('#allCommentsTable').tablesorter();
 							}
 					);
