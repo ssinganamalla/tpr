@@ -42,7 +42,7 @@ function epsMap {
 }
 
 // All your GM code must be inside this function
-function letsJQuery() {
+function test() {
 	var i = 0, j=0;
 	
 	var earningsDiv = document.getElementById("NEXTEARNINGSDATE");
@@ -82,20 +82,72 @@ function letsJQuery() {
 	}
 }
 
-
-
-
-
 function main() {
 	var earningsDiv = document.getElementById("NEXTEARNINGSDATE");
 	var button = document.createElement("button");
 	//button.src = /*enter your button image url here */;
 	button.style.cursor = "pointer";
 	button.appendChild(document.createTextNode('eps'));
-	button.addEventListener("click", function(e) { letsJQuery(); }, false);
+	button.addEventListener("click", function(e) { test(); }, false);
 	
 	earningsDiv.parentNode.insertBefore(button, earningsDiv);
 	
 }
 
 main();
+
+
+(function(){
+	  function GM_wait() {
+	    if(typeof unsafeWindow.jQuery == 'undefined') { 
+	      window.setTimeout(GM_wait,100); 
+	    } else { 
+	      $ = unsafeWindow.jQuery; letsJQuery(); 
+	    }
+	  }
+	  GM_wait();
+
+	  function letsJQuery() {
+	    function getTinyURL(longURL, success) {
+	        var API = 'http://json-tinyurl.appspot.com/?url=';
+	        var URL = API + encodeURIComponent(longURL) + '&callback=?';
+
+	        $.getJSON(URL, function(data){
+	            success && success(data.tinyurl);
+	        });
+	    }
+
+	    // The tweet'ify div, shown by the tweet link
+	    $('body').prepend('<div id="tweeeet"><form id="tweetform"><div id="tweetloading"><img src="http://stackoverflow.com/content/img/ajax-loader.gif" width="24" height="24"><span id="loadingmsg"></span></div><p><img src="http://img189.imageshack.us/img189/6721/twitterlogotransparent.png" width="27" height="26"><textarea rows="3" cols="40" id="tweetmsg"></textarea></p><p><input type="button" value="Close!" id="tweetclose">&nbsp;<input type="submit" value="Twitter\'ify it!" id="tweetsubmit"></p></form></div>');
+
+	    $('.post-menu').append('<span class="link-separator">|</span><a href="#" id="tweetifylink">tweet</a>');
+
+	    $('#tweetifylink').bind('click', function(){
+	      $('#tweeeet').show();
+
+	      // Show loading thingy, hide form until tinyurl is grabbed
+	      $('#tweetmsg').hide();
+	      $('#submit').hide();
+	      $('#loadingmsg').append('Getting TinyURLified address');
+	      $('#loading').show();
+
+	      $('#tweetclose').bind('click', function(){
+	        $('#tweeeet').hide();
+	      })
+
+	      getTinyURL(document.location, function(tinyurl){
+	        // TinyURLification complete, enter into tweetmsg input, submit
+	        $('#tweetmsg').val(tinyurl + ' "' + document.title +'"');
+	        $('#tweetmsg').show();
+	        $('#tweetloading').hide();
+	        $('#tweetsubmit').show();
+
+	        $('#tweetform').submit(function(){
+	          var submiturl = 'http://twitter.com/home?status=' + encodeURIComponent($('#tweetmsg').val());
+	          window.location.href = submiturl;
+	        })
+	      });
+
+	    })
+	  }
+	})();

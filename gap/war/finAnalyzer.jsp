@@ -70,6 +70,7 @@
 				<div name="incNaviDiv" id="incNaviDiv">
 					<a name="" class="lk" href="#" i="0" k="inc">Margins</a>
 					<a name="" class="lk" href="#" i="1" k="inc">Normalized Statement</a>
+					<a name="" class="lk" href="#" i="2" k="inc">Return on Equity</a>
 				</div>
 				<div name="casNaviDiv" id="casNaviDiv">
 					<a name="" class="lk" href="#" i="0" k="cas">Cash Flow</a>
@@ -141,6 +142,14 @@
 						<p><b>Gross profit</b> is the total revenue subtracted by the cost of obtaining that revenue.  It tells you how much money the business would have made if it didn’t pay any other expenses such as salary, income taxes, etc</p>
 						<p><b>Operating Income</b> is the total profit or income generated from the core operations before interest deduction and income taxes</p>
 						<p><b>Net Income</b>is calculated by taking revenues and adjusting for the cost of doing business, depreciation, interest, taxes and other expenses</p>
+					</div>
+					<div name="info" i="2" k="inc">
+						<h3>Return on Equity</h3>
+						<p><b>Return on Equity</b> is defined as <b>net income</b> over <b>avg share holder equity</b></p>
+						<p>Looking at net income on its own does not have much meaning, unless its seen with respect to the amout of capital or equity invested in it</p>
+						<p><b>Warning:</b> ROE could also be increased by the company by issuing long term debt and then buying back shares. It is always good to watch out whether the company is increasing the ROE at the expense of increasing 
+						long term debt and decreasing the generation of operating cash</p>
+						<p>Please see whether ROE is increasing with time and look at the debt and the operating cash, fare in comparision to ROE. If the company's debt is remaining same or decreasing and operating cash is increasing, that's a good sign</p>
 					</div>
 				</div>
 				<div name="casInfo" id="casInfo">

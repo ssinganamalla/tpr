@@ -77,7 +77,11 @@
 					<div id="selectedCriteriaChartDiv">
 					
 					</div>
+					<div id="selectedCriteriaGraphNote">
+				
+					</div>
 				</div>
+				
 			<div class="clearBothElement"></div>
 			</div>
 			

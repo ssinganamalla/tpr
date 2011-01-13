@@ -12,7 +12,6 @@ function setupCommentsFeature() {
 					$.getJSON(com.fa.Global.prefixPath + "/comments/getTickerResearchComments", {"ticker":$(this).text()},
 							function(json) {
 								$('#allComments').empty();
-								$('#allComments').append('<h3>Researched Comments for: </h3>');
 								$('#allComments').append("<table id=\"allCommentsTable\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\" class=\"tablesorter\">\r\n" + 
 										"</table>\r\n");
 								$('#allCommentsTable').append("<thead>\r\n" + 
@@ -25,6 +24,9 @@ function setupCommentsFeature() {
 								var tbody = $("<tbody></tbody>");
 								$('#allCommentsTable').append(tbody);
 								var jsonArray = json.tca;
+								var name = json.cn && json.sb;
+								var tickerText = json.e + ':' + json.sb;
+								$("#tickerSymbolForComments").val(tickerText);
 								for(var i in jsonArray) {
 									var tr =$("<tr></tr>");
 									var tdDate = $("<td>" + jsonArray[i].da + "</td>");
@@ -33,6 +35,7 @@ function setupCommentsFeature() {
 									tr.append(tdComment);
 									tbody.append(tr);
 								}
+								$('#allComments').prepend('<h3>Researched Comments for: ' + tickerText + '</h3>');
 								$('#allCommentsTable').tablesorter();
 							}
 					);

@@ -101,6 +101,10 @@ span > a{
 	border: 1px solid #000;	
 }
 
+#selectedCriteriaGraphNote {
+	border: 1px solid #000;
+}
+
 #chart_div{
 	min-height: 400px;
 }

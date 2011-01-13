@@ -156,6 +156,7 @@ PeriodStmts.BOOK_VALUE_PER_SHARE = 'bvps';
 PeriodStmts.CURRENT_RATIO = 'cr';
 PeriodStmts.QUICK_TEST_RATIO = 'qtr';
 PeriodStmts.DEBT_TO_EQUITY_RATIO = 'der';
+PeriodStmts.OPERATING_CASH_TO_EQUITY_RATIO = 'ocer';
 PeriodStmts.CASH_TO_TOTAL_DEBT_RATIO = 'ctdr';
 PeriodStmts.DEBT_TO_CASH_RATIO = 'dtc';
 PeriodStmts.CURR_LIABILITIES_TO_CASH = 'cltc';
@@ -522,6 +523,7 @@ PeriodStmts.prototype.toGraphsArray = function(obj) {
 PeriodStmts.prototype.getIncGraphsData = function() {
 	var sheet = this;
 	var incSheet = this.inc;
+	var balSheet = this.bal;
 	var incGraphs = {
 
 	margins : function(){
@@ -560,6 +562,23 @@ PeriodStmts.prototype.getIncGraphsData = function() {
 		rows.push(row);
 		var cols = { "Year": "string", "Revenue": "number", "Cost of Revenue": "number", "Gross Income": "number", "Operating Income": "number", "Net Income": "number" };
 		var chartOptions = { width:com.fa.utils.ChartData.WIDTH, height:com.fa.utils.ChartData.HEIGHT, 'legend':'right', max:1, 'title' : 'Common Size Inc. Statement', 'curveType':'function' };
+		return new com.fa.utils.ChartData(rows, cols, "linechart", chartOptions);
+	},
+	
+	returnOnEquity : function() {
+		/** show as a data chart **/
+		var len = incSheet.val[IncomeStatement.TOTAL_REVENUE].length;
+		var rows = new Array();
+		var row = new Array();
+		for(var index = 0; index<len; index++) {
+			var time = String("(" + incSheet.getMonthsSpan(index) + ") " + incSheet.getDate(index));
+			var roe = sheet.getReturnOnEquity(index);
+			var doe = sheet.getFinParamValue(PeriodStmts.DEBT_TO_EQUITY_RATIO, index);
+			row.push([time, roe, doe]);
+		}
+		rows.push(row);
+		var cols = { "Year": "string", "Return on Equity": "number", "Total Debt to Equity": "number" };
+		var chartOptions = { width:com.fa.utils.ChartData.WIDTH, height:com.fa.utils.ChartData.HEIGHT, 'title' : 'Return on Equity' ,'legend':'right', max:1, 'curveType':'function' };
 		return new com.fa.utils.ChartData(rows, cols, "linechart", chartOptions);
 	}
 	}
