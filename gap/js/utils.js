@@ -217,7 +217,13 @@ com.fa.utils.ChartData = (function(){
 			this.chartOpts.legendFontSize = '10';
 		}
 	
+		if(!this.chartOpts.interpolateNulls) {
+			this.chartOpts.interpolateNulls = true;
+		}
 		
+		if(!this.chartOpts.pointSize) {
+			this.chartOpts.pointSize = 5;
+		}
 		return this.chartOpts;
 	}
 	

@@ -583,6 +583,10 @@ $.ui.labelslider.defaults = {
 
 $.widget("ui.finsearchbox", {
 	
+		options: {
+		  shortVal: '',
+		  longVal: ''
+		},
 	    _getMatchedTickers : function(tickerVal) {
 	    	var widgetInstance = this;
 	    	
@@ -767,7 +771,7 @@ $.widget("ui.finsearchbox", {
 	    	var name = nameElem && getInnerText(nameElem);
 	    	
 	    	var x = e + ":" + ticker;
-	    	$(this.element).val(x)
+	    	$(this.element).val(x);
 			
 			suggestList.style.display = "none";
 			$(suggestList).empty();
@@ -780,6 +784,21 @@ $.widget("ui.finsearchbox", {
 	    	this._setData('longVal', x);
 	    	//loadStatements();
 	    },
+	    
+	    _setOption: function(key, value){
+			var self = this;
+
+			switch (key) {
+				case "longVal":
+					$(this.element).val(value);
+					var short = value.split(':')[1];
+					this.option('shortVal', short);
+					break;
+			}
+			$.Widget.prototype._setOption.apply(self, arguments);
+		},
+
+
 	    
 	    _filter : function (event, widget_instance) {
 	    	var e = event;

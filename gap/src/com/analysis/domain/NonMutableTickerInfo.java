@@ -68,7 +68,7 @@ public class NonMutableTickerInfo {
 
 	
 	public String getExchange() {
-		return exchange;
+		return StringUtils.isEmpty(exchange) ? "NYSE" : exchange;
 	}
 
 	public void setExchange(String exchange) {

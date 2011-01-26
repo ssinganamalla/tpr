@@ -51,7 +51,7 @@ public class TickerInfo {
 	}
 
 	public String getExchange() {
-		return StringUtils.isEmpty(exchange) ? "NYSE" : exchange;
+		return exchange;
 	}
 
 	public void setExchange(String exchange) {
@@ -98,7 +98,7 @@ public class TickerInfo {
 		jo.put(SECTOR_ID, ticker.getSectorId());
 		jo.put(SYMBOL, ticker.getSymbol());
 		jo.put(INDUSTRY_ID, ticker.getIndustryId());
-		jo.put(EXCHANGE, ticker.getExchange());
+		jo.put(EXCHANGE, StringUtils.isEmpty(ticker.getExchange()) ? "NYSE" : ticker.getExchange() );
 		jo.put(COMPANY_NAME, ticker.getCompanyName());	
 		
 		return jo;

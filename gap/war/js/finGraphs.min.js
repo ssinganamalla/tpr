@@ -39,7 +39,7 @@ function StocksCompareGraphsDataCreator(theCompareStocksModel) {
 			var chartTitle = this.getTitle(indicatorKey);
 			
 			window.setTimeout( function() {
-				chart.draw(data, {width: 450, height: 300, title: chartTitle, legend:'right', curveType:'function', hAxis:null});
+				chart.draw(data, {width: 450, height: 300, title: chartTitle, legend:'right', curveType:'function', hAxis:null, interpolateNulls:true, pointSize:5});
 			},0)
 		},
 		
