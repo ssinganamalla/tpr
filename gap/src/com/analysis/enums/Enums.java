@@ -21,4 +21,32 @@ public interface Enums {
 	enum TransactionType {
 		BUY, SELL
 	}
+	
+	enum StatementType {
+		BALANCE_SHEET {
+			public String toString(){
+				return "Balance Sheet";
+			}
+		}, INCOME_STATEMENT {
+			public String toString(){
+				return "Income Statement";
+			}
+		}, CASH_FLOW {
+			public String toString(){
+				return "Cash Flow";
+			}
+		};
+	}
+	
+	enum PeriodType {
+		INTERIM {
+			public String toString(){
+				return "Interim";
+			}
+		}, YEARLY {
+			public String toString(){
+				return "Yearly";
+			}
+		}
+	}
 }

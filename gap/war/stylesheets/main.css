@@ -244,13 +244,11 @@ html {
 
 #addedComments td.title {
 	color:#004B91;
-	font-size:0.6em;
 	width:100%;	
 }
 
 #addedComments td.date{
 	color:#004B91;
-	font-size:0.6em;
 	white-space: nowrap;	
 }
 

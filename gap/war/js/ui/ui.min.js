@@ -194,21 +194,38 @@ com.fa.controller = (function() {
 
 com.fa.controller.ajax = (function() {
 		//private members
+	
+		var buildThead = function() {
+			var $thead = "<thead>\r\n" + 
+					"		<tr>\r\n" + 
+					"			<th>Comments</th>\r\n" + 
+					"			<th>Period</th>\r\n" + 
+					"			<th>Statement Type</th>\r\n" + 
+					"			<th>Date</th>\r\n" + 
+					"		</tr>\r\n" + 
+					"	</thead>"; 
+			return $thead;
+		 
+		};
+	
 		var updateNotesUI = function(notes) {
 			$("#addedComments").empty();
-			var $table = $('<table></table>');
+			var $table = $('<table id="stmt-comments-table" class="tablesorter"></table>');
+			$table.append(buildThead());
 			for(var i=0; i<notes.length; i++) {
 				var note = notes[i];
 				var row = $('<tr></tr>')[0];
 				if(note) {
 					$table[0].appendChild(row);
 					row.appendChild($('<td class="title">' + note.co + '</td>')[0]);
-					//row.appendChild($('<td>' + note.au + '</td>')[0]);
+					row.appendChild($('<td>' + note.pts + '</td>')[0]);
+					row.appendChild($('<td>' + note.sts + '</td>')[0]);
 					row.appendChild($('<td class="date" nowrap="1">' + note.da + '</td>')[0]);
 				}
 			}
 			$("#commentDiv").hide();
 			$table.appendTo("#addedComments");
+			$table.tablesorter();
 			
 		};
 		
@@ -444,8 +461,10 @@ com.fa.controller.ajax = (function() {
 		
 		submitAddNote : function(e, isPublic) {
 			var noteVal = $("#comments").val();
-			
-			$.getJSON("/addNote", {note: noteVal, 'isPublic' : isPublic},
+			var periodIndex = PeriodStmts.getPeriodEnumIndex(com.fa.model.getPeriod());
+			var typeIndex = PeriodStmts.getTypeEnumIndex(com.fa.model.getType());
+			var ticker = $("#stockTickerSymbol").val();
+			$.getJSON("/addNote", {note: noteVal, 'isPublic' : isPublic, 'ticker': ticker, period:periodIndex, stmtType: typeIndex},
 					function(notes) {updateNotesUI(notes)}
 			);
 		},

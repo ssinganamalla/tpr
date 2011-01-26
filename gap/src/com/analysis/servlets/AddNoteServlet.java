@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.lang.StringEscapeUtils;
 
 import com.analysis.PMF;
-import com.analysis.domain.TickerComment;
+import com.analysis.domain.TickerStmtComment;
 import com.google.appengine.api.users.User;
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
@@ -34,6 +34,9 @@ public class AddNoteServlet extends HttpServlet {
 		String content = req.getParameter("note");
 		
 		String ticker = req.getParameter("ticker");
+		String periodType = req.getParameter("period");
+		String stmtType = req.getParameter("stmtType");
+		
 		if(ticker == null) {
 			ticker = "null";
 		}
@@ -44,31 +47,25 @@ public class AddNoteServlet extends HttpServlet {
 			log.info("Greeting posted anonymously: " + content);
 		}
 		
-		if(content == null) {
-			persistNote(user, content, ticker);
+		if(content != null) {
+			persistNote(user, content, ticker, Integer.parseInt(periodType), Integer.parseInt(stmtType));
 		}
 		
 		PersistenceManager pm = PMF.get().getPersistenceManager();
-	    String query = "select from " + TickerComment.class.getName();
-	    List<TickerComment> notes = (List<TickerComment>) pm.newQuery(query).execute();
+	    String query = "select from " + TickerStmtComment.class.getName();
+	    List<TickerStmtComment> notes = (List<TickerStmtComment>) pm.newQuery(query).execute();
 	    JSONArray ja = new JSONArray();
 	    	try {
-	    		for (TickerComment note : notes) {
+	    		for (TickerStmtComment note : notes) {
 	    			ja.put(note.toJSONObject());
 	    		}
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
-			if(user == null) {
-				resp.sendRedirect(userService.createLoginURL(req.getRequestURI()));
-			} else {
-			
 				//output to stream
 				resp.getWriter().print(ja.toString()); 
 				System.out.println(ja.toString());
-			}
 	}
 	
 	private String escapeHtml(String value) {
@@ -81,10 +78,9 @@ public class AddNoteServlet extends HttpServlet {
     	doPost(req, resp);
     }
 
-	private void persistNote(User user, String content, String ticker) {
-		Date date = new Date();
-		
-		TickerComment note = new TickerComment(user.getEmail(), content, date, false, ticker);
+	private void persistNote(User user, String content, String ticker, int period, int stmtType) {
+		TickerStmtComment note = new TickerStmtComment(user != null ?user.getEmail(): "guest81mda931032odal@ghuiew.com", content, ticker,
+		period, stmtType);
 
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		try {

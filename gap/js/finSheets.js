@@ -172,6 +172,34 @@ PeriodStmts.RECEIVABLE_TURN = 'rt';
 PeriodStmts.INVENTORY_TURNS = 'it';
 PeriodStmts.INVENTORY_TURNS_IN_DAYS = 'itd';
 
+
+/**
+ * @return 0, 1, 2
+ */
+PeriodStmts.getPeriodEnumIndex = function(type) {
+	switch (type) {
+		case PeriodStmts.PERIOD_INTERIM:
+			return 0;
+		case PeriodStmts.PERIOD_ANNUAL:
+			return 1;
+	}
+}
+
+/**
+ * @return 0, 1, 2
+ */
+PeriodStmts.getTypeEnumIndex = function(type) {
+	switch (type) {
+		case PeriodStmts.BALANCE:
+			return 0;
+		case PeriodStmts.INCOME:
+			return 1;
+		case PeriodStmts.CASHFLOW:
+			return 2;
+	}
+}
+
+
 PeriodStmts.getStmts = function(type, ticker) {
 	var stmts = null;
 	switch (type) {

@@ -5,6 +5,7 @@
 <link type="text/css" rel="stylesheet" href="stylesheets/main.css"/>
 <link type="text/css" rel="stylesheet" href="stylesheets/start.css"/>
 <link type="text/css" rel="stylesheet" href="stylesheets/jquery-ui-1.8.7.custom.css"/>
+<link type="text/css" rel="stylesheet" href="stylesheets/tablesorter.css"/>
 <script type="text/javascript" src="js/initNamespace.min.js"></script>
 <script type="text/javascript" src="js/utils.min.js"></script>
 <script src="http://www.google.com/jsapi?key=ABQIAAAAPP7e_w24FQGVrPwul01DTBSKOn6wlytR1vxIW8znD1NsRj_1UxQFDFx7IzlJMzaIRg6Zqq8hC98B8g" type="text/javascript"></script>
@@ -57,6 +58,7 @@
 			<div id="msgs" class="msgs"></div>
 			
 			<div id="graphsAndNavi">
+			
 			<h3 class="section_hdr">Graphical Analysis</h3>
 			<div class="naviDiv" id="naviDiv"> 
 				<div name="balNaviDiv" id="balNaviDiv">
@@ -172,7 +174,7 @@
 			</div>
 <!--			<div id="g_collapsible"></div>-->
 		</div>
-	<!--  	
+	  	
 		<div id="commentsSection">
 			<a id="expandCommentsAnchor" href="#">Expand</a>
 			<a id="collpaseCommentsAnchor" href="#">Collapse</a>
@@ -188,7 +190,7 @@
 				</div>
 			</div>
 		</div>
-	-->
+	
 		<h3 class="section_hdr">Financial Statements</h3>
 		<div id="typprd" style="display:none;word-spacing: 5px;">
 			<div style="float:left;">
@@ -227,6 +229,7 @@
 <script type="text/javascript" src="js/parser.min.js"></script>
 <script type="text/javascript" src="js/finGraphs.min.js"></script>
 <script type="text/javascript" src="js/ajax.min.js"></script>
+<script type="text/javascript" src="js/lib/jquery.tablesorter.min.js"></script>
 <script type="text/javascript" src="js/components/headers.min.js"></script>
 <script type="text/javascript" src="http://www.google.com/jsapi"></script>
  <script>
