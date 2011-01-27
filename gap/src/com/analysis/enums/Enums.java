@@ -49,4 +49,8 @@ public interface Enums {
 			}
 		}
 	}
+	
+	enum CommentRating {
+		ONE, TWO, THREE, FOUR, FIVE
+	}
 }

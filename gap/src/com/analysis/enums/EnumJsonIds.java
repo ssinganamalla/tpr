@@ -28,6 +28,8 @@ public interface EnumJsonIds {
 	public static final String PERIOD_TYPE_STRING = "pts";
 	public static final String STMT_TYPE = "st";
 	public static final String STMT_TYPE_STRING = "sts";
+	public static final String COMMENT_RATING = "cr";
+	
 	
 	
 	

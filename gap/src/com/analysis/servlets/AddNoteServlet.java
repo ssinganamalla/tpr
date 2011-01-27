@@ -80,7 +80,7 @@ public class AddNoteServlet extends HttpServlet {
 
 	private void persistNote(User user, String content, String ticker, int period, int stmtType) {
 		TickerStmtComment note = new TickerStmtComment(user != null ?user.getEmail(): "guest81mda931032odal@ghuiew.com", content, ticker,
-		period, stmtType);
+		period, stmtType, 1);
 
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		try {

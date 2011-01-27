@@ -180,7 +180,7 @@
 		<echo>Running jsminify in the production mode. If you are in development mode then UNCOMMENT the "dev.mode" property</echo>
 		<delete dir="war/js" includes="**/*.js"/>
 		<copy todir="war/js">
-			<fileset dir="js" includes="**/*.js" excludes="**/*jquery-1.4.2.js,**/*jquery.tablesorter.js, **/*jquery.dataTables.js, **/*jquery-ui-1.7.2.custom.js, **/*jquery-ui-1.7.2.custom.min.js"></fileset>
+			<fileset dir="js" includes="**/*.js" excludes="**/*jquery.ui.stars.js, **/*jquery-1.4.2.js,**/*jquery.tablesorter.js, **/*jquery.dataTables.js, **/*jquery-ui-1.7.2.custom.js, **/*jquery-ui-1.7.2.custom.min.js"></fileset>
 		</copy>
 		
 		<jsmin  suffix="true">
@@ -193,11 +193,11 @@
 		<echo>Running jsminify in the development mode. If you are in production mode then comment the "dev.mode" property</echo>
 		<delete dir="war/js" includes="**/*.js"/>
 		<copy todir="war/js" verbose="true">
-			<fileset dir="js" includes="**/*.js" excludes="**/*jquery-1.4.2.js, **/*jquery-1.4.2.min.js,**/*jquery-1.4.4.js, **/*jquery-1.4.4.min.js, **/*jquery.dataTables.js,**/*dataTables.min.js, **/*jquery.tablesorter.js, **/*jquery.tablesorter.min.js, **/*jquery-ui-1.7.2.custom.min.js, **/*jquery-ui-1.8.7.custom.min.js"></fileset>
+			<fileset dir="js" includes="**/*.js" excludes="**/*jquery.ui.stars.js,**/*jquery.ui.stars.min.js,**/*jquery-1.4.2.js, **/*jquery-1.4.2.min.js,**/*jquery-1.4.4.js, **/*jquery-1.4.4.min.js, **/*jquery.dataTables.js,**/*dataTables.min.js, **/*jquery.tablesorter.js, **/*jquery.tablesorter.min.js, **/*jquery-ui-1.7.2.custom.min.js, **/*jquery-ui-1.8.7.custom.min.js"></fileset>
 			<globmapper from="*.js" to="*.min.js"/>
 		</copy>
 		<copy todir="war/js" verbose="true">
-			<fileset dir="js" includes="**/*jquery-1.4.2.min.js,**/*jquery-1.4.4.min.js, **/*dataTables.min.js, **/*jquery.tablesorter.min.js, **/*jquery-ui-1.7.2.custom.min.js, **/*jquery-ui-1.8.7.custom.min.js"></fileset>
+			<fileset dir="js" includes="**/*jquery.ui.stars.min.js, **/*jquery-1.4.2.min.js,**/*jquery-1.4.4.min.js, **/*dataTables.min.js, **/*jquery.tablesorter.min.js, **/*jquery-ui-1.7.2.custom.min.js, **/*jquery-ui-1.8.7.custom.min.js"></fileset>
 		</copy>
 	</target>
 	

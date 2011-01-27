@@ -6,6 +6,7 @@
 <link type="text/css" rel="stylesheet" href="stylesheets/start.css"/>
 <link type="text/css" rel="stylesheet" href="stylesheets/jquery-ui-1.8.7.custom.css"/>
 <link type="text/css" rel="stylesheet" href="stylesheets/tablesorter.css"/>
+<link type="text/css" rel="stylesheet" href="stylesheets/jquery.ui.stars.css"/>
 <script type="text/javascript" src="js/initNamespace.min.js"></script>
 <script type="text/javascript" src="js/utils.min.js"></script>
 <script src="http://www.google.com/jsapi?key=ABQIAAAAPP7e_w24FQGVrPwul01DTBSKOn6wlytR1vxIW8znD1NsRj_1UxQFDFx7IzlJMzaIRg6Zqq8hC98B8g" type="text/javascript"></script>
@@ -176,17 +177,34 @@
 		</div>
 	  	
 		<div id="commentsSection">
+		<!--  
 			<a id="expandCommentsAnchor" href="#">Expand</a>
 			<a id="collpaseCommentsAnchor" href="#">Collapse</a>
+		-->
 			<div id="expandComments">
 				<div id="addedComments">
 				</div>
 				<div id="addComment">Add a comment <a href="#">here</a></div>
 				<div id="commentDiv">
-					<textarea id="comments" name="comments" rows="4" cols="48"></textarea><br/>
-					<input type="button" id="addNote" value="Add a Private Note" />
-					<input type="button" id="addPublicNote" value="Public Note" />
-					<input type="button" id="cancelNote" value="Cancel" />
+					<div>
+					 <span id="stars-cap"></span>
+					<span id="stars-wrapper">
+						<select name="selrate">
+							<option value="1">Very poor</option>
+							<option value="2">Not that bad</option>
+							<option value="3">Average</option>
+							<option value="4" selected="selected">Good</option>
+							<option value="5">Perfect</option>
+						</select>
+					</span>
+					</div>
+					<div>
+						<textarea id="comments" name="comments" rows="4" cols="48"></textarea><br/>
+						<input type="button" id="addNote" value="Add a Private Note" />
+						<input type="button" id="addPublicNote" value="Public Note" />
+						<input type="button" id="cancelNote" value="Cancel" />
+					</div>
+					
 				</div>
 			</div>
 		</div>
@@ -231,6 +249,7 @@
 <script type="text/javascript" src="js/ajax.min.js"></script>
 <script type="text/javascript" src="js/lib/jquery.tablesorter.min.js"></script>
 <script type="text/javascript" src="js/components/headers.min.js"></script>
+<script type="text/javascript" src="js/lib/jquery.ui.stars.min.js"></script>
 <script type="text/javascript" src="http://www.google.com/jsapi"></script>
  <script>
  google.load("visualization", "1", {packages:["corechart", "table"]});

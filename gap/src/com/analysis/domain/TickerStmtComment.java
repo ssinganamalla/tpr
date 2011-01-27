@@ -47,10 +47,13 @@ public class TickerStmtComment {
     @Persistent
     private int stmtType;
     
+    @Persistent
+    private int rating;
+    
     
 
 	public TickerStmtComment(String email, String content, String ticker,
-			int period, int stmtType) {
+			int period, int stmtType, int level) {
 		super();
 		this.email = email;
 		this.content = content;
@@ -58,6 +61,7 @@ public class TickerStmtComment {
 		this.period = period;
 		this.stmtType = stmtType;
 		this.date = new Date();
+		this.rating= level;
 	}
 
 	public Long getId() {
@@ -126,6 +130,20 @@ public class TickerStmtComment {
 		return stmtType;
 	}
 
+	/**
+	 * @return the {@link Enums.CommentRating}
+	 */
+	public int getRating() {
+		return rating;
+	}
+
+	/**
+	 * @param level the {@link Enums.CommentRating}
+	 */
+	public void setRating(int level) {
+		this.rating = level;
+	}
+
 	public String getStmtTypeString() {
 		if(Enums.StatementType.BALANCE_SHEET.ordinal() == stmtType) {
 			return Enums.StatementType.BALANCE_SHEET.toString();
@@ -160,6 +178,7 @@ public class TickerStmtComment {
 		jo.put(EnumJsonIds.STMT_TYPE, note.getStmtType());
 		jo.put(EnumJsonIds.STMT_TYPE_STRING, note.getStmtTypeString());
 		jo.put(EnumJsonIds.SYMBOL, note.getTicker());
+		jo.put(EnumJsonIds.COMMENT_RATING, note.getRating());
 		return jo;
 	}
     

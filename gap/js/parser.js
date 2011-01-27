@@ -313,9 +313,10 @@
 })();
 
 $(function() {
-	$("#expandComments").hide();
 	$("#commentDiv").hide();
+	$("#expandComments").show();
 	
+	/**
 	$("#collapseCommentsAnchor").hide();
 	$("#expandCommentsAnchor").click( function(e) {
 		$("#collapseCommentsAnchor").show();
@@ -330,9 +331,7 @@ $(function() {
 		$("#collapseCommentsAnchor").show();
 		$("#expandComments").hide();
 		return false;
-	}
-	
-	);
+	});**/
 	
    // code to execute when the DOM is ready
    $("#addComment a").toggle(function(e){
@@ -349,4 +348,9 @@ $(function() {
 		   $("#commentDiv").val('');
    		}
    );
+   $("#stars-wrapper").stars({
+	       inputType: "select"
+	       //Adding an "onHover" caption element
+	       //,captionEl: $("#stars-cap")
+	 });
  });
