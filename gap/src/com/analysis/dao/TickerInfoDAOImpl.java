@@ -7,6 +7,7 @@ import javax.jdo.JDOObjectNotFoundException;
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
+import java.util.Date;
 import com.analysis.PMF;
 import com.analysis.domain.NonMutableTickerInfo;
 import com.analysis.domain.UserComparisonTickers;
@@ -63,4 +64,21 @@ public class TickerInfoDAOImpl implements TickerInfoDAO {
 			pm.close();
 		}
 	}
+	
+	@Override
+	public void updateLastTickerPrice(String ticker, Double price, Date date) {
+		PersistenceManager pm = PMF.get().getPersistenceManager();
+		try {
+			Key k = KeyFactory.createKey(NonMutableTickerInfo.class.getSimpleName(), ticker);
+			NonMutableTickerInfo ntickerInfo = pm.getObjectById(NonMutableTickerInfo.class, k);
+			
+			if(ntickerInfo != null) {
+				ntickerInfo.setLastStockPrice(price);
+				ntickerInfo.setLastStockPriceDate(date);
+			}
+		} finally {
+			pm.close();
+		}
+	}
+
 }

@@ -341,15 +341,15 @@ com.fa.controller.performance = (function(){
 	        switch (Number(val)) {
 				case com.fa.Constants.COST_BASIS:
 					var chart = new google.visualization.PieChart(document.getElementById('sectorChart'));
-			        chart.draw(data, {width: 450, height: 300, title: 'Sector Cost Basis Allocation'});
+			        chart.draw(data, {width: 400, height: 300, title: 'Sector Cost Basis Allocation'});
 			        break;    
 				case com.fa.Constants.MARKET_VALUE:
 					var chart = new google.visualization.PieChart(document.getElementById('sectorChart'));
-			        chart.draw(data, {width: 450, height: 300, title: 'Sector Market Value'});
+			        chart.draw(data, {width: 400, height: 300, title: 'Sector Market Value'});
 					break;
 				case com.fa.Constants.GAIN_LOSS:
 					var chart = new google.visualization.ColumnChart(document.getElementById('sectorChart'));
-			        chart.draw(data, {width: 450, height: 300, title: 'Sector Gain Loss'});
+			        chart.draw(data, {width: 400, height: 300, title: 'Sector Gain Loss'});
 					break;				
 			}
 	        
@@ -412,15 +412,15 @@ com.fa.controller.performance = (function(){
 		        switch (Number(val)) {
 					case com.fa.Constants.COST_BASIS:
 						var chart = new google.visualization.PieChart(document.getElementById('dissectSectorChart'));
-				        chart.draw(data, {width: 450, height: 300, title: 'Stocks for ' + '"' + enumSectors[sectorId] + '"' + ' Sector'});
+				        chart.draw(data, {width: 400, height: 300, title: 'Stocks for ' + '"' + enumSectors[sectorId] + '"' + ' Sector'});
 				        break;    
 					case com.fa.Constants.MARKET_VALUE:
 						var chart = new google.visualization.PieChart(document.getElementById('dissectSectorChart'));
-				        chart.draw(data, {width: 450, height: 300, title: 'Stocks for ' + '"' + enumSectors[sectorId] + '"' + ' Sector'});
+				        chart.draw(data, {width: 400, height: 300, title: 'Stocks for ' + '"' + enumSectors[sectorId] + '"' + ' Sector'});
 						break;
 					case com.fa.Constants.GAIN_LOSS:
 						var chart = new google.visualization.ColumnChart(document.getElementById('dissectSectorChart'));
-				        chart.draw(data, {width: 450, height: 300, title: 'Stocks for ' + '"' + enumSectors[sectorId] + '"' + ' Sector'});
+				        chart.draw(data, {width: 400, height: 300, title: 'Stocks for ' + '"' + enumSectors[sectorId] + '"' + ' Sector'});
 						break;
 					
 				}	        

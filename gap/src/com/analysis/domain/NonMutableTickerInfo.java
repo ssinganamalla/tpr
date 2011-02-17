@@ -13,6 +13,7 @@ import org.apache.commons.lang.StringUtils;
 import com.analysis.utils.MiscUtils;
 import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.KeyFactory;
+import java.util.Date;
 import com.utils.json.JSONException;
 import com.utils.json.JSONObject;
 
@@ -38,7 +39,14 @@ public class NonMutableTickerInfo {
 	@Persistent
 	private String relatedTickers;
 	
+	@Persistent
 	private String exchange;
+	
+	@Persistent
+	private Double lastStockPrice;
+	
+	@Persistent
+	private Date lastStockPriceDate;
 	
 	public NonMutableTickerInfo() {
 		super();
@@ -98,6 +106,18 @@ public class NonMutableTickerInfo {
 		return relatedTickers;
 	}
 	
+	public Double getLastStockPrice() {
+		return lastStockPrice;
+	}
+	public void setLastStockPrice(Double lastStockPrice) {
+		this.lastStockPrice = lastStockPrice;
+	}
+	public Date getLastStockPriceDate() {
+		return lastStockPriceDate;
+	}
+	public void setLastStockPriceDate(Date lastStockPriceDate) {
+		this.lastStockPriceDate = lastStockPriceDate;
+	}
 	public static NonMutableTickerInfo newNonMutableTickerInfo(String ticker, List<String>list, String exchange) {
 		return new NonMutableTickerInfo(ticker, list.get(0), list.get(1), list.get(2), list.get(3), exchange);
 	}
@@ -112,7 +132,7 @@ public class NonMutableTickerInfo {
 				   sector.equals(compareTo.sector) &&
 				   industry.equals(compareTo.industry) &&
 				   relatedTickers.equals(compareTo.relatedTickers) &&
-				   exchange.equals(compareTo.exchange) &&
+				   this.getExchange().equals(compareTo.getExchange()) &&
 				   ticker.equals(compareTo.ticker);
 			
 		}
@@ -129,6 +149,8 @@ public class NonMutableTickerInfo {
 		jo.put(EXCHANGE, ticker.getExchange());
 		jo.put(COMPANY_NAME, ticker.getName());
 		jo.put(RELATED_TICKERS, ticker.getRelatedTickers());
+		jo.put(LAST_STOCK_PRICE, ticker.getLastStockPrice());
+		jo.put(LAST_STOCK_PRICE_DATE, ticker.getLastStockPriceDate());
 		return jo;
 	}
 	

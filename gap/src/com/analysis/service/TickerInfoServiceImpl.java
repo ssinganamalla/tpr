@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Date;
 
 import com.analysis.dao.TickerInfoDAO;
 import com.analysis.domain.NonMutableTickerInfo;
@@ -48,8 +49,14 @@ public class TickerInfoServiceImpl implements TickerInfoService {
 		throw new RuntimeException("Implement this method");
 	}
 	
+	@Override
 	public Collection<NonMutableTickerInfo> getTickerInfos() {
 		return tickerInfoDAO.getTickerInfos();
+	}
+
+	@Override
+	public void updateLastTickerPrice(String ticker, Double price, Date date) {
+		tickerInfoDAO.updateLastTickerPrice(ticker, price, date);
 	}
 
 }

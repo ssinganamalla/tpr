@@ -19,6 +19,9 @@ public interface EnumJsonIds {
 	public static final String INDUSTRY_ID = "ii";
 	public static final String EXCHANGE = "e";
 	public static final String COMPANY_NAME = "cn";
+	public static final String LAST_STOCK_PRICE = "lsp";
+	public static final String LAST_STOCK_PRICE_DATE = "lspd";
+	
 	public static final String TICKER_ARRAY = "ta";
 	public static final String SHORT_DATE = "sd";
 	public static final String COMMISSION = "com";
@@ -29,6 +32,7 @@ public interface EnumJsonIds {
 	public static final String STMT_TYPE = "st";
 	public static final String STMT_TYPE_STRING = "sts";
 	public static final String COMMENT_RATING = "cr";
+	
 	
 	
 	

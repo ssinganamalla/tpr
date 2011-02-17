@@ -23,7 +23,20 @@ public class TestTickerInfoDAO extends LocalDatastoreTest {
 		dao.addTickerInfoIfNotExists(info);		
 		NonMutableTickerInfo info_db = dao.getTickerInfo(info.getTicker());
 		Assert.assertEquals(info, info_db);				
-	}	
+	}
+	
+	@Test
+	public void testUpdateTickerInfo() {		
+		NonMutableTickerInfo info = getTickerInfo1();
+		dao.addTickerInfoIfNotExists(info);		
+		NonMutableTickerInfo info_db = dao.getTickerInfo(info.getTicker());
+		Assert.assertEquals(info, info_db);
+		
+		dao.updateLastTickerPrice(info.getTicker(), 25.0, new java.util.Date());
+		
+		info_db = dao.getTickerInfo(info.getTicker());
+		junit.framework.Assert.assertEquals(25.0, info_db.getLastStockPrice(), 0.0);
+	}
 	
 	@Test
 	public void testCountTickerInfo() {		

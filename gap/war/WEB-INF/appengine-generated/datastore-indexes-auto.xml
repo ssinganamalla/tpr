@@ -1,8 +1,8 @@
-<!-- Indices written at Wed, 16 Feb 2011 14:23:32 UTC -->
+<!-- Indices written at Thu, 17 Feb 2011 16:23:15 UTC -->
 
 <datastore-indexes>
 
-    <!-- Used 19 times in query history -->
+    <!-- Used 4 times in query history -->
     <datastore-index kind="TickerComment" ancestor="false" source="auto">
         <property name="email" direction="asc"/>
         <property name="ticker" direction="asc"/>

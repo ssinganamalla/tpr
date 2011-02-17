@@ -25,7 +25,7 @@
 <center>
 
 <div id="page">
-	<div class="section_hdr" id="header"><span class="f3">Stock Research</span></div>
+	<div class="section_hdr"><span class="f3">Stock Research</span></div>
 	<div>
 		<div>
 			Add a comment for:

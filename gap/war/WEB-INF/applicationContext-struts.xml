@@ -35,4 +35,8 @@
     	<property name="tickersService" ref="tickersService"></property>          
     </bean>
     
+    <bean id="adminTasksAction" class="com.analysis.action.admin.AdminTasksAction" singleton="false">
+    	<property name="tickerInfoService" ref="tickerInfoService"></property>
+    </bean>
+    
 </beans>

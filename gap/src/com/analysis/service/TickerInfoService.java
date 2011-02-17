@@ -1,6 +1,7 @@
 package com.analysis.service;
 
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -15,5 +16,7 @@ public interface TickerInfoService {
 	void loadTickersIntoDb(List<String> tickers, HashMap<String, NonMutableTickerInfo> map);
 	
 	public Collection<NonMutableTickerInfo> getTickerInfos();
+	
+	public void updateLastTickerPrice(String ticker, Double price, Date date);
 	
 }

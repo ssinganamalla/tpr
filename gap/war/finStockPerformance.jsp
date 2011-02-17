@@ -29,7 +29,7 @@
 
 <div id="page">
 	
-	<div id="main" class="bg">
+	<div id="main">
 		<div class="section_hdr" id="header"><span class="f3">Diversified Stock Portfolio</span></div>
 		<div id="mainHeader">
 		
@@ -57,14 +57,14 @@
 			</div>
 			<div class="clearBothElement"></div>
 		</div>
-		
-		<div id="diverseContent">
-			<div id="sectorList" class="sectorStockList">
 				<select id='sectorOption' style="display:none">
 					<option value='0'>Cost Basis</option>
 				  	<option value='1'>Market Value</option>
 					<option value='2'>Gain Loss</option>
 				</select>
+		
+		<div id="diverseContent">
+			<div id="sectorList" class="sectorStockList">
 				<div id="sectorChart"></div>
 			</div>
 			<div id="sectorStockGraph" class="sectorStockGraph">

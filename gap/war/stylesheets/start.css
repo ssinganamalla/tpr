@@ -71,7 +71,7 @@ span > a{
 }
 
 #page {
-	width: 902px;
+	width: 905px;
 	text-align: left;
 }
 
@@ -143,11 +143,11 @@ span > a{
 }
 
 .sectorStockList {
-	width:50%;
+	width:49%;
 	float:left;
 }
 .sectorStockGraph {
-	width:50%;
+	width:49%;
 	float:left;
 }
 	
