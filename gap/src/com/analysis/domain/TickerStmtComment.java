@@ -133,14 +133,14 @@ public class TickerStmtComment {
 	/**
 	 * @return the {@link Enums.CommentRating}
 	 */
-	public int getRating() {
+	public Integer getRating() {
 		return rating;
 	}
 
 	/**
 	 * @param level the {@link Enums.CommentRating}
 	 */
-	public void setRating(int level) {
+	public void setRating(Integer level) {
 		this.rating = level;
 	}
 
@@ -178,7 +178,7 @@ public class TickerStmtComment {
 		jo.put(EnumJsonIds.STMT_TYPE, note.getStmtType());
 		jo.put(EnumJsonIds.STMT_TYPE_STRING, note.getStmtTypeString());
 		jo.put(EnumJsonIds.SYMBOL, note.getTicker());
-		jo.put(EnumJsonIds.COMMENT_RATING, note.getRating());
+		jo.put(EnumJsonIds.COMMENT_RATING, note.getRating() != null ? note.getRating() : Enums.CommentRating.THREE.ordinal());
 		return jo;
 	}
     
