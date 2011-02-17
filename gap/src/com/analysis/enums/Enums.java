@@ -6,7 +6,7 @@ public interface Enums {
 						 CASH_TO_DEBT, CASH_TO_CURR_LIABILITIES};
 						 
 	enum BrokerId {
-		RESERVED, TRADE_KING, ZECCO
+		RESERVED, TRADE_KING, ZECCO, AMERITRADE, SHAREBUILDER
 	}
 	
 	enum Sector {

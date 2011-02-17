@@ -5,6 +5,8 @@
 <html>
 <head>
 <link type="text/css" rel="stylesheet" href="stylesheets/start.css"/>
+<script type="text/javascript" src="js/lib/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="js/lib/jquery-ui-1.8.7.custom.min.js"></script>
 <script type="text/javascript" src="js/components/headers.min.js"></script>
 
 </head>
@@ -25,9 +27,9 @@
 		</div>
 		<div>
 			<h3>Stock Screener</h3>
-			<div>http://caps.fool.com/Screener.aspx</div>
-			<div>http://www.google.com/finance/stockscreener</div>
-			<div>http://www.dailyfinance.com/earnings/china-digital-tv-holding-co-ltd-american-depositary-shares/stv/nys/earnings-release</div>
+			<div><a href="http://caps.fool.com/Screener.aspx" target="_blank">Fool.com stock screener</a></div>
+			<div><a href="http://www.google.com/finance/stockscreener" target="_blank">Google stock screener</a></div>
+			<div><a href="http://www.dailyfinance.com" target="_blank">Daily Finance</a></div>
 		</div>
 	</div>
 	

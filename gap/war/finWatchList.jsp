@@ -5,6 +5,7 @@
 <link type="text/css" rel="stylesheet" href="stylesheets/main.css"/>
 <link type="text/css" rel="stylesheet" href="stylesheets/start.css"/>
 <link type="text/css" rel="stylesheet" href="stylesheets/jquery-ui-1.8.7.custom.css"/>
+<link type="text/css" rel="stylesheet" href="stylesheets/jquery.ui.stars.css"/>
 </head>
 
 <body id="dbody">
@@ -141,6 +142,7 @@
 <script type="text/javascript" src="js/ajax.min.js"></script>
 <script type="text/javascript" src="js/page/watchlist.min.js"></script>
 <script type="text/javascript" src="js/components/headers.min.js"></script>
+<script type="text/javascript" src="js/lib/jquery.ui.stars.min.js"></script>
 <script type="text/javascript" src="http://www.google.com/jsapi"></script>
  <script>
  google.load("visualization", "1", {packages:["corechart", "table"]});

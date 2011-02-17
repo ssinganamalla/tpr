@@ -1,1 +1,1 @@
-<%response.sendRedirect("finWatchList.jsp");%>
+<%response.sendRedirect("finStockResearch.jsp");%>

@@ -127,8 +127,8 @@ public class NonMutableTickerInfo {
 		jo.put(SYMBOL, ticker.getTicker());
 		jo.put(INDUSTRY_ID, ticker.getIndustry());
 		jo.put(EXCHANGE, ticker.getExchange());
-		jo.put(COMPANY_NAME, ticker.getName());	
-		
+		jo.put(COMPANY_NAME, ticker.getName());
+		jo.put(RELATED_TICKERS, ticker.getRelatedTickers());
 		return jo;
 	}
 	

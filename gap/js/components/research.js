@@ -34,7 +34,16 @@ function setupCommentsFeature() {
 									tr.append(tdComment);
 									tbody.append(tr);
 								}
-								$('#allComments').prepend('<h3>Researched Comments for: ' + (json.cn ? json.cn : json.sb) + '</h3>');
+								
+								//create meta info for the selected ticker 
+								var commentHeader = $("<div></div>");
+								commentHeader.append('<h3>Researched Comments for: ' + (json.cn ? json.cn : json.sb) + '</h3>');
+								var metaInfo = $("<ul></ul>");
+								commentHeader.append(metaInfo);
+								metaInfo.append("<li>Sector: " + (json.sn ? json.sn : "") + "</li>");
+								metaInfo.append("<li>Industry: " + (json.ii ? json.ii : "") + "</li>");
+								metaInfo.append("<li>Related Tickers: " + (json.rt ? json.rt : "") + "</li>");
+								$('#allComments').prepend(commentHeader);
 								$('#allCommentsTable').tablesorter();
 							}
 					);

@@ -135,9 +135,12 @@ com.fa.ui.performance = (function(){
 		buildHoldingsTable: function(tickersArray) {
 			var tickersArray = $('#tickersData').data('tickers');
 			if(!tickersArray) return;			
-			if(tickersArray.length < 1) return;
-			
 			$('#pf-view-table').empty();
+			if(tickersArray.length == 0) {
+				$('#pf-view-table').append("<div style=\"border:1px solid gray; padding:25px;\">No data available for this Broker</div>");
+				return;
+			}
+			
 			var $table = $('<table id="pf-table" class="tablesorter"></table>');			
 			$table.append(buildThead());
 			var $tbody = $('<tbody></tbody>');
@@ -350,13 +353,16 @@ com.fa.controller.performance = (function(){
 					break;				
 			}
 	        
+	        //draw the adjacent sector pie
+	        com.fa.controller.performance.drawSectorChart(1);
+	        
 	        google.visualization.events.addListener(chart, 'select', function() {
 	        	var selection = chart.getSelection();
 	        	for (var i = 0; i < selection.length; i++) {
 	        		var item = selection[i];
-	        		if(item.row != null && item.column != null) {
+	        		if(item.row != null) {
 	        			console.log('row ' + item.row);
-		        		console.log('column ' + item.column);
+		        		//console.log('column ' + item.column);
 		        		//item.row should be the sectorId
 	        			com.fa.controller.performance.drawSectorChart(item.row);
 	        		}
@@ -406,15 +412,15 @@ com.fa.controller.performance = (function(){
 		        switch (Number(val)) {
 					case com.fa.Constants.COST_BASIS:
 						var chart = new google.visualization.PieChart(document.getElementById('dissectSectorChart'));
-				        chart.draw(data, {width: 450, height: 300, title: 'Sector Cost Basis Allocation'});
+				        chart.draw(data, {width: 450, height: 300, title: 'Stocks for ' + '"' + enumSectors[sectorId] + '"' + ' Sector'});
 				        break;    
 					case com.fa.Constants.MARKET_VALUE:
 						var chart = new google.visualization.PieChart(document.getElementById('dissectSectorChart'));
-				        chart.draw(data, {width: 450, height: 300, title: 'Sector Market Value'});
+				        chart.draw(data, {width: 450, height: 300, title: 'Stocks for ' + '"' + enumSectors[sectorId] + '"' + ' Sector'});
 						break;
 					case com.fa.Constants.GAIN_LOSS:
 						var chart = new google.visualization.ColumnChart(document.getElementById('dissectSectorChart'));
-				        chart.draw(data, {width: 450, height: 300, title: 'Sector Gain Loss'});
+				        chart.draw(data, {width: 450, height: 300, title: 'Stocks for ' + '"' + enumSectors[sectorId] + '"' + ' Sector'});
 						break;
 					
 				}	        

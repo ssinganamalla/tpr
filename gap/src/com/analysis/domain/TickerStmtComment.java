@@ -48,7 +48,7 @@ public class TickerStmtComment {
     private int stmtType;
     
     @Persistent
-    private int rating;
+    private Integer rating;
     
     
 

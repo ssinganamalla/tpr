@@ -55,6 +55,10 @@
 	<div id="allComments">
 	</div>
 </div>
+<div id="footer">
+	 Graphs and the statements are provided solely for informational purposes, not for trading purposes or advice.<br/>
+	 For suggestions please send an email to <a href="mailto:finsheetanalyzer@gmail.com">finsheetanalyzer</a>
+</div>
 </center>
 <script type="text/javascript">
 $(document).ready(function() {

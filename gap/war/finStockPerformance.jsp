@@ -30,20 +30,45 @@
 <div id="page">
 	
 	<div id="main" class="bg">
-		<div class="section_hdr" id="header"><span class="f3">Stock Performance</span></div>
+		<div class="section_hdr" id="header"><span class="f3">Diversified Stock Portfolio</span></div>
 		<div id="mainHeader">
 		
 			<div class="leftElement">
-			
+				<span class="f4">Select Broker:</span>
+				<select id='selectbrokerId'>
+					<option value='-1'>All</option>
+					<option value='0'>TradeKing</option>
+					<option value='1'>Zecco</option>
+					<option value='2'>Ameritrade</option>
+					<option value='3'>Sharebuilder</option>
+				</select>
 			</div>
 			<div class="rightElement">
-			<h4>Select Broker</h4>
-			<select id='selectbrokerId'>
-				<option value='0'>TradeKing</option>
-				<option value='1'>Zecco</option>
-				<option value='-1'>All</option>
-			</select>
 			
+			</div>
+			<div class="clearBothElement"></div>
+		</div>
+		
+		<div id="renderChartsHeader">
+			<div class="leftElement">	
+			</div>
+			<div class="rightElement">
+<!--				<input type="button" class="renderSectorDistribution" title="Click to see the sectors visualization" value="Render Charts"/>-->
+			</div>
+			<div class="clearBothElement"></div>
+		</div>
+		
+		<div id="diverseContent">
+			<div id="sectorList" class="sectorStockList">
+				<select id='sectorOption' style="display:none">
+					<option value='0'>Cost Basis</option>
+				  	<option value='1'>Market Value</option>
+					<option value='2'>Gain Loss</option>
+				</select>
+				<div id="sectorChart"></div>
+			</div>
+			<div id="sectorStockGraph" class="sectorStockGraph">
+				<div id="dissectSectorChart"></div>
 			</div>
 			<div class="clearBothElement"></div>
 		</div>
@@ -82,7 +107,7 @@
 								<th>Shares</th>
 								<th>Price</th>
 								<th>Commission</th>
-								<th>Notes</th>
+								<th>Broker</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -104,6 +129,8 @@
 									<select id='brokerId'>
 										<option value='0'>TradeKing</option>
 										<option value='1'>Zecco</option>
+										<option value='2'>Ameritrade</option>
+										<option value='3'>Sharebuilder</option>
 									</select>	
 								</td>
 							</tr>
@@ -120,29 +147,6 @@
 	</div>
 </div>
 
-<div id="renderChartsHeader">
-			<div class="leftElement">	
-			</div>
-			<div class="rightElement">
-				<input type="button" class="renderSectorDistribution" title="Click to see the sectors visualization" value="Render Charts"/>
-			</div>
-			<div class="clearBothElement"></div>
-		</div>
-		
-		<div id="diverseContent">
-			<div id="sectorList" class="sectorStockList">
-				<select id='sectorOption'>
-					<option value='0'>Cost Basis</option>
-				<!--  	<option value='1'>Market Value</option>
-					<option value='2'>Gain Loss</option>-->
-				</select>
-				<div id="sectorChart"></div>
-			</div>
-			<div id="sectorStockGraph" class="sectorStockGraph">
-				<div id="dissectSectorChart"></div>
-			</div>
-			<div class="clearBothElement"></div>
-</div>
 </div>
 	
 	
