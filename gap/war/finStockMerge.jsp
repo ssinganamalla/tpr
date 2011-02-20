@@ -297,7 +297,7 @@
 </div>
 
 
-<div class="pageStmtAnalysis">
+<div id="pageStmtAnalysis">
 <div id="left">
 
 </div>
@@ -503,6 +503,20 @@
 	</div>
 	
 </div>
+</div>
+
+<div id="pageOtherSites">
+	<div id="mainOtherSites">
+		<div id="headerOtherSites">
+			<h1>Other Finance Sites</h1>
+		</div>
+		<div>
+			<h3>Stock Screener</h3>
+			<div><a href="http://caps.fool.com/Screener.aspx" target="_blank">Fool.com stock screener</a></div>
+			<div><a href="http://www.google.com/finance/stockscreener" target="_blank">Google stock screener</a></div>
+			<div><a href="http://www.dailyfinance.com" target="_blank">Daily Finance</a></div>
+		</div>
+	</div>
 </div>
 
 </div>

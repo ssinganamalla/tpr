@@ -58,5 +58,10 @@ public class TickerInfoServiceImpl implements TickerInfoService {
 	public void updateLastTickerPrice(String ticker, Double price, Date date) {
 		tickerInfoDAO.updateLastTickerPrice(ticker, price, date);
 	}
+	
+	@Override
+	public List<NonMutableTickerInfo> getMatchedTickers(String arg) {
+		return null;
+	}
 
 }

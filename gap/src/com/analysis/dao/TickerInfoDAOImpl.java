@@ -80,5 +80,13 @@ public class TickerInfoDAOImpl implements TickerInfoDAO {
 			pm.close();
 		}
 	}
+	
+	@Override
+	public List<NonMutableTickerInfo> getMatchedTickers(String arg) {
+		//first bring the tickers whose arg matches the ticker id. or if the ticker id starts with the id.
+		//then bring the ticker whose description contains the srg
+			
+		return null;
+	}
 
 }

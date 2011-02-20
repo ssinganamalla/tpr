@@ -62,6 +62,7 @@ html {
 .lk{
 	color:#000000;
 	text-decoration: underline;
+	cursor:pointer;
 }
 
 .nlk{

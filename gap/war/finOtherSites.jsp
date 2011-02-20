@@ -20,7 +20,6 @@
 <center>
 
 <div id="page">
-	
 	<div id="main">
 		<div id="header">
 			<h1>Other Finance Sites</h1>
@@ -32,13 +31,6 @@
 			<div><a href="http://www.dailyfinance.com" target="_blank">Daily Finance</a></div>
 		</div>
 	</div>
-	
-	
-	
-	
-	
-	
-	
 </div>
 
 <div id="footer">

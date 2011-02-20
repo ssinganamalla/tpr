@@ -19,4 +19,6 @@ public interface TickerInfoService {
 	
 	public void updateLastTickerPrice(String ticker, Double price, Date date);
 	
+	public List<NonMutableTickerInfo> getMatchedTickers(String arg); 
+	
 }
