@@ -35,7 +35,7 @@ com.fa.PreferredTickersSection = (function() {
 		
 		//init is called once
 		init : function() {
-			$('#stockTickerSymbol').finsearchbox({});
+			$('#stockTickerSymbol_Compare').finsearchbox({});
 			
 			//make a sync call
 			//var tickersArray = com.fa.controller.ajax.getPreferredTickers(); //com.fa.model.prefTickers set
@@ -44,7 +44,7 @@ com.fa.PreferredTickersSection = (function() {
 			
 			$('#addComparableBtn').click(function(evt){
 //				if(validateTicker()) {
-					var value = $('#stockTickerSymbol').finsearchbox('option', 'shortVal');
+					var value = $('#stockTickerSymbol_Compare').finsearchbox('option', 'shortVal');
 					$('#enterPreferredTickersDiv1').labeltextfield('append', value);
 //				}
 				
@@ -887,7 +887,6 @@ com.fa.RecentTickersSection = (function() {
 		renderAndGetShortDescDiv : function(id, desc) {
 			
 		}
-		
 	}
 })();
 

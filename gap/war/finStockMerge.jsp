@@ -1,27 +1,303 @@
-<%@ page contentType="text/html; charset=UTF-8" language="java"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <html>
 <head>
-<title>Study Financial Statements of a Company</title>
-<link type="text/css" rel="stylesheet" href="stylesheets/main.css"/>
-<link type="text/css" rel="stylesheet" href="stylesheets/start.css"/>
-<link type="text/css" rel="stylesheet" href="stylesheets/jquery-ui-1.8.7.custom.css"/>
-<link type="text/css" rel="stylesheet" href="stylesheets/tablesorter.css"/>
-<link type="text/css" rel="stylesheet" href="stylesheets/jquery.ui.stars.css"/>
-<script type="text/javascript" src="js/initNamespace.min.js"></script>
-<script type="text/javascript" src="js/utils.min.js"></script>
-<script src="http://www.google.com/jsapi?key=ABQIAAAAPP7e_w24FQGVrPwul01DTBSKOn6wlytR1vxIW8znD1NsRj_1UxQFDFx7IzlJMzaIRg6Zqq8hC98B8g" type="text/javascript"></script>
+	<link type="text/css" rel="stylesheet" href="stylesheets/start.css"/>
+	<link type="text/css" rel="stylesheet" href="stylesheets/main.css"/>
+	<link type="text/css" rel="stylesheet" href="stylesheets/tablesorter.css"/>
+	<link type="text/css" rel="stylesheet" href="stylesheets/jquery-ui_local.css"/>	
+	<script type="text/javascript" src="js/lib/jquery-1.4.4.min.js"></script>
+	<script type="text/javascript" src="js/lib/jquery-ui-1.8.7.custom.min.js"></script>
+	<script type="text/javascript" src="js/initNamespace.min.js"></script>
+	<script type="text/javascript" src="js/utils.min.js"></script>
+	<script type="text/javascript" src="js/browser.min.js"></script>
+	<script type="text/javascript" src="js/lib/uicontrols.min.js"></script>
+	<script type="text/javascript" src="js/lib/jquery.tablesorter.min.js"></script>
+	<script type="text/javascript" src="js/components/research.min.js"></script>
+	<script type="text/javascript" src="js/components/headers.min.js"></script>
+	
+	<link type="text/css" rel="stylesheet" href="stylesheets/jquery-ui-1.8.7.custom.css"/>
+	<script type="text/javascript" src="js/page/constants.min.js"></script>
+    <script type="text/javascript" src="http://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart", "table"]});
+    </script>
+	<script type="text/javascript" src="js/ui/ui.min.js"></script>
+	<script type="text/javascript" src="js/ui/models.min.js"></script>
+	<script type="text/javascript" src="js/page/performance.min.js"></script>
+	<script type="text/javascript" src="js/finGraphs.min.js"></script>
+	<script type="text/javascript" src="js/ajax.min.js"></script>
+  </head>
+  
+  
+<script type="text/javascript" src="js/ui/events.min.js"></script>
+<script type="text/javascript" src="js/finSheets.min.js"></script>
+<script type="text/javascript" src="js/parser.min.js"></script>
+<script type="text/javascript" src="js/page/watchlist.min.js"></script>
+<script type="text/javascript" src="js/lib/jquery.ui.stars.min.js"></script>
 
-<script>google.load("gdata", "1.x");</script>
-</head>
-
-<body id="dbody">
+<body>
 <jsp:include page="include.jsp"></jsp:include>
 <!-- insert menusections here -->
 <div id="header">
 </div>
-
 <center>
-<div class="page">
+
+<div id="page">
+<div id="errors"></div>
+<div id="pageDiversified">
+	
+	<div id="main">
+		<div class="section_hdr" id="header"><span class="f3">Diversified Stock Portfolio</span></div>
+		<div id="mainHeader">
+		
+			<div class="leftElement">
+				<span class="f4">Select Broker:</span>
+				<select id='selectbrokerId'>
+					<option value='-1'>All</option>
+					<option value='0'>TradeKing</option>
+					<option value='1'>Zecco</option>
+					<option value='2'>Ameritrade</option>
+					<option value='3'>Sharebuilder</option>
+				</select>
+			</div>
+			<div class="rightElement">
+			
+			</div>
+			<div class="clearBothElement"></div>
+		</div>
+		
+		<div id="renderChartsHeader">
+			<div class="leftElement">	
+			</div>
+			<div class="rightElement">
+<!--				<input type="button" class="renderSectorDistribution" title="Click to see the sectors visualization" value="Render Charts"/>-->
+			</div>
+			<div class="clearBothElement"></div>
+		</div>
+				<select id='sectorOption' style="display:none">
+					<option value='0'>Cost Basis</option>
+				  	<option value='1'>Market Value</option>
+					<option value='2'>Gain Loss</option>
+				</select>
+		
+		<div id="diverseContent">
+			<div id="sectorList" class="sectorStockList">
+				<div id="sectorChart"></div>
+			</div>
+			<div id="sectorStockGraph" class="sectorStockGraph">
+				<div id="dissectSectorChart"></div>
+			</div>
+			<div class="clearBothElement"></div>
+		</div>
+			
+		<div id="tickersData" style="">
+		
+		</div>
+		
+		<div id="pf-view-table">
+			
+		</div>
+
+<div class="basics purchase" id="add-trans-t">
+	
+	
+	<div id="commentsSection_perf">
+		<div id="expandBrokerStockData">
+			<div id="addTransaction" class="f4">Add a Transaction <a href="#">here</a></div>
+			<div id="transactionDiv">
+			
+				<div>
+					<input name="stockTickerSymbol_addTrans" id="stockTickerSymbol_addTrans" type="text" value="" size="40" maxlength="120" />
+				</div>
+				
+<!--				There should be only one id for this. this info should be helpful in the merge-->
+				<div id="suggestList" class="container"></div>
+			<!--  
+				<textarea id="brokerStockDataTxtArea" name="comments" rows="4" cols="100"></textarea><br/>
+				<input type="button" id="updateBrokerStockDataBtn" value="Update" />
+				<input type="button" id="cancelNote" value="Cancel" />
+			-->
+				<div class="pf-add-trans-row pf-add-trans-detailed">
+					<table id="pf-add-trans-table">
+						<thead>
+							<tr>
+								<th>Type</th>
+								<th class="bottom-header">Date</th>
+								<th>Shares</th>
+								<th>Price</th>
+								<th>Commission</th>
+								<th>Broker</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><select class="no_multi"	
+									id="add_ttype">
+									<option selected="" value="0">Buy</option>
+									<option value="1">Sell</option>
+								</select></td>
+								<td><input class="no_multi" autocomplete="off" name="add_date_1"
+									size="15" id="add_date" /></td>
+								<td><input class="no_multi" size="9" name="add_shares_1"
+									id="add_shares" /></td>
+								<td><input class="no_multi" size="9" name="add_price_1"
+									id="add_price" /></td>
+								<td><input class="no_multi" size="10" name="add_commission_1"
+									id="add_commission" /></td>
+								<td class="">
+									<select id='brokerId'>
+										<option value='0'>TradeKing</option>
+										<option value='1'>Zecco</option>
+										<option value='2'>Ameritrade</option>
+										<option value='3'>Sharebuilder</option>
+									</select>	
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				
+				<div class="pf-add-trans-row pf-add-trans-detailed">
+					<div class="g-unit"><input type="submit" value="Add to portfolio"
+								id="addStockTrans" /></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</div>		
+</div>
+
+<div id="pageResearch">
+	<div class="section_hdr"><span class="f3">Stock Research</span></div>
+	<div>
+		<div>
+			Add a comment for:
+			<input name="tickerSymbolForComments" id="tickerSymbolForComments" type="text" value="" size="40" maxlength="120" />
+			<select id="commentsReason">
+				<option value="0">Research</option>
+				<option value="1">Buy</option>
+	  			<option value="2">Sell</option>
+	  			<option value="3">Long term buy</option>
+	  			<option value="4">Short term buy</option>
+			</select>
+		</div>
+		<div id="suggestList" class="container"></div>
+	</div>
+	
+	<textarea cols="100" rows="4" name="comments" id="addCommentsTxtArea"></textarea>
+	<br/>
+	<input type="button" id="addTickerComment" value="Post Tweet"/>
+	<span>Text should be less than 500 characters</span>
+	
+	<div>
+	<h3>Select a ticker to see your research comments:</h3>
+	<div id="myStockResearchList">
+	
+	</div>
+	</div>
+	<div id="allComments">
+	</div>
+</div>
+
+<div id="pageCompareAnalysis">
+
+	<div id="topheader" class="topheader">
+	</div>
+	<div id="main">
+		<div id="diverseContentCompare" class="ui-corner-all">
+			<div>
+				<div>
+					<div class="section_hdr"><span class="f3">Compare Financial Performance of Companies</span></div>
+<!--					<div id="mainHeader">-->
+<!--						<div class="leftElement"></div>-->
+<!--						<div class="rightElement"></div>-->
+<!--						<div class="clearBothElement"></div>-->
+<!--					</div>-->
+					<div id="errors"></div>
+					</div>
+<!--					<div id="progressbar"></div>-->
+				<div name="tickerInputRow">
+					<table border="0">
+						<tr>
+							<td>
+							<span style="">
+							<label><b>Add to Comparable List:</b></label> 
+								<input name="stockTickerSymbol" id="stockTickerSymbol_Compare" type="text" value="" size="40" maxlength="120" /> 
+								<input type="button" id="addComparableBtn" title="Add to comparable tickers list" value="Add"/>
+								<br/><span style="font-size: 0.7em; color:#676767">Example: CSCO</span>
+							</span>
+							</td>
+						</tr>
+					</table>
+				</div>
+				<div id="suggestList" class="container"></div>
+				<div class="f3 mt mb">
+					Tickers:
+					<span id="enterPreferredTickersDiv1" class="f2">
+					</span>
+					<span>&nbsp;&nbsp;<input type="button" id="submitCompare" title="Compare the tickers" value="Compare"/>&nbsp;&nbsp;<img id="loading" alt="Loading..." src="images/loading.gif" style="display:none"/></span>
+<!--					<span><input type="button" id="clearCompare" title="Clear the list" value="Clear"/></span>-->
+					<br/>
+<!--					<span style="font-size: 0.7em; color: rgb(103, 103, 103);">Its advisable to compare less than 4 tickers at a time and add </span>-->
+				</div>
+			</div>
+		<div id="results">	
+			<div class="">
+				<div id="savedTickersDiv"></div><!--				<div id="criteriaSections">-->
+<!--				</div>-->
+			</div>
+			<div class="tp" id="chart_div">
+				<div class="section_hdr" style="margin-bottom:20px;">Charts for Ratio Analysis</div>
+				<div id="criteriaSelectionsDiv">
+					<h4>Sectors</h4>
+				</div>
+				<div id="selectedCriteriaGraphDiv">
+					<div id="selectedCriteriaGraphHeader">
+					</div>
+					<h4></h4>
+					<div id="selectedCriteriaChartDiv">
+					
+					</div>
+					<div id="selectedCriteriaGraphNote">
+				
+					</div>
+				</div>
+			<div class="clearBothElement"></div>
+			</div>
+			<div id="ratioAnalysisDiv" class="">
+			</div>
+			<div class="mt top">
+				<a href="#top"><img border="0" alt="Jump to the top of the page." src="images/arrow_top.gif"/></a>
+			</div>
+			
+			<div id="listOfComparisionTickers" style="display: none;"> 
+			<p>This table consists of the history of stock tickers you have picked in the past and compared</p>
+				<div id="recentTickersDiv">
+				<table border="1">
+					<tr>
+						<th>Short Desc</th>
+						<th>Tickers for comparision</th>
+						<th><button>Load Graphs</button></th>
+						<th><button>Delete</button></th>
+					</tr>
+					<tr>
+						<td>Healthcare smallcap</td>
+						<td>PFE WMT</td>
+						<td><input type="radio" name="selectRadio"></td>
+						<td><input type="checkbox" name="deleteHistCheck"></td>
+					</tr>
+				</table>
+				</div>
+			</div>
+			</div> 
+		</div>
+	</div>
+</div>
+
+
+<div class="pageStmtAnalysis">
 <div id="left">
 
 </div>
@@ -30,7 +306,7 @@
 
 </div>
 
-<div id="content" class="bg ui-corner-all">
+<div id="content" class="ui-corner-all">
 	<div class="section_hdr" id="header"><span class="f3">Financial Statements Analysis</span></div>
 	<div name="tickerInputRow">
 <!--		<span style="">-->
@@ -130,7 +406,7 @@
 				<div name="incInfo" id="incInfo">
 					<div name="info" i="0" k="inc">
 						<h3>Margins</h3>
-						<p><b>Gross profit</b> is the total revenue subtracted by the cost of obtaining that revenue.  It tells you how much money the business would have made if it didn’t pay any other expenses such as salary, income taxes, etc</p>
+						<p><b>Gross profit</b> is the total revenue subtracted by the cost of obtaining that revenue.  It tells you how much money the business would have made if it did not pay any other expenses such as salary, income taxes, etc</p>
 						<p><b>Operating Income</b> is the total profit or income generated from the core operations before interest deduction and income taxes</p>
 						<p><b>Net Income</b>is calculated by taking revenues and adjusting for the cost of doing business, depreciation, interest, taxes and other expenses</p>
 					</div>
@@ -139,7 +415,7 @@
 						<p>This graph shows the income statement as compared to a unit of revenue</p>
 						<p><b>Revenue</b> is the amount of money a business brought in through sales or services.  It is not a profit, but the amount generated through sales. A growing company should increase the revenue with time</p>
 						<p><b>Cost of revenue</b> is the amount of money the company had to spend in order to sell the product.  It includes the purchase price for the raw material as well as the expense incurred to manufacture it into a product.</p>
-						<p><b>Gross profit</b> is the total revenue subtracted by the cost of obtaining that revenue.  It tells you how much money the business would have made if it didn’t pay any other expenses such as salary, income taxes, etc</p>
+						<p><b>Gross profit</b> is the total revenue subtracted by the cost of obtaining that revenue.  It tells you how much money the business would have made if it did not pay any other expenses such as salary, income taxes, etc</p>
 						<p><b>Operating Income</b> is the total profit or income generated from the core operations before interest deduction and income taxes</p>
 						<p><b>Net Income</b>is calculated by taking revenues and adjusting for the cost of doing business, depreciation, interest, taxes and other expenses</p>
 					</div>
@@ -228,122 +504,39 @@
 	
 </div>
 </div>
-<div id="suggestList" class="container" >
+
 </div>
 <div id="footer">
 	 Graphs and the statements are provided solely for informational purposes, not for trading purposes or advice.<br/>
 	 For suggestions please send an email to <a href="mailto:finsheetanalyzer@gmail.com">finsheetanalyzer</a>
 </div>
-<script type="text/javascript" src="js/lib/jquery-1.4.4.min.js"></script>
-<script type="text/javascript" src="js/lib/jquery-ui-1.8.7.custom.min.js"></script>
-<script type="text/javascript" src="js/ui/ui.min.js"></script>
-<script type="text/javascript" src="js/ui/models.min.js"></script>
-<script type="text/javascript" src="js/lib/uicontrols.min.js"></script>
-<script type="text/javascript" src="js/browser.min.js"></script>
-<script type="text/javascript" src="js/finSheets.min.js"></script>
-<script type="text/javascript" src="js/parser.min.js"></script>
-<script type="text/javascript" src="js/finGraphs.min.js"></script>
-<script type="text/javascript" src="js/ajax.min.js"></script>
-<script type="text/javascript" src="js/lib/jquery.tablesorter.min.js"></script>
-<script type="text/javascript" src="js/components/headers.min.js"></script>
-<script type="text/javascript" src="js/lib/jquery.ui.stars.min.js"></script>
-<script type="text/javascript" src="http://www.google.com/jsapi"></script>
- <script>
- google.load("visualization", "1", {packages:["corechart", "table"]});
-// google.load("visualization", "1", {packages:["linechart", "piechart", "areachart", "barchart", "columnchart", "table"]});
- </script>
+</center>
+
 <script type="text/javascript">
-/***********************************************
-* Show Hint script- © Dynamic Drive (www.dynamicdrive.com)
-* This notice MUST stay intact for legal use
-* Visit http://www.dynamicdrive.com/ for this script and 100s more.
-***********************************************/
-		
-var horizontal_offset="9px" //horizontal offset of hint box from anchor link
-
-/////No further editting needed
-
-var vertical_offset="0" //horizontal offset of hint box from anchor link. No need to change.
-var ie=document.all
-var ns6=document.getElementById&&!document.all
-
-function getposOffset(what, offsettype){
-	var totaloffset=(offsettype=="left")? what.offsetLeft : what.offsetTop;
-	var parentEl=what.offsetParent;
-	while (parentEl!=null){
-		totaloffset=(offsettype=="left")? totaloffset+parentEl.offsetLeft : totaloffset+parentEl.offsetTop;
-		parentEl=parentEl.offsetParent;
-	}
-	return totaloffset;
-}
-
-function iecompattest(){
-	return (document.compatMode && document.compatMode!="BackCompat")? document.documentElement : document.body
-}
-
-function clearbrowseredge(obj, whichedge){
-	var edgeoffset=(whichedge=="rightedge")? parseInt(horizontal_offset)*-1 : parseInt(vertical_offset)*-1
-	if (whichedge=="rightedge"){
-		var windowedge=ie && !window.opera? iecompattest().scrollLeft+iecompattest().clientWidth-30 : window.pageXOffset+window.innerWidth-40
-		dropmenuobj.contentmeasure=dropmenuobj.offsetWidth
-		if (windowedge-dropmenuobj.x < dropmenuobj.contentmeasure)
-			edgeoffset=dropmenuobj.contentmeasure+obj.offsetWidth+parseInt(horizontal_offset)
-	}
-	else{
-		var windowedge=ie && !window.opera? iecompattest().scrollTop+iecompattest().clientHeight-15 : window.pageYOffset+window.innerHeight-18
-		dropmenuobj.contentmeasure=dropmenuobj.offsetHeight
-		if (windowedge-dropmenuobj.y < dropmenuobj.contentmeasure)
-			edgeoffset=dropmenuobj.contentmeasure-obj.offsetHeight
-	}
-	return edgeoffset
-}
-
-function showhint(menucontents, obj, e, tipwidth){
-	if ((ie||ns6) && document.getElementById("hintbox")){
-		dropmenuobj=document.getElementById("hintbox")
-		dropmenuobj.innerHTML=menucontents
-		dropmenuobj.style.left=dropmenuobj.style.top=-500
-		if (!tipwidth){
-			//dropmenuobj.widthobj=dropmenuobj.style
-			//dropmenuobj.widthobj.width=tipwidth
-		}
-		dropmenuobj.x=getposOffset(obj, "left")
-		dropmenuobj.y=getposOffset(obj, "top")
-		dropmenuobj.style.left=dropmenuobj.x-clearbrowseredge(obj, "rightedge")+obj.offsetWidth+"px"
-		dropmenuobj.style.top=dropmenuobj.y-clearbrowseredge(obj, "bottomedge")+"px"
-		dropmenuobj.style.visibility="visible"
-		obj.onmouseout=hidetip
-	}
-}
-
-function hidetip(e){
-	dropmenuobj.style.visibility="hidden"
-	dropmenuobj.style.left="-500px"
-}
-
-function createhintbox(){
-	var divblock=document.createElement("div")
-	divblock.setAttribute("id", "hintbox")
-	document.body.appendChild(divblock)
-}
-
-if (window.addEventListener)
-	window.addEventListener("load", createhintbox, false)
-else if (window.attachEvent)
-	window.attachEvent("onload", createhintbox)
-else if (document.getElementById)
-	window.onload=createhintbox
-</script>
-<script type="text/javascript">
+//finStockResearch
 $(document).ready(function() {
-	//trigger the statement
-	var type = "bal";
-	var period = "interim";
-	com.fa.model.setTypePeriodAndIndex(type, period, 0);
-	$('#stockTickerSymbol').finsearchbox();
-	com.fa.controller.loadBtnClicked();
+	setupCommentsFeature();
 });
 </script>
-</center>
+
+<script>
+//finStockPerformance
+$(document).ready(function() {
+		$( "#add_date" ).datepicker();
+		com.fa.controller.performance.getPortfolioTickers();
+});
+</script>
+
+<script type="text/javascript" >
+//finWatchList.js
+$(document).ready(function() {
+	com.fa.PreferredTickersSection.init();
+	var tickers = $('#enterPreferredTickersDiv1').labeltextfield('option', 'dataArray');
+	com.fa.PreferredTickersSection.loadPrefTickersData(tickers);
+});
+</script>
+<div id="dialog">
+</div>
+
 </body>
 </html>

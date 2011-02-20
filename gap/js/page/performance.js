@@ -2,14 +2,14 @@
 var SELECT_SECTOR_CLASS = 'selectSector';
 $(function() {
 	$("#expandBrokerStockData").show();
-	$("#commentDiv").hide();
+	$("#transactionDiv").hide();
 	
    // code to execute when the DOM is ready
-   $("#addComment a").toggle(function(e){
-			$("#commentDiv").show('slow');
+   $("#addTransaction a").toggle(function(e){
+			$("#transactionDiv").show('slow');
 	   }, function(e){
 		   e.preventDefault();
-			$("#commentDiv").hide('fast');
+			$("#transactionDiv").hide('fast');
 		   });
    
    $("#updateBrokerStockDataBtn").click(com.fa.controller.performance.updateBrokerStockDataClicked);
@@ -17,8 +17,8 @@ $(function() {
    com.fa.ui.performance.init();
 
    $("#cancelNote").click( function() {
-		   $("#commentDiv").hide('fast');
-		   $("#commentDiv").val('');
+		   $("#transactionDiv").hide('fast');
+		   $("#transactionDiv").val('');
    		}
    );
    
@@ -124,7 +124,7 @@ com.fa.ui.performance = (function(){
 	return {
 		
 		init: function() {
-			$('#stockTickerSymbol').finsearchbox({});
+			$('#stockTickerSymbol_addTrans').finsearchbox({});
 		},
 		
 		setup: function() {
@@ -258,7 +258,7 @@ com.fa.controller.performance = (function(){
 			var addprice = $("#add_price").val();
 			var addCommission = $("#add_commission").val();
 			var addNotes = $("add_notes");
-			var ticker = $("#stockTickerSymbol").finsearchbox("option", "shortVal");
+			var ticker = $("#stockTickerSymbol_addTrans").finsearchbox("option", "shortVal");
 			var dateString = $("#add_date").val();
 			var dateFormat = $("#add_date").datepicker("option", "dateFormat");
 			var brokerId = $("#brokerId").val();

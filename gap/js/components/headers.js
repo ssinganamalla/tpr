@@ -7,6 +7,7 @@ function setupHeadersFeature() {
 				"		<span><a href=\"finStockPerformance.jsp\">Diversified?</a> |</span>\n" + 
 				"		<span><a href=\"finWatchList.jsp\">Compare</a> |</span> \r\n" +
 				"		<span><a href=\"finAnalyzer.jsp?stockTickerSymbol=GOOG\">Statement Analysis</a> |</span> \n" +
+				"		<span><a href=\"finStockMerge.jsp\">Merge of Research and Performance</a> |</span> \r\n" +
 				"		<span><a href=\"finOtherSites.jsp\">Popular Finance Sites</a>|</span>\n" + 
 				"	</div>"; 
 		

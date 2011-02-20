@@ -11,12 +11,11 @@
 	<script type="text/javascript" src="js/initNamespace.min.js"></script>
 	<script type="text/javascript" src="js/page/constants.min.js"></script>
 	<script type="text/javascript" src="js/utils.min.js"></script>
-    <script type="text/javascript" src="http://www.google.com/jsapi"></script>
-    <script type="text/javascript">
-      google.load("visualization", "1", {packages:["corechart"]});
-    </script>
-	
-  </head>
+   <script type="text/javascript" src="http://www.google.com/jsapi"></script>
+   <script type="text/javascript">
+     google.load("visualization", "1", {packages:["corechart"]});
+   </script>
+</head>
 
 
 <body id="dbody">
@@ -84,14 +83,16 @@
 <div class="basics purchase" id="add-trans-t">
 	
 	
-	<div id="commentsSection">
+	<div id="commentsSection_perf">
 		<div id="expandBrokerStockData">
-			<div id="addComment" class="f4">Add a Transaction <a href="#">here</a></div>
-			<div id="commentDiv">
+			<div id="addTransaction" class="f4">Add a Transaction <a href="#">here</a></div>
+			<div id="transactionDiv">
 			
 				<div>
-					<input name="stockTickerSymbol" id="stockTickerSymbol" type="text" value="" size="40" maxlength="120" />
+					<input name="stockTickerSymbol_addTrans" id="stockTickerSymbol_addTrans" type="text" value="" size="40" maxlength="120" />
 				</div>
+				
+<!--				There should be only one id for this. this info should be helpful in the merge-->
 				<div id="suggestList" class="container"></div>
 			<!--  
 				<textarea id="brokerStockDataTxtArea" name="comments" rows="4" cols="100"></textarea><br/>
@@ -146,13 +147,7 @@
 		</div>
 	</div>
 </div>
-
-</div>
-	
-	
-	
-	
-	
+</div>		
 </div>
 
 <div id="footer">

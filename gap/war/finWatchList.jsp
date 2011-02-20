@@ -21,13 +21,10 @@
 	<div id="topheader" class="topheader">
 	</div>
 	<div id="main">
-		
-		
-		<div id="diverseContent" class="bg ui-corner-all">
-			
+		<div id="diverseContentContent" class="bg ui-corner-all">
 			<div>
 				<div>
-					<div id="header" class="section_hdr"><span class="f3">Compare Financial Performance of Companies</span></div>
+					<div class="section_hdr"><span class="f3">Compare Financial Performance of Companies</span></div>
 <!--					<div id="mainHeader">-->
 <!--						<div class="leftElement"></div>-->
 <!--						<div class="rightElement"></div>-->
@@ -36,13 +33,13 @@
 					<div id="errors"></div>
 					</div>
 <!--					<div id="progressbar"></div>-->
-				<div id="tickerInputRow">
+				<div name="tickerInputRow">
 					<table border="0">
 						<tr>
 							<td>
 							<span style="">
 							<label><b>Add to Comparable List:</b></label> 
-								<input name="stockTickerSymbol" id="stockTickerSymbol" type="text" value="" size="40" maxlength="120" /> 
+								<input name="stockTickerSymbol" id="stockTickerSymbol_Compare" type="text" value="" size="40" maxlength="120" /> 
 								<input type="button" id="addComparableBtn" title="Add to comparable tickers list" value="Add"/>
 								<br/><span style="font-size: 0.7em; color:#676767">Example: CSCO</span>
 							</span>
@@ -82,19 +79,13 @@
 				
 					</div>
 				</div>
-				
 			<div class="clearBothElement"></div>
 			</div>
-			
-			
 			<div id="ratioAnalysisDiv" class="">
-				
 			</div>
 			<div class="mt top">
 				<a href="#top"><img border="0" alt="Jump to the top of the page." src="images/arrow_top.gif"/></a>
 			</div>
-			
-			
 			
 			<div id="listOfComparisionTickers" style="display: none;"> 
 			<p>This table consists of the history of stock tickers you have picked in the past and compared</p>
@@ -116,10 +107,8 @@
 				</div>
 			</div>
 			</div> 
-			
 		</div>
 	</div>
-	
 </div>
 <div id="footer">
 	 Graphs and the statements are provided solely for informational purposes, not for trading purposes or advice.<br/>
@@ -130,7 +119,6 @@
 <script type="text/javascript" src="js/lib/jquery-ui-1.8.7.custom.min.js"></script>
 <script type="text/javascript" src="js/initNamespace.min.js"></script>
 <script type="text/javascript" src="js/utils.min.js"></script>
-
 <script type="text/javascript" src="js/lib/uicontrols.min.js"></script>
 <script type="text/javascript" src="js/ui/ui.min.js"></script>
 <script type="text/javascript" src="js/ui/models.min.js"></script>
