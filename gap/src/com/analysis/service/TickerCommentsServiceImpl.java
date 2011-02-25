@@ -59,5 +59,10 @@ public class TickerCommentsServiceImpl implements TickerCommentsService {
 		}
 		return this.commentsDAO.getComments(email, ticker);
 	}
+	
+	@Override
+	public Collection<TickerComment> getCommentsByTicker(String email, int max) {
+		return null;
+	}
 
 }

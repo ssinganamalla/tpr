@@ -72,7 +72,6 @@ public class TickerCommentsDAOImpl implements TickerCommentsDAO {
 		} finally {
 			pm.close();
 		}
-		
 	}
 	
 	@Override
@@ -104,7 +103,23 @@ public class TickerCommentsDAOImpl implements TickerCommentsDAO {
 		} finally {
 			pm.close();
 		}
-		
+	}
+	
+	@Override
+	public Collection<TickerComment> getCommentsByTicker(String email, int max) {
+		PersistenceManager pm = PMF.get().getPersistenceManager();
+		try {
+			Query query = pm.newQuery(TickerComment.class);
+			query.setFilter("email == emailParam");
+			query.declareParameters("String emailParam");
+			query.setOrdering("ticker ascn");
+			query.setOrdering("date desc");
+			Collection<TickerComment> results = (Collection<TickerComment>) query.execute(email);
+			Collection<TickerComment> list = pm.detachCopyAll(results);
+			return list;
+		} finally {
+			pm.close();
+		}
 	}
 
 }

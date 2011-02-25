@@ -26,4 +26,13 @@ public interface TickerCommentsService {
 	Collection<TickerComment> getComments(String email);
 	
 	Collection<TickerComment> getComments(String email, String ticker);
+	
+	/**
+	 * Gets comments order by ticker. The comments are fetched in desc date.
+	 * You can specify the max which specifies the maximum comments fetched for a ticker.
+	 * @param email
+	 * @param max
+	 * @return
+	 */
+	Collection<TickerComment> getCommentsByTicker(String email, int max);
 }

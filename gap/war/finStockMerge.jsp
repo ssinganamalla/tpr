@@ -189,7 +189,7 @@
 	<textarea cols="100" rows="4" name="comments" id="addCommentsTxtArea"></textarea>
 	<br/>
 	<input type="button" id="addTickerComment" value="Post Tweet"/>
-	<span>Text should be less than 500 characters</span>
+	<span>Text should be less than 500 characters:<span id="charsLen">0</span></span>
 	
 	<div>
 	<h3>Select a ticker to see your research comments:</h3>
@@ -197,6 +197,7 @@
 	
 	</div>
 	</div>
+	
 	<div id="allComments">
 	</div>
 </div>
@@ -550,6 +551,11 @@ $(document).ready(function() {
 });
 </script>
 <div id="dialog">
+</div>
+
+<!--loading div to show any feedback for any operation, absolute positioning-->
+<div id="loading" style="display:none; width:100px; height:100px;padding:30px;">
+	<span>Loading:<img id='loading' alt='Loading...' src='images/loading.gif' style='display:none'/></span>
 </div>
 
 </body>

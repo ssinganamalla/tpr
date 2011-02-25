@@ -5,6 +5,7 @@ import java.util.Date;
 
 import com.analysis.domain.TickerComment;
 import com.analysis.domain.UserCommentTicker;
+import com.analysis.enums.Enums;
 
 public interface TickerCommentsDAO {
 	
@@ -20,4 +21,6 @@ public interface TickerCommentsDAO {
 	Collection<TickerComment> getComments(String email);
 	
 	Collection<TickerComment> getComments(String email, String ticker);
+	
+	public Collection<TickerComment> getCommentsByTicker(String email, int max);
 }

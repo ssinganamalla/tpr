@@ -1,7 +1,4 @@
 //setup : converts the innertext to the links to display comments
-
-
-
 function setupCommentsFeature() {
 	
 	$('#tickerSymbolForComments').finsearchbox();
@@ -9,11 +6,15 @@ function setupCommentsFeature() {
 	//set up the links for fetching comments
 	$('li[name="getTickerResearchComments"]').live('click',
 				function() {
+					
+					var loadingDiv = $("#loading").css('display', 'block');
+					//position the loadingDiv
 					$.getJSON(com.fa.Global.prefixPath + "/comments/getTickerResearchComments", {"ticker":$(this).text()},
 							function(json) {
+						 		$("#loading").css('display', 'none');
 								$('#allComments').empty();
 								$('#allComments').append("<table id=\"allCommentsTable\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\" class=\"tablesorter\">\r\n" + 
-										"</table>\r\n");
+										"</table>\r\n	");
 								$('#allCommentsTable').append("<thead>\r\n" + 
 										"		<tr>\r\n" + 
 										"			<th style='width:150px'>Date</th>\r\n" + 
@@ -64,6 +65,12 @@ function setupCommentsFeature() {
 					}
 			);
 		}
+	});
+	
+	$("#addCommentsTxtArea").keyup(function(event){
+		var txt = this.value;
+		$("#charsLen").empty();
+		$("#charsLen").append(txt.length);
 	});
 	
 	$.getJSON(com.fa.Global.prefixPath + "/comments/getCommentTickers", {},
