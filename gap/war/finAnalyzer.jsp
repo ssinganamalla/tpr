@@ -340,7 +340,7 @@ $(document).ready(function() {
 	var type = "bal";
 	var period = "interim";
 	com.fa.model.setTypePeriodAndIndex(type, period, 0);
-	$('#stockTickerSymbol').finsearchbox();
+	$('#stockTickerSymbol').finsearchbox({});
 	com.fa.controller.loadBtnClicked();
 });
 </script>

@@ -8,7 +8,7 @@
 </head>
 <body>
 Admin Tasks page
-<form action="/struts/admin/loadTickersPrice" method="post" enctype="multipart/form-data">
+<form action="/servlets/uploadFile" method="post" enctype="multipart/form-data">
 	<input type="file" name="filename" />
 	<input type="submit" />
 </form>

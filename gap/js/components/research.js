@@ -1,7 +1,7 @@
 //setup : converts the innertext to the links to display comments
 function setupCommentsFeature() {
 	
-	$('#tickerSymbolForComments').finsearchbox();
+	$('#tickerSymbolForComments').finsearchbox({});
 	
 	//set up the links for fetching comments
 	$('li[name="getTickerResearchComments"]').live('click',

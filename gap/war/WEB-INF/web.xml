@@ -51,6 +51,16 @@
 		<servlet-name>addNote</servlet-name>
 		<url-pattern>/addNote</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>uploadFile</servlet-name>
+		<servlet-class>com.analysis.servlets.FileUploadServlet</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>uploadFile</servlet-name>
+		<url-pattern>/servlets/uploadFile</url-pattern>
+	</servlet-mapping>
 
 	<servlet>
 		<servlet-name>savePreferredTickers</servlet-name>

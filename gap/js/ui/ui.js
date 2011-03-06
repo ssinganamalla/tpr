@@ -212,11 +212,14 @@ com.fa.controller.ajax = (function() {
 			$("#addedComments").empty();
 			var $table = $('<table id="stmt-comments-table" class="tablesorter"></table>');
 			$table.append(buildThead());
+			var tbody = $("<tbody></tbody>");
+			$table.append(tbody);
+			
 			for(var i=0; i<notes.length; i++) {
 				var note = notes[i];
 				var row = $('<tr></tr>')[0];
 				if(note) {
-					$table[0].appendChild(row);
+					tbody[0].appendChild(row);
 					row.appendChild($('<td class="title">' + note.co + '</td>')[0]);
 					row.appendChild($('<td>' + note.pts + '</td>')[0]);
 					row.appendChild($('<td>' + note.sts + '</td>')[0]);

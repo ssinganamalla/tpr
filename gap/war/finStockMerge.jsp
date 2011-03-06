@@ -5,7 +5,8 @@
 	<link type="text/css" rel="stylesheet" href="stylesheets/start.css"/>
 	<link type="text/css" rel="stylesheet" href="stylesheets/main.css"/>
 	<link type="text/css" rel="stylesheet" href="stylesheets/tablesorter.css"/>
-	<link type="text/css" rel="stylesheet" href="stylesheets/jquery-ui_local.css"/>	
+	<link type="text/css" rel="stylesheet" href="stylesheets/jquery-ui_local.css"/>
+	<link type="text/css" rel="stylesheet" href="stylesheets/jquery.ui.stars.css"/>	
 	<script type="text/javascript" src="js/lib/jquery-1.4.4.min.js"></script>
 	<script type="text/javascript" src="js/lib/jquery-ui-1.8.7.custom.min.js"></script>
 	<script type="text/javascript" src="js/initNamespace.min.js"></script>
@@ -112,7 +113,7 @@
 				</div>
 				
 <!--				There should be only one id for this. this info should be helpful in the merge-->
-				<div id="suggestList" class="container"></div>
+<!--				<div id="suggestList" class="container"></div>-->
 			<!--  
 				<textarea id="brokerStockDataTxtArea" name="comments" rows="4" cols="100"></textarea><br/>
 				<input type="button" id="updateBrokerStockDataBtn" value="Update" />
@@ -183,7 +184,7 @@
 	  			<option value="4">Short term buy</option>
 			</select>
 		</div>
-		<div id="suggestList" class="container"></div>
+<!--		<div id="suggestList" class="container"></div>-->
 	</div>
 	
 	<textarea cols="100" rows="4" name="comments" id="addCommentsTxtArea"></textarea>
@@ -233,7 +234,7 @@
 						</tr>
 					</table>
 				</div>
-				<div id="suggestList" class="container"></div>
+<!--				<div id="suggestList" class="container"></div>-->
 				<div class="f3 mt mb">
 					Tickers:
 					<span id="enterPreferredTickersDiv1" class="f2">
@@ -312,7 +313,7 @@
 	<div name="tickerInputRow">
 <!--		<span style="">-->
 			<label><b>Enter the Stock Ticker:</b></label> 
-			<input name="stockTickerSymbol" id="stockTickerSymbol" type="text" value="<%=request.getParameter("stockTickerSymbol")%>" size="40" maxlength="120" /> 
+			<input name="stockTickerSymbol" id="stockTickerSymbol" type="text" value="<%=request.getParameter("stockTickerSymbol") == null ? "GOOG":request.getParameter("stockTickerSymbol")%>" size="40" maxlength="120" /> 
 			<input type="button" title="load financial statements" value="Load Statements" id="tickInput"/>
 			<img id="loading" alt="Loading..." src="images/loading.gif" style="display:none"/><br/><span style="font-size: 1em; color:#676767">Example: CSCO</span>
 <!--		</span>-->
@@ -460,6 +461,8 @@
 				</div>
 				<div id="addComment">Add a comment <a href="#">here</a></div>
 				<div id="commentDiv">
+					
+					Please rate:
 					<div>
 					 <span id="stars-cap"></span>
 					<span id="stars-wrapper">
@@ -472,13 +475,12 @@
 						</select>
 					</span>
 					</div>
-					<div>
+					<div style="clear: both;">
 						<textarea id="comments" name="comments" rows="4" cols="48"></textarea><br/>
 						<input type="button" id="addNote" value="Add a Private Note" />
 						<input type="button" id="addPublicNote" value="Public Note" />
 						<input type="button" id="cancelNote" value="Cancel" />
 					</div>
-					
 				</div>
 			</div>
 		</div>
@@ -550,6 +552,100 @@ $(document).ready(function() {
 	com.fa.PreferredTickersSection.loadPrefTickersData(tickers);
 });
 </script>
+
+<script type="text/javascript">
+//finAnalyzer.jsp
+/***********************************************
+* Show Hint script- © Dynamic Drive (www.dynamicdrive.com)
+* This notice MUST stay intact for legal use
+* Visit http://www.dynamicdrive.com/ for this script and 100s more.
+***********************************************/
+		
+var horizontal_offset="9px" //horizontal offset of hint box from anchor link
+
+/////No further editting needed
+
+var vertical_offset="0" //horizontal offset of hint box from anchor link. No need to change.
+var ie=document.all
+var ns6=document.getElementById&&!document.all
+
+function getposOffset(what, offsettype){
+	var totaloffset=(offsettype=="left")? what.offsetLeft : what.offsetTop;
+	var parentEl=what.offsetParent;
+	while (parentEl!=null){
+		totaloffset=(offsettype=="left")? totaloffset+parentEl.offsetLeft : totaloffset+parentEl.offsetTop;
+		parentEl=parentEl.offsetParent;
+	}
+	return totaloffset;
+}
+
+function iecompattest(){
+	return (document.compatMode && document.compatMode!="BackCompat")? document.documentElement : document.body
+}
+
+function clearbrowseredge(obj, whichedge){
+	var edgeoffset=(whichedge=="rightedge")? parseInt(horizontal_offset)*-1 : parseInt(vertical_offset)*-1
+	if (whichedge=="rightedge"){
+		var windowedge=ie && !window.opera? iecompattest().scrollLeft+iecompattest().clientWidth-30 : window.pageXOffset+window.innerWidth-40
+		dropmenuobj.contentmeasure=dropmenuobj.offsetWidth
+		if (windowedge-dropmenuobj.x < dropmenuobj.contentmeasure)
+			edgeoffset=dropmenuobj.contentmeasure+obj.offsetWidth+parseInt(horizontal_offset)
+	}
+	else{
+		var windowedge=ie && !window.opera? iecompattest().scrollTop+iecompattest().clientHeight-15 : window.pageYOffset+window.innerHeight-18
+		dropmenuobj.contentmeasure=dropmenuobj.offsetHeight
+		if (windowedge-dropmenuobj.y < dropmenuobj.contentmeasure)
+			edgeoffset=dropmenuobj.contentmeasure-obj.offsetHeight
+	}
+	return edgeoffset
+}
+
+function showhint(menucontents, obj, e, tipwidth){
+	if ((ie||ns6) && document.getElementById("hintbox")){
+		dropmenuobj=document.getElementById("hintbox")
+		dropmenuobj.innerHTML=menucontents
+		dropmenuobj.style.left=dropmenuobj.style.top=-500
+		if (!tipwidth){
+			//dropmenuobj.widthobj=dropmenuobj.style
+			//dropmenuobj.widthobj.width=tipwidth
+		}
+		dropmenuobj.x=getposOffset(obj, "left")
+		dropmenuobj.y=getposOffset(obj, "top")
+		dropmenuobj.style.left=dropmenuobj.x-clearbrowseredge(obj, "rightedge")+obj.offsetWidth+"px"
+		dropmenuobj.style.top=dropmenuobj.y-clearbrowseredge(obj, "bottomedge")+"px"
+		dropmenuobj.style.visibility="visible"
+		obj.onmouseout=hidetip
+	}
+}
+
+function hidetip(e){
+	dropmenuobj.style.visibility="hidden"
+	dropmenuobj.style.left="-500px"
+}
+
+function createhintbox(){
+	var divblock=document.createElement("div")
+	divblock.setAttribute("id", "hintbox")
+	document.body.appendChild(divblock)
+}
+
+if (window.addEventListener)
+	window.addEventListener("load", createhintbox, false)
+else if (window.attachEvent)
+	window.attachEvent("onload", createhintbox)
+else if (document.getElementById)
+	window.onload=createhintbox
+</script>
+<script type="text/javascript">
+$(document).ready(function() {
+	//trigger the statement
+	var type = "bal";
+	var period = "interim";
+	com.fa.model.setTypePeriodAndIndex(type, period, 0);
+	$('#stockTickerSymbol').finsearchbox({});
+	com.fa.controller.loadBtnClicked();
+});
+</script>
 <div id="dialog">
 </div>
 
@@ -557,6 +653,6 @@ $(document).ready(function() {
 <div id="loading" style="display:none; width:100px; height:100px;padding:30px;">
 	<span>Loading:<img id='loading' alt='Loading...' src='images/loading.gif' style='display:none'/></span>
 </div>
-
+<div id="suggestList" class="container"></div>
 </body>
 </html>
