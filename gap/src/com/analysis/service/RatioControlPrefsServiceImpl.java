@@ -28,7 +28,8 @@ public class RatioControlPrefsServiceImpl implements RatioControlPrefsService{
 	/**
 	 * Some non existent default gmail id. Hopefully. If the guest signs in, we use this default gmail
 	 */
-	public static String defaultEmail = "default7427_61839_5538858103@gmailyyy.com";
+	//public static String defaultEmail = "default7427_61839_5538858103@gmailyyy.com";
+	public static String defaultEmail = "srinivas.singanamalla@gmail.com";
 	
 	@Override
 	public RatioThresholdsPrefs getRatioThresholds(String email) {

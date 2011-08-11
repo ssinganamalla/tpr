@@ -13,7 +13,8 @@ public class BasicActionSupport extends ActionSupport{
 		if(user != null) {
 			return user.getEmail();
 		} else {
-			return  "guest81mda931032odal@ghuiew.com";
+//			return  "guest81mda931032odal@ghuiew.com";
+			return  "srinivas.singanamalla@gmail.com";
 		}
 	}
 
