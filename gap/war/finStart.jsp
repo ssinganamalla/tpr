@@ -136,7 +136,9 @@ $(document).ready(function() {
 				<option value="9">Technology</option>
 				<option value="10">Transportation</option>
 				<option value="11">Utilities</option>
-				</select>
+				<option value="12">Solar</option>
+				<option value="13">Chinese Solar</option>
+				<option value="13">India</option>
 				<textarea id="currSectorTickers" cols="18" rows="10" style="overflow: visible"></textarea>
 			</div>
 			<div>
