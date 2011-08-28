@@ -1,5 +1,6 @@
 <project basedir=".." >
-	  <property name="sdk.dir" location="C:/home/appengine-java-sdk-1.4.0" />
+	  	<property name="sdk.dir" location="C:/srini/appengine-java-sdk-1.4.0" />
+	
 	  <import file="${sdk.dir}/config/user/ant-macros.xml" />
 	  <property name="3rd.party" location="3rdParty"/>
 	  <property name="war.lib" location="war/WEB-INF/lib"></property>
