@@ -1,10 +1,15 @@
 package com.analysis.utils;
 
+import com.analysis.enums.*;
 public class MiscUtils {
 	public static String convertJsDatePickerFormatToJavaFormat(String input) {
 		return input.replaceAll("mm", "MM");
 	}
 	
+	enum Sector {
+		//0				1				2					3								4	  5			6			7			8			9				10     11		 12		13                  14
+		BASIC_MATERIALS, CAPITAL_GOODS, CONGLOMERATES, CONSUMER_CYCLICAL, CONSUMER_NON_CYCLICAL, ENERGY, FINANCIAL, HEALTHCARE, SERVICES, TECHNOLOGY, TRANSPORTATION, UTILITIES, SOLAR, CHINESE_SMALLCAP, INDIAN
+	}
 	public static int getSectorIndex(String name) {
 		
 		if("Basic Materials".equalsIgnoreCase(name)) {
@@ -31,6 +36,12 @@ public class MiscUtils {
 			return 10;
 		} else if("Utilities".equalsIgnoreCase(name)) {
 			return 11;
+		} else if("Solar".equalsIgnoreCase(name)) {
+			return 12;
+		} else if("Chinese Smallcap".equalsIgnoreCase(name)) {
+			return 13;
+		} else if("Indian".equalsIgnoreCase(name)) {
+			return 14;
 		} else {
 			return -1;
 		}

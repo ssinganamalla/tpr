@@ -11,6 +11,7 @@
 		<%
 	    UserService userService = UserServiceFactory.getUserService();
 	    User user = userService.getCurrentUser();
+	    boolean userLoggedIn = user != null;
 	    if (user != null) {
 	%>
 	<span>Hello, <%= user.getNickname() %>! (You can
@@ -26,4 +27,13 @@
 	%>
 		</div>
 		<div class="clearBothElement"></div>
+	<%
+	    if (!userLoggedIn) {
+	%>	
+		<div style="text-align:center;"><h1>Please log in!!!</h1>
+		</div>	
+	<%
+	    }	    	
+	%>	
+		
 	</div>	

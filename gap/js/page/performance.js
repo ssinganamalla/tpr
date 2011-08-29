@@ -307,7 +307,6 @@ com.fa.controller.performance = (function(){
 			var enumSectors = {0:' Basic Materials', 1:'Capital Goods', 2: 'Conglomerates', 3:'Consumer Cyclical', 4:'Consumer/Non-Cyclical', 5:'Energy', 
 							   6:'Financial', 7:'Healthcare', 8:'Services', 9:'Technology', 10:'Transportation', 11:'Utilities', 12: 'Solar', 13: "Chinese Smallcap", 14: "Indian"};
 			
-			var sectorsLength = 14;
 			var tickersArray = $('#tickersData').data('tickers');
 			
 			if(tickersArray.length < 1) {
@@ -330,9 +329,9 @@ com.fa.controller.performance = (function(){
 	        var data = new google.visualization.DataTable();
 	        data.addColumn('string', 'Sector');
 	        data.addColumn('number', getCriteriaLabel());
-	        data.addRows(sectorsLength);
+	        data.addRows(sectors.length);
 	        
-	        for(var i=0; i<sectorsLength; i++) {
+	        for(var i=0; i<sectors.length; i++) {
 	        	data.setValue(i, 0, enumSectors[i]);
 	            data.setValue(i, 1, sectors[i] ? sectors[i] : 0);        	
 	        }
@@ -407,7 +406,6 @@ com.fa.controller.performance = (function(){
 		        	var tickerVal = getRelevantTickerInput(sectors[i]);
 		            data.setValue(i, 1, tickerVal);        	
 		        }
-
 		        var val = $('#sectorOption').val();
 		        
 		        switch (Number(val)) {
