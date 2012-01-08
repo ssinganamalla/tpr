@@ -43,7 +43,6 @@
 <div id="header">
 </div>
 <center>
-TESAADAIDAD
 <div id="page">
 <div id="errors"></div>
 <div id="pageDiversified">
