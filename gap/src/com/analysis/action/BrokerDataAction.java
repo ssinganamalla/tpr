@@ -20,96 +20,98 @@ import com.utils.json.JSONException;
 import com.utils.json.JSONObject;
 
 public class BrokerDataAction extends BasicActionSupport {
-	private static final Logger log = Logger.getLogger(BrokerDataAction.class.getName());
-	
+	private static final Logger log = Logger.getLogger(BrokerDataAction.class
+			.getName());
+
 	private BrokerDataService brokerDataService;
-	
+
 	private InputStream inputStream;
-    
+
 	public BrokerDataService getBrokerDataService() {
 		return brokerDataService;
 	}
+
 	public void setBrokerDataService(BrokerDataService brokerDataService) {
 		this.brokerDataService = brokerDataService;
 	}
-	
+
 	public InputStream getInputStream() {
-        return inputStream;
-    }
-	
+		return inputStream;
+	}
+
 	public void setInputStream(InputStream inputStream) {
 		this.inputStream = inputStream;
 	}
-	
+
 	@Override
-    public String input() throws Exception {
-    	// TODO Auto-generated method stub
-    	return super.input();
-    }
-    
-    public String execute() throws Exception {
-        return getBrokerDataInJsonFormat();
-    }
-    
-    public String updateBrokerData() throws Exception {
-    	return getBrokerDataInJsonFormat();
-    }
-    
-    public String getBrokerDataInJsonFormat() {
-    	
-    	try {
+	public String input() throws Exception {
+		// TODO Auto-generated method stub
+		return super.input();
+	}
+
+	public String execute() throws Exception {
+		return getBrokerDataInJsonFormat();
+	}
+
+	public String updateBrokerData() throws Exception {
+		return getBrokerDataInJsonFormat();
+	}
+
+	public String getBrokerDataInJsonFormat() {
+
+		try {
 			inputStream = new StringBufferInputStream(createJson());
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			inputStream = new StringBufferInputStream("NODATA");
 			e.printStackTrace();
-			log.logp(Level.SEVERE, this.getClass().getName(), "getThresholdPrefs", "Could not get data for the threshold ratio prefs");
+			log.logp(Level.SEVERE, this.getClass().getName(),
+					"getThresholdPrefs",
+					"Could not get data for the threshold ratio prefs");
 			return ERROR;
 		}
-    	return SUCCESS;
-    }
+		return SUCCESS;
+	}
 
-    private String createJson() throws JSONException {
+	private String createJson() throws JSONException {
 		// TODO Auto-generated method stub
-    	
-    	BrokerData brokerData = BrokerDataFactory.getBrokerData(Enums.BrokerId.TRADE_KING);
-    	
-    	brokerData.setBrokerData(this.getBrokerStockData());
-    	List<PortfolioTicker> tickers = brokerData.createTickersList();
-    	
-		
+
+		BrokerData brokerData = BrokerDataFactory
+				.getBrokerData(Enums.BrokerId.TRADE_KING);
+
+		brokerData.setBrokerData(this.getBrokerStockData());
+		List<PortfolioTicker> tickers = brokerData.createTickersList();
+
 		JSONArray ja = new JSONArray();
-		for(int i=0; i<tickers.size(); i++) {
-			if(tickers.get(i) == null) {
+		for (int i = 0; i < tickers.size(); i++) {
+			if (tickers.get(i) == null) {
 				continue;
 			}
 			ja.put(tickers.get(i).toJSONObject());
 		}
 		return ja.toString();
 	}
-	
-	
-	//Form Variables
+
+	// Form Variables
 	private String brokerStockData;
-	
-	//Enums.BrokerId
+
+	// Enums.BrokerId
 	private int brokerId;
-	
+
 	public String getBrokerStockData() {
 		return brokerStockData;
 	}
+
 	public void setBrokerStockData(String brokerStockData) {
 		this.brokerStockData = brokerStockData;
 	}
+
 	public void setBrokerId(int brokerId) {
 		this.brokerId = brokerId;
 	}
+
 	public int getBrokerId() {
 		return brokerId;
 	}
-	
-	
-	
-    
-    
+
 }

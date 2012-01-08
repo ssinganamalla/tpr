@@ -43,7 +43,7 @@
 <div id="header">
 </div>
 <center>
-
+TESAADAIDAD
 <div id="page">
 <div id="errors"></div>
 <div id="pageDiversified">
@@ -643,6 +643,7 @@ $(document).ready(function() {
 	var period = "interim";
 	com.fa.model.setTypePeriodAndIndex(type, period, 0);
 	$('#stockTickerSymbol').finsearchbox({});
+	$('#stockTickerSymbol').finsearchbox('option', 'longVal', "NYSE:YHOO");
 	com.fa.controller.loadBtnClicked();
 });
 </script>

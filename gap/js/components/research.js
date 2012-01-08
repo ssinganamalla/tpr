@@ -27,6 +27,7 @@ function setupCommentsFeature() {
 								var jsonArray = json.tca;
 								var tickerText = json.e + ':' + json.sb;
 								$("#tickerSymbolForComments").finsearchbox('option', 'longVal', tickerText);
+								$('#stockTickerSymbol').finsearchbox('option', 'longVal', tickerText);
 								for(var i in jsonArray) {
 									var tr =$("<tr></tr>");
 									var tdDate = $("<td>" + jsonArray[i].da + "</td>");

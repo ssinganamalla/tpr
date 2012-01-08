@@ -12,7 +12,6 @@ import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
 import com.analysis.enums.Enums;
-import com.sun.istack.internal.Nullable;
 import com.utils.json.JSONException;
 import com.utils.json.JSONObject;
 
